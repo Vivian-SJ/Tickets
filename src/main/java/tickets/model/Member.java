@@ -11,13 +11,19 @@ public class Member {
     private int id;
     private String name;
     private String password;
+    //头像
     private String image;
     private String email;
     private String gender;
+    //会员是否有效
     private boolean valid;
+    //会员等级
     private int rank;
+    //会员积分
     private double credit;
+    //总消费额
     private double sum_consumption;
+    //可用余额
     private double money_available;
 
     public Member() {
