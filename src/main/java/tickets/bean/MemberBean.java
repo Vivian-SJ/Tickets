@@ -20,6 +20,10 @@ public class MemberBean {
     private double sum_consumption;
     //可用余额
     private double money_available;
+    //激活状态
+    private boolean activate_state;
+    //激活码
+    private String activate_code;
 
     public MemberBean() {
     }
@@ -118,5 +122,21 @@ public class MemberBean {
 
     public void setMoney_available(double money_available) {
         this.money_available = money_available;
+    }
+
+    public boolean isActivate_state() {
+        return activate_state;
+    }
+
+    public void setActivate_state(boolean activate_state) {
+        this.activate_state = activate_state;
+    }
+
+    public String getActivate_code() {
+        return activate_code;
+    }
+
+    public void setActivate_code(String activate_code) {
+        this.activate_code = activate_code;
     }
 }

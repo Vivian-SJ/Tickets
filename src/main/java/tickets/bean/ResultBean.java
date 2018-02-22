@@ -9,7 +9,7 @@ public class ResultBean {
 
     public ResultBean(boolean result) {
         this.result = true;
-        this.message = "success";
+        this.message = "成功";
     }
 
     public ResultBean(boolean result, String message) {
