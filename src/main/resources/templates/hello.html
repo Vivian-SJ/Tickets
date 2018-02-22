@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>hello bootstrap</title>
-    <link rel="stylesheet" href="/bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../static/bootstrap-3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
 <h1>你好，世界！</h1>
@@ -11,9 +11,61 @@
     <h1>我的第一个 Bootstrap 页面</h1>
     <p>重置窗口大小，查看响应式效果！</p>
 </div>
-<button type="button" class="btn btn-success">原始按钮</button>
+<p class="lead">强调段落</p>
 
-<script src="/jquery/jquery-3.2.1.min.js"></script>
-<script src="/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<h1>标题一</h1>
+<h1>标题一<small>可以用small来添加副标题</small></h1>
+<mark>可以用mark来添加标记</mark>
+<strong>可以用strong来强调</strong>
+<p class="text-left">居左</p>
+<p class="text-lowercase">英文小写</p>
+<span class="h1">可以把h1-h6当做一个类来调用样式</span>
+<blockquote>引用文本</blockquote>
+<ul class="list-unstyled">
+    <li>移除默认样式的列表</li>
+    <li>移除默认样式的列表</li>
+    <li>移除默认样式的列表</li>
+</ul>
+<ul class="list-inline">
+    <li>内联列表</li>
+    <li>内联列表</li>
+    <li>内联列表</li>
+</ul>
+<dl class="dl-horizontal">
+    <dt>水平描述的标题</dt>
+    <dd>水平描述的内容</dd>
+</dl>
+<!--加了horizontal就是标题在左边，内容在右边-->
+
+<!--class可以是table, table table-striped, table table-bordered， table-hover 可以同时用-->
+<table class="table">
+    <thead>
+    <tr>
+        <th>biaoti1</th>
+        <th>biaoti2</th>
+        <th>biaoti3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>neirong1</td>
+        <td>neirong2</td>
+        <td>neirong3</td>
+    </tr>
+    </tbody>
+</table>
+
+<button type="button" class="btn btn-success btn-lg">成功按钮</button>
+
+
+<form>
+    <div class="form-group">
+        <label>邮箱</label>
+        <input type="email" class="form-control" placeholder="请输入您的邮箱">
+    </div>
+</form>
+
+<script src="../static/jquery/jquery-3.3.1.min.js"></script>
+<script src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

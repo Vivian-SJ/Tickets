@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import tickets.model.Member;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class MemberRepositoryTest {
@@ -20,5 +19,13 @@ public class MemberRepositoryTest {
         memberRepository.findById(4);
         System.out.println(member.getEmail());
         System.out.println(member.getGender());
+    }
+
+    @Test
+    public void test1() {
+        Member member = memberRepository.findByEmail("1");
+        if (member == null) {
+            System.out.println("null");
+        }
     }
 }

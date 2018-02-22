@@ -5,4 +5,6 @@ import tickets.model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
     public Member findById (int Id);
+
+    public Member findByEmail (String email);
 }
