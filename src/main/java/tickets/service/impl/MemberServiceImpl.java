@@ -11,7 +11,7 @@ import tickets.model.Order;
 import tickets.model.Show;
 import tickets.repository.CouponRepository;
 import tickets.repository.MemberRepository;
-import tickets.repository.OrderRepositoryTest;
+import tickets.repository.OrderRepository;
 import tickets.repository.ShowRepository;
 import tickets.service.MailService;
 import tickets.service.MemberService;
@@ -21,11 +21,12 @@ import tickets.util.CouponStatus;
 import tickets.util.OrderStatus;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
@@ -33,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
     private CouponRepository couponRepository;
 
     @Autowired
-    private OrderRepositoryTest orderRepository;
+    private OrderRepository orderRepository;
 
     @Autowired
     private ShowRepository showRepository;
@@ -77,11 +78,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public ResultBean registerConfirm(String emailCode, String code){
+    public ResultBean registerConfirm(String emailCode, String code) {
         try {
             String email = new String(CodeUtil.decrypt(emailCode));
             Member member = memberRepository.findByEmail(email);
-            if (member!=null && member.getActivate_code().equals(code)) {
+            if (member != null && member.getActivate_code().equals(code)) {
                 member.setActivate_state(true);
                 memberRepository.save(member);
                 return new ResultBean(true, "验证成功！欢迎来到Tickets！");
@@ -144,14 +145,29 @@ public class MemberServiceImpl implements MemberService{
     public ResultBean cancelOrder(int orderId) {
         Order order = orderRepository.findById(orderId);
         order.setStatus(OrderStatus.CANCELED.toString());
+
         Member member = memberRepository.findById(order.getMember_id());
 
         //处理退款
         double price = order.getPrice();
-        Timestamp time = order.getTime();
+        long cancelTimeLong = new Date().getTime();
         Show show = showRepository.findById(order.getShow_id());
         Timestamp showTime = show.getTime();
-
+        long showTimeLong = showTime.getTime();
+        //距离演出开始的天数
+        int internalDays = (int) (showTimeLong - cancelTimeLong) / (1000 * 60 * 60 * 24);
+        //退款
+        double moneyAvailable = member.getMoney_available();
+        if (internalDays >= 7) {
+            member.setMoney_available(moneyAvailable + price);
+            order.setPrice(0);
+        } else if (internalDays >= 5) {
+            member.setMoney_available(moneyAvailable + price * 0.5);
+            order.setPrice(price * 0.5);
+        } else if (internalDays >= 3) {
+            member.setMoney_available(moneyAvailable + price * 0.3);
+            order.setPrice(price * 0.7);
+        }
 
         //把这个订单使用的优惠券恢复正常
         List<Coupon> coupons = couponRepository.findByMember_idAndOrder_id(member.getId(), orderId);
@@ -177,9 +193,9 @@ public class MemberServiceImpl implements MemberService{
         member.setMoney_available(newMoneyAvailable);
         double newSumConsumption = member.getSum_consumption() + price;
         member.setSum_consumption(newSumConsumption);
-        double newCredit = member.getCredit()+price;
+        double newCredit = member.getCredit() + price;
         member.setCredit(newCredit);
-        int rank = (int)newSumConsumption/1000;
+        int rank = (int) newSumConsumption / 1000;
         member.setRank(rank);
 
         //删除已经使用的优惠券
@@ -198,7 +214,7 @@ public class MemberServiceImpl implements MemberService{
         orderRepository.save(order);
 
         List<Integer> couponIds = ticketBuyBean.getCouponIds();
-        if (couponIds.size()>0) {
+        if (couponIds.size() > 0) {
             for (int id : couponIds) {
                 Coupon coupon = couponRepository.findById(id);
                 coupon.setStatus(CouponStatus.SELECTED.toString());
@@ -208,8 +224,6 @@ public class MemberServiceImpl implements MemberService{
         }
         return new ResultBean(true);
     }
-
-
 
 
 }
