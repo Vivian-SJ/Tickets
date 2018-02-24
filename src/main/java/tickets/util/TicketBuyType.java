@@ -14,4 +14,13 @@ public enum TicketBuyType {
                     return null;
         }
     }
+
+    public static TicketBuyType toEnumValue(String name) {
+        for (TicketBuyType ticketBuyType : TicketBuyType.values()) {
+            if (ticketBuyType.toString().equals(name)) {
+                return ticketBuyType;
+            }
+        }
+        return null;
+    }
 }

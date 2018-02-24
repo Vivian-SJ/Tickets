@@ -16,7 +16,7 @@ public class OrderRepositoryTest {
 
     @Test
     public void test() {
-//        TicketBuyBean ticketBuyBean = new TicketBuyBean();
+//        OrderBean ticketBuyBean = new OrderBean();
 //        Order order = new Order();
         Date date = new Date();
         Timestamp timestamp = new Timestamp(date.getTime());

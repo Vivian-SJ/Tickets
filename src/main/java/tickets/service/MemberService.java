@@ -1,9 +1,8 @@
 package tickets.service;
 
-import tickets.bean.MemberAccountBean;
-import tickets.bean.MemberBean;
-import tickets.bean.ResultBean;
-import tickets.bean.TicketBuyBean;
+import tickets.bean.*;
+
+import java.util.List;
 
 public interface MemberService {
     public MemberBean findMemberById(int memberId);
@@ -46,7 +45,7 @@ public interface MemberService {
      */
     public ResultBean modifyInfo(int memberId, MemberBean memberBean);
 
-    public ResultBean buyTicket(TicketBuyBean ticketBuyBean);
+    public ResultBean buyTicket(OrderBean orderBean);
 
     public MemberAccountBean getMemberAccountInfo(int memberId);
 
@@ -55,4 +54,8 @@ public interface MemberService {
     public ResultBean cancelOrder(int orderId);
 
     public ResultBean payOrder(int orderId);
+
+    public List<OrderBean> displayOrder(int memberId);
+
+    public StatisticsBean displayMemberStatistics(int memberId);
 }

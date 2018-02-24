@@ -1,5 +1,6 @@
 package tickets.bean;
 
+import tickets.model.Order;
 import tickets.util.OrderStatus;
 import tickets.util.TicketBuyType;
 
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketBuyBean {
+public class OrderBean {
     private int memberId;
     private int stadiumId;
     private int showId;
@@ -29,8 +30,22 @@ public class TicketBuyBean {
     private OrderStatus orderStatus;
     //订单时间
     private Timestamp time;
+    private String ps;
 
-    public TicketBuyBean() {
+    public OrderBean() {
+    }
+
+    public OrderBean(Order order) {
+        this.memberId = order.getMember_id();
+        this.stadiumId = order.getStadium_id();
+        this.showId = order.getShow_id();
+        this.type = TicketBuyType.toEnumValue(order.getType());
+        this.seatId = order.getSeat_id();
+        this.ticketAmount = order.getAmount();
+        this.actualPrice = order.getPrice();
+        this.orderStatus = OrderStatus.getEnumValue(order.getStatus());
+        this.time = order.getTime();
+        this.ps = order.getPs();
     }
 
     public int getSeatId() {
@@ -127,5 +142,13 @@ public class TicketBuyBean {
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public String getPs() {
+        return ps;
+    }
+
+    public void setPs(String ps) {
+        this.ps = ps;
     }
 }

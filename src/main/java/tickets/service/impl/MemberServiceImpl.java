@@ -2,9 +2,7 @@ package tickets.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tickets.bean.MemberAccountBean;
-import tickets.bean.ResultBean;
-import tickets.bean.TicketBuyBean;
+import tickets.bean.*;
 import tickets.model.Coupon;
 import tickets.model.Member;
 import tickets.model.Order;
@@ -15,15 +13,12 @@ import tickets.repository.OrderRepository;
 import tickets.repository.ShowRepository;
 import tickets.service.MailService;
 import tickets.service.MemberService;
-import tickets.bean.MemberBean;
 import tickets.util.CodeUtil;
 import tickets.util.CouponStatus;
 import tickets.util.OrderStatus;
 
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -209,11 +204,38 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResultBean buyTicket(TicketBuyBean ticketBuyBean) {
-        Order order = new Order(ticketBuyBean);
+    public List<OrderBean> displayOrder(int memberId) {
+        List<Order> orders = orderRepository.findByMember_id(memberId);
+        List<OrderBean> orderBeans = new ArrayList<>();
+        for (Order order : orders) {
+            OrderBean orderBean = new OrderBean(order);
+            orderBeans.add(orderBean);
+        }
+        return orderBeans;
+    }
+
+    @Override
+    public StatisticsBean displayMemberStatistics(int memberId) {
+        Map<String, List<OrderBean>> map = new HashMap<>();
+        for (OrderStatus orderStatus : OrderStatus.values()) {
+            List<Order> orders = orderRepository.findByMember_idAndType(memberId, orderStatus.toString());
+            List<OrderBean> orderBeans = new ArrayList<>();
+            for (Order order : orders) {
+                OrderBean orderBean = new OrderBean(order);
+                orderBeans.add(orderBean);
+            }
+            map.put(orderStatus.toString(), orderBeans);
+        }
+        double totalPrice = orderRepository.getTotalPrice(memberId);
+        return new StatisticsBean(map, totalPrice);
+    }
+
+    @Override
+    public ResultBean buyTicket(OrderBean orderBean) {
+        Order order = new Order(orderBean);
         orderRepository.save(order);
 
-        List<Integer> couponIds = ticketBuyBean.getCouponIds();
+        List<Integer> couponIds = orderBean.getCouponIds();
         if (couponIds.size() > 0) {
             for (int id : couponIds) {
                 Coupon coupon = couponRepository.findById(id);

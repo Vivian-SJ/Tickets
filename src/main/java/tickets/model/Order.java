@@ -1,6 +1,6 @@
 package tickets.model;
 
-import tickets.bean.TicketBuyBean;
+import tickets.bean.OrderBean;
 import tickets.util.OrderStatus;
 
 import javax.persistence.Entity;
@@ -24,24 +24,26 @@ public class Order {
     private String ps;
     //订单金额
     private double price;
+    private String type;
 
     public Order() {
     }
 
-    public Order(TicketBuyBean ticketBuyBean) {
-        this.member_id = ticketBuyBean.getMemberId();
-        this.stadium_id = ticketBuyBean.getStadiumId();
-        this.show_id = ticketBuyBean.getShowId();
-        this.seat_id = ticketBuyBean.getSeatId();
-        this.amount = ticketBuyBean.getTicketAmount();
+    public Order(OrderBean orderBean) {
+        this.member_id = orderBean.getMemberId();
+        this.stadium_id = orderBean.getStadiumId();
+        this.show_id = orderBean.getShowId();
+        this.seat_id = orderBean.getSeatId();
+        this.amount = orderBean.getTicketAmount();
         this.status = OrderStatus.TO_BE_PAID.toString();
-        this.time = ticketBuyBean.getTime();
-        this.price = ticketBuyBean.getActualPrice();
-        String ps = "此单原价为"+ ticketBuyBean.getExpectedPrice()+ "元，您已享受" + ticketBuyBean.getDiscount() + "折会员优惠";
-        if (ticketBuyBean.getCouponIds().size()>0) {
-            ps = ps + ",并使用了" + ticketBuyBean.getCouponIds().size() + "张优惠券";
+        this.time = orderBean.getTime();
+        this.price = orderBean.getActualPrice();
+        String ps = "此单原价为"+ orderBean.getExpectedPrice()+ "元，您已享受" + orderBean.getDiscount() + "折会员优惠";
+        if (orderBean.getCouponIds().size()>0) {
+            ps = ps + ",并使用了" + orderBean.getCouponIds().size() + "张优惠券";
         }
         this.ps = ps;
+        this.type = orderBean.getType().toString();
     }
 
     public double getPrice() {
@@ -122,5 +124,13 @@ public class Order {
 
     public void setPs(String ps) {
         this.ps = ps;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

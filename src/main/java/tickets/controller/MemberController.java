@@ -2,11 +2,10 @@ package tickets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tickets.bean.MemberAccountBean;
-import tickets.bean.MemberBean;
-import tickets.bean.ResultBean;
-import tickets.bean.TicketBuyBean;
+import tickets.bean.*;
 import tickets.service.MemberService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/tickets")
@@ -70,8 +69,8 @@ public class MemberController {
         return memberService.exchangeCoupon(memberId, couponValue);
     }
     @RequestMapping(value = "/member/ticket/buy", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    public ResultBean buyTicket(@RequestBody TicketBuyBean ticketBuyBean) {
-        return memberService.buyTicket(ticketBuyBean);
+    public ResultBean buyTicket(@RequestBody OrderBean orderBean) {
+        return memberService.buyTicket(orderBean);
     }
 
     @RequestMapping(value = "/member/ticket/cancel/{orderId}", method = RequestMethod.GET)
@@ -82,6 +81,16 @@ public class MemberController {
     @RequestMapping(value = "/member/ticket/pay", method = RequestMethod.POST)
     public ResultBean payOrder(@RequestParam(value = "orderId") int orderId) {
         return memberService.payOrder(orderId);
+    }
+
+    @RequestMapping(value = "/member/order/display/{memberId}", method = RequestMethod.GET)
+    public List<OrderBean> displayOrder (@PathVariable(value = "memberId") int memberId) {
+        return memberService.displayOrder(memberId);
+    }
+
+    @RequestMapping(value = "/member/statics/{memberId}", method = RequestMethod.GET)
+    public StatisticsBean displayMemberStatistics(@PathVariable(value = "memberId") int memberId) {
+        return memberService.displayMemberStatistics(memberId);
     }
 
 }
