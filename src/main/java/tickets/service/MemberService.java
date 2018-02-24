@@ -1,7 +1,9 @@
 package tickets.service;
 
+import tickets.bean.MemberAccountBean;
 import tickets.bean.MemberBean;
 import tickets.bean.ResultBean;
+import tickets.bean.TicketBuyBean;
 
 public interface MemberService {
     public MemberBean findMemberById(int memberId);
@@ -28,4 +30,29 @@ public interface MemberService {
      * @return 用户标识和密码是否配对
      */
     public ResultBean checkUser (String email, String password);
+
+    /**
+     * 取消会员资格
+     * @param memberId 会员Id
+     * @return 修改结果
+     */
+    public ResultBean cancelMember(int memberId);
+
+    /**
+     * 修改会员信息
+     * @param memberId 会员Id
+     * @param memberBean 会员信息
+     * @return 修改结果
+     */
+    public ResultBean modifyInfo(int memberId, MemberBean memberBean);
+
+    public ResultBean buyTicket(TicketBuyBean ticketBuyBean);
+
+    public MemberAccountBean getMemberAccountInfo(int memberId);
+
+    public ResultBean exchangeCoupon(int memberId, double value);
+
+    public ResultBean cancelOrder(int orderId);
+
+    public ResultBean payOrder(int orderId);
 }

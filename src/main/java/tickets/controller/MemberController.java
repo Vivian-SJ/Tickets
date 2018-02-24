@@ -2,8 +2,10 @@ package tickets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tickets.bean.MemberAccountBean;
 import tickets.bean.MemberBean;
 import tickets.bean.ResultBean;
+import tickets.bean.TicketBuyBean;
 import tickets.service.MemberService;
 
 @RestController
@@ -41,4 +43,45 @@ public class MemberController {
     public MemberBean findMemberById(@PathVariable(value = "memberId") int memberId) {
         return memberService.findMemberById(memberId);
     }
+
+    @RequestMapping(value = "/member/cancel/{memberId}", method = RequestMethod.GET)
+    public ResultBean cancelMember(@PathVariable(value = "memberId") int memberId) {
+        return memberService.cancelMember(memberId);
+    }
+
+    @RequestMapping(value = "/member/logout/{memberId}", method = RequestMethod.GET)
+    public ResultBean logout(@PathVariable(value = "memberId") int memberId) {
+        return new ResultBean(true);
+    }
+
+    @RequestMapping(value = "/member/info/modify/{memberId}", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultBean modifyInfo(@PathVariable(value = "memberId") int memberId, @RequestBody MemberBean memberBean) {
+        return memberService.modifyInfo(memberId, memberBean);
+    }
+
+    @RequestMapping(value = "/member/account/{memberId}", method = RequestMethod.GET)
+    public MemberAccountBean getMemberAccountInfo(@PathVariable(value = "memberId") int memberId) {
+        return memberService.getMemberAccountInfo(memberId);
+    }
+
+    @RequestMapping(value = "/member/coupon/exchange", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultBean exchangeCoupon(@RequestParam(value = "memberId") int memberId,
+                                     @RequestParam(value = "couponValue") double couponValue ) {
+        return memberService.exchangeCoupon(memberId, couponValue);
+    }
+    @RequestMapping(value = "/member/ticket/buy", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultBean buyTicket(@RequestBody TicketBuyBean ticketBuyBean) {
+        return memberService.buyTicket(ticketBuyBean);
+    }
+
+    @RequestMapping(value = "/member/ticket/cancel/{orderId}", method = RequestMethod.GET)
+    public ResultBean cancelOrder(@PathVariable(value = "orderId") int orderId) {
+        return memberService.cancelOrder(orderId);
+    }
+
+    @RequestMapping(value = "/member/ticket/pay", method = RequestMethod.POST)
+    public ResultBean payOrder(@RequestParam(value = "orderId") int orderId) {
+        return memberService.payOrder(orderId);
+    }
+
 }
