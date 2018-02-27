@@ -1,5 +1,7 @@
 package tickets.model;
 
+import tickets.bean.ShowBean;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -17,6 +19,21 @@ public class Show {
     private String description;
 
     public Show() {
+    }
+
+    public Show(int stadium_id) {
+        this.stadium_id = stadium_id;
+    }
+
+    public Show(ShowBean showBean) {
+        if (showBean.getId()!=0) {
+            this.id = showBean.getId();
+        }
+        this.name = showBean.getName();
+        this.time = showBean.getTime();
+        this.stadium_id = showBean.getStadiumId();
+        this.type = showBean.getType().toString();
+        this.description = showBean.getDescription();
     }
 
     public int getId() {

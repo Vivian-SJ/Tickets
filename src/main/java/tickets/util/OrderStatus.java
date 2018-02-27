@@ -5,8 +5,8 @@ public enum OrderStatus {
     WAIT_TICKET,
     TICKET_OUT,
     CANCELED,
-    USED,
-    VALID;
+    USED;
+//    VALID;
 
     public String toString() {
         switch (this){
@@ -20,8 +20,8 @@ public enum OrderStatus {
                 return "已取消";
             case USED:
                 return "已使用";
-            case VALID:
-                return "有效单";
+//            case VALID:
+//                return "有效单";
                 default:
                     return null;
         }

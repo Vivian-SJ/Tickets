@@ -2,18 +2,16 @@ package tickets.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tickets.bean.ResultBean;
-import tickets.bean.SeatBean;
-import tickets.bean.StadiumBean;
-import tickets.bean.StadiumRegisterBean;
-import tickets.model.Seat;
-import tickets.model.Stadium;
-import tickets.repository.SeatRepository;
-import tickets.repository.StadiumRepository;
+import tickets.bean.*;
+import tickets.model.*;
+import tickets.repository.*;
 import tickets.service.StadiumService;
+import tickets.util.OrderStatus;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StadiumServiceImpl implements StadiumService{
@@ -22,6 +20,15 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Autowired
     private SeatRepository seatRepository;
+
+    @Autowired
+    private ShowRepository showRepository;
+
+    @Autowired
+    private ShowSeatPriceRepository showSeatPriceRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Override
     public StadiumRegisterBean register(StadiumBean stadiumBean) {
@@ -68,5 +75,62 @@ public class StadiumServiceImpl implements StadiumService{
             seatRepository.save(seat);
         }
         return new ResultBean(true);
+    }
+
+    @Override
+    public ResultBean releaseShow(ShowBean showBean) {
+        Show show = new Show(showBean);
+        System.out.println("description:"+showBean.getDescription());
+        showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
+        Map<Integer, Double> seatAndPrice = showBean.getSeatAndPrice();
+        int showId = showRepository.getId();
+        System.out.println(showId);
+        for (Map.Entry<Integer, Double> entry : seatAndPrice.entrySet()) {
+            ShowSeatPriceId showSeatPriceId = new ShowSeatPriceId(showId, entry.getKey());
+            ShowSeatPrice showSeatPrice = new ShowSeatPrice(showSeatPriceId, entry.getValue());
+            showSeatPriceRepository.save(showSeatPrice);
+        }
+        return new ResultBean(true);
+    }
+
+    @Override
+    public List<ShowBean> displayShows(int stadiumId) {
+        List<Show> shows = showRepository.findByStadium_id(stadiumId);
+        List<ShowBean> showBeans = new ArrayList<>();
+        for (Show show : shows) {
+            List<ShowSeatPrice> showSeatPriceList = showSeatPriceRepository.findByShowId(show.getId());
+            Map<Integer, Double> map = new HashMap<>();
+            for (ShowSeatPrice showSeatPrice : showSeatPriceList) {
+                map.put(showSeatPrice.getShowSeatPriceId().getSeat_id(), showSeatPrice.getPrice());
+            }
+            ShowBean showBean = new ShowBean(show, map);
+            showBeans.add(showBean);
+        }
+        return showBeans;
+    }
+
+    @Override
+    public ResultBean checkTicket(TicketCheckBean ticketCheckBean) {
+        Order order = orderRepository.findById(ticketCheckBean.getOrderId());
+        order.setStatus(ticketCheckBean.getStatus().toString());
+        order.setPs(ticketCheckBean.getPs());
+        orderRepository.save(order);
+        return new ResultBean(true);
+    }
+
+    @Override
+    public StatisticsBean displayMemberStatistics(int stadiumId) {
+        Map<String, List<OrderBean>> map = new HashMap<>();
+        for (OrderStatus orderStatus : OrderStatus.values()) {
+            List<Order> orders = orderRepository.findByStadium_idAndType(stadiumId, orderStatus.toString());
+            List<OrderBean> orderBeans = new ArrayList<>();
+            for (Order order : orders) {
+                OrderBean orderBean = new OrderBean(order);
+                orderBeans.add(orderBean);
+            }
+            map.put(orderStatus.toString(), orderBeans);
+        }
+        double totalPrice = orderRepository.getStadiumTotalPrice(stadiumId);
+        return new StatisticsBean(map, totalPrice);
     }
 }

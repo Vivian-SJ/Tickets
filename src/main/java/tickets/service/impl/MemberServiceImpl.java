@@ -226,7 +226,7 @@ public class MemberServiceImpl implements MemberService {
             }
             map.put(orderStatus.toString(), orderBeans);
         }
-        double totalPrice = orderRepository.getTotalPrice(memberId);
+        double totalPrice = orderRepository.getMemberTotalPrice(memberId);
         return new StatisticsBean(map, totalPrice);
     }
 
