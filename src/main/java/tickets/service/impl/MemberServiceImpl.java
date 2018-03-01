@@ -3,14 +3,8 @@ package tickets.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tickets.bean.*;
-import tickets.model.Coupon;
-import tickets.model.Member;
-import tickets.model.Order;
-import tickets.model.Show;
-import tickets.repository.CouponRepository;
-import tickets.repository.MemberRepository;
-import tickets.repository.OrderRepository;
-import tickets.repository.ShowRepository;
+import tickets.model.*;
+import tickets.repository.*;
 import tickets.service.MailService;
 import tickets.service.MemberService;
 import tickets.util.CodeUtil;
@@ -36,6 +30,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private AccountRepository accountRepository;
 
     @Override
     public MemberBean findMemberById(int memberId) {
@@ -200,6 +197,11 @@ public class MemberServiceImpl implements MemberService {
                 couponRepository.delete(coupon);
             }
         }
+
+        //将这一笔交易记录下来，经理会和场馆结算
+        Account account = new Account(order.getShow_id(), order.getStadium_id(), price);
+        accountRepository.save(account);
+
         return new ResultBean(true);
     }
 

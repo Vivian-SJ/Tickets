@@ -10,6 +10,9 @@ public class StadiumBean {
     private String place;
     private String description;
     private List<SeatBean> seats;
+    //是否审批
+    private String status;
+    private double income;
 
     public StadiumBean() {
     }
@@ -20,6 +23,8 @@ public class StadiumBean {
         this.place = stadium.getPlace();
         this.description = stadium.getDescription();
         this.seats = seats;
+        this.status = stadium.getStatus();
+        this.income = stadium.getIncome();
     }
 
     public int getId() {
@@ -60,5 +65,21 @@ public class StadiumBean {
 
     public void setSeats(List<SeatBean> seats) {
         this.seats = seats;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getIncome() {
+        return income;
+    }
+
+    public void setIncome(double income) {
+        this.income = income;
     }
 }

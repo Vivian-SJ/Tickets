@@ -45,6 +45,6 @@ public class StadiumController {
 
     @RequestMapping(value = "/statistics/{stadiumId}", method = RequestMethod.GET)
     public StatisticsBean displayStadiumStatistics(@PathVariable(value = "stadiumId") int stadiumId) {
-        return stadiumService.displayMemberStatistics(stadiumId);
+        return stadiumService.displayStadiumStatistics(stadiumId);
     }
 }

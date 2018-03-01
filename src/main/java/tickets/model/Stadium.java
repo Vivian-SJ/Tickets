@@ -14,6 +14,9 @@ public class Stadium {
     private String name;
     private String place;
     private String description;
+    //是否审批
+    private String status;
+    private double income;
 
     public Stadium() {
     }
@@ -25,6 +28,8 @@ public class Stadium {
         this.name = stadiumBean.getName();
         this.place = stadiumBean.getPlace();
         this.description = stadiumBean.getDescription();
+        this.status = stadiumBean.getStatus();
+        this.income = stadiumBean.getIncome();
     }
 
     public int getId() {
@@ -57,5 +62,21 @@ public class Stadium {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getIncome() {
+        return income;
+    }
+
+    public void setIncome(double income) {
+        this.income = income;
     }
 }
