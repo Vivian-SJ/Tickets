@@ -35,11 +35,14 @@ public class MemberController {
         return memberService.register(memberBean);
     }
 
-    @ResponseBody
     @RequestMapping(value = "/register/confirm", method = RequestMethod.GET)
-    public ResultBean registerConfirm(@RequestParam(value = "email") String emailCode,
+    public String registerConfirm(@RequestParam(value = "email") String emailCode,
                                       @RequestParam(value = "code") String code) {
-        return memberService.registerConfirm(emailCode, code);
+        ResultBean resultBean = memberService.registerConfirm(emailCode, code);
+        if (resultBean.isResult()) {
+            return "register-confirm-right";
+        }
+        return "register-confirm-wrong";
     }
 
     @ResponseBody

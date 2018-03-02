@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Title</title>
+    <title>注册</title>
 
     <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../css/main.css"/>
@@ -22,6 +22,9 @@
     </div>
     <div class="register-main">
         <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 label control-label" id="message" style="display: none; color: #c12e2a">message</label>
+            </div>
             <div class="form-group">
                 <label for="name" class="col-sm-2 label control-label">用户名</label>
                 <div class="col-sm-10">
@@ -43,14 +46,17 @@
             <div class="form-group">
                 <label class="label control-label col-sm-2">性别</label>
                 <div class="col-sm-2">
-                    <select class="form-control">
+                    <select class="form-control" id="gender">
                         <option class="label">男</option>
                         <option class="label">女</option>
                     </select>
                 </div>
             </div>
-            <p class="register-tips" hidden="hidden">输入邮箱后请点击下方"发送验证码"，您的邮箱将收到一份验证邮件，验证通过后即可使用Tickets。<strong>注意：邮箱将是您今后登陆网站的唯一标识</strong>
-            </p>
+            <div class="form-group">
+                <label class="label col-sm-2 col-sm-offset-1 control-label" style="color: #4aaf51" >输入邮箱后请点击"发送验证码"，您的邮箱将收到一份验证邮件，验证通过后即可使用Tickets。<br>
+                    <strong>注意：邮箱将是您今后登陆网站的唯一标识</strong>
+                </label>
+            </div>
             <div class="form-group">
                 <label for="email" class="col-sm-2 label control-label">邮箱</label>
                 <!--<div class="col-sm-10">-->
@@ -58,11 +64,31 @@
                     <input type="email" class="form-control" id="email" placeholder="请输入一个验证邮箱">
                 </div>
                 <div class="col-sm-2">
-                    <button type="submit" class="btn">发送验证码</button>
+                    <button id="submit" type="button" class="btn">发送验证码</button>
                 </div>
             </div>
         </form>
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="title">发送注册邮件</h4>
+                </div>
+                <div class="modal-body" id="content">注册邮件发送中...请稍后</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+                    <button type="button" class="btn btn-primary" id="sure">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/register.js"></script>
+
 </body>
 </html>

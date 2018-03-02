@@ -57,6 +57,7 @@ public class MemberServiceImpl implements MemberService {
             emailCode = CodeUtil.encrypt(memberBean.getEmail().getBytes());
         } catch (Exception e) {
             System.out.println("邮箱和密码加密时出错了！");
+            return new ResultBean(false, "注册失败，请稍后再试");
         }
         member.setActivate_code(activateCode);
         member.setActivate_state(false);
@@ -64,6 +65,7 @@ public class MemberServiceImpl implements MemberService {
         boolean result = mailService.sendRegisterMail(memberBean.getEmail(), emailCode, activateCode);
         if (result) {
             memberRepository.save(member);
+            System.out.println("finish");
             return new ResultBean(true, "已成功发送验证邮件，请尽快验证");
         }
         return new ResultBean(false, "注册失败，请稍后再试");
@@ -88,13 +90,18 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResultBean checkUser(String email, String password) {
         Member member = memberRepository.findByEmail(email);
-        if (member == null) {
-            return new ResultBean(false, "用户不存在，请检查邮箱是否正确");
+        try {
+            if (member == null) {
+                return new ResultBean(false, "用户不存在，请检查邮箱是否正确");
+            }
+            if (!new String(CodeUtil.decrypt(member.getPassword())).equals(password)) {
+                return new ResultBean(false, "密码与用户名不符");
+            }
+            return new ResultBean(true);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (!member.getPassword().equals(password)) {
-            return new ResultBean(false, "密码与用户名不符");
-        }
-        return new ResultBean(true);
+        return new ResultBean(false, "登录失败");
     }
 
     @Override

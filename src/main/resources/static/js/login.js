@@ -3,7 +3,6 @@ $(document).ready(function () {
         event.preventDefault();
         login();
     });
-
     $('#register').click(function (event) {
         event.preventDefault();
         register();
@@ -43,7 +42,8 @@ function login() {
 }
 
 function register() {
-    window.location.href = "views/register.html";
+    console.log("register");
+    window.location.href = "register.html";
 }
 
 function handleResult(result) {
