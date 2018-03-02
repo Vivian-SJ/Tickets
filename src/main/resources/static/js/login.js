@@ -1,6 +1,13 @@
-$('#submit').click(function (event) {
-    event.preventDefault();
-    login();
+$(document).ready(function () {
+    $('#login').click(function (event) {
+        event.preventDefault();
+        login();
+    });
+
+    $('#register').click(function (event) {
+        event.preventDefault();
+        register();
+    });
 });
 
 function login() {
@@ -33,22 +40,10 @@ function login() {
             }
         }
     );
-    // $.post("/tickets/login",
-    //     {
-    //         email: email.val(),
-    //         password: password.val()
-    //     },
-    //
-    //     function handleResult(result) {
-    //         var resultState = result.result;
-    //         if (resultState) {
-    //             message.text("ok");
-    //             message.show();
-    //         } else {
-    //             message.text(result.message);
-    //             message.show();
-    //         }
-    //     });
+}
+
+function register() {
+    window.location.href = "views/register.html";
 }
 
 function handleResult(result) {

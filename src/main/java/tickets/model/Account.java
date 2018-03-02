@@ -1,12 +1,14 @@
 package tickets.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
 
 @Entity
 @Table(name = "account")
 public class Account {
+    @Id
     private int id;
     private int show_id;
     private int stadium_id;

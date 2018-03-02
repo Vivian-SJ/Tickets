@@ -7,6 +7,16 @@
     z-index: -1;
 }
 
+.title1 {
+    margin-top: 200px;
+    /*margin-left: 100px;*/
+    text-align: center;
+    font-size: 48px;
+    font-weight: 100;
+    color: #ffffff;
+    line-height: 50px;
+}
+
 .text
 {
     color: #ffffff;
@@ -59,4 +69,13 @@
 
 .form-bottom form button.btn {
     width: 100%;
+}
+
+body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif, Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+
+.label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #888;
 }
