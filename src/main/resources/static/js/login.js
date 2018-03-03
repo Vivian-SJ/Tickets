@@ -50,8 +50,9 @@ function handleResult(result) {
     var resultState = result.result;
     var message = $('#message');
     if (resultState === true) {
-        message.text("ok");
-        message.show();
+        // message.text("ok");
+        // message.show();
+        window.location.href = "homepage.html";
     } else {
         message.text(result.message);
         message.show();

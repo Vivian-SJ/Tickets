@@ -1,82 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <title>Tickets主页</title>
-      <!--CSS for direct-->
-      <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css"/>
-      <link rel="stylesheet" href="../css/main.css"/>
-      <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"/>
-      <link rel="stylesheet" href="../css/form-elements.css"/>
-      <link rel="stylesheet" href="../css/style.css"/>
+    <title>Tickets主页</title>
+    <!--CSS for direct-->
+    <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../css/form-elements.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/ul-element.css">
+    <link rel="stylesheet" href="../css/show.css">
 
-      <!--CSS for server-->
-      <!--<link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />-->
-      <!--<link rel="stylesheet" href="/css/main.css"/>-->
-      <!--<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"/>-->
-      <!--<link rel="stylesheet" href="/css/form-elements.css"/>-->
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <!-- Fixed navbar -->
+<div class="container">
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">-->
-            <!--<span class="sr-only">Toggle navigation</span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-          <!--</button>-->
-          <h2 class="navbar-brand" href="#">Tickets</h2>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="header-left" style="padding-right: 10px"><strong>Tickets</strong></h1>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul class="nav nav-tabs" style="border: none">
+                    <li class="newactive"><a href="#home" data-toggle="tab">主页</a></li>
+                    <li><a href="#drama">戏剧</a></li>
+                    <li><a href="#contact">歌剧</a></li>
+                    <li><a href="#contact">舞蹈</a></li>
+                    <li><a href="#contact">体育</a></li>
+                    <li><a href="#contact">音乐会</a></li>
+                    <li><a href="#contact">演唱会</a></li>
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">个人信息<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">基本信息</a></li>
+                            <li><a href="">我的订单</a></li>
+                            <li><a href="">我的钱包</a></li>
+                            <li><a href="">我的优惠券</a></li>
+                            <li><a href="">我的消费</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline"><span
+                            style="color: #4aaf51;"><a href="./">登录</a></span><span style="color: #9d9d9d">/注册</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">主页</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../navbar/">Default</a></li>
-            <li><a href="../navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
 
-    <div class="container">
+    <div class="tab-content" style="height: 2000px">
+        <div class="tab-pane active" id="home" style="margin-top: 120px; position: absolute">
+            <!--搜索框-->
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-      <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-        <h1>Navbar example</h1>
-        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>
-        </p>
-      </div>
+            <!--图片-->
+            <!--内容-->
+            <div class="floor drama">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">戏剧</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-    </div> <!-- /container -->
+            <div class="floor opera">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">歌剧</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="floor dance">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">舞蹈</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="floor sports">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">体育</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="floor concert">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">音乐会</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="floor vocal-concert">
+                <div class="simple-title">
+                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <h3 class="floor-simple-title-title">演唱会</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="container block">
+                                <span class="img">
+                                            <img src="../pictrues/show1.jpg">
+                                        </span>
+                                <dl class="info">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane" id="drama" style="margin-top: 120px; position: absolute">
+            <p>aaaa</p>
+        </div>
 
 
-    <script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </body>
+        <script src="../jquery/jquery-3.3.1.min.js"></script>
+        <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</body>
 </html>

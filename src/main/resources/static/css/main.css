@@ -1,3 +1,18 @@
+.header {
+    height: 87px;
+    border-bottom: 3px solid #f5f5f5;
+    background-color: #fff;
+}
+
+.header .wrap {
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.header-left {
+    float: left;
+}
+
 .bg
 {
     -webkit-filter: blur(6px);
@@ -9,6 +24,10 @@
 
 .big{
     font-size: 48px;
+}
+
+body {
+    overflow: auto;
 }
 
 .title1 {
@@ -75,7 +94,7 @@
     width: 100%;
 }
 
-body,button, input, label, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif, Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
+body,button, input, label, select, textarea,h1 ,h2, h3, h4, h5, h6, li, li a{ font-family: 'Roboto', sans-serif, Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
 .label{
     font-family: 'Roboto', sans-serif;

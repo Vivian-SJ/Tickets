@@ -1,0 +1,119 @@
+.simple-title {
+    height: 58px;
+    line-height: 58px;
+    overflow: hidden;
+}
+
+.simple-title .more {
+    height: 18px;
+    line-height: 18px;
+    margin-top: 18px;
+    float: right;
+}
+
+.floor {
+    border: 1px solid #eaeaea;
+    padding: 0 15px 30px 18px;
+    width: 1165px;
+    margin: 0 auto 30px;
+}
+
+.floor-simple-title-title {
+    float: left;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.floor-content {
+    width: 100%;
+    padding-right: 25px;
+    float: left;
+}
+
+.floor-content-list {
+    width: 100%;
+    border: 1px dashed #ddd;
+    height: auto;
+    list-style: none;
+    margin: 0;
+}
+
+.floor-content-list .block {
+    padding: 10px 15px;
+}
+.floor-content-list li {
+    width: 286px;
+    padding: 0 20px 30px 0;
+    float:left;
+}
+
+.floor-content-list .img {
+    display: block;
+    width: 112px;
+    height: 150px;
+    overflow: hidden;
+    float: left;
+}
+
+.floor-content-list .info {
+    width: 160px;
+    padding-left: 14px;
+    float: left;
+    position: relative;
+    top: -4px;
+    padding-top: 10px;
+}
+
+.floor-content-list .info .txt {
+    line-height: 20px;
+    padding-top: 5px;
+}
+
+.floor-content-list .info .txt .time {
+    color: #888;
+}
+
+.floor-content-list .info .txt .place {
+    height: 20px;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+    width: 160px;
+    white-space: nowrap;
+}
+
+.floor-content-list .info .txt .price {
+    line-height: 28px;
+    height: auto;
+    color: #333;
+}
+
+.drama {
+    margin-top: 50px;
+    position: absolute;
+}
+
+.opera {
+    margin-top: 400px;
+    position: absolute;
+}
+
+.dance {
+    margin-top: 750px;
+    position: absolute;
+}
+
+.sports {
+    margin-top: 1100px;
+    position: absolute;
+}
+
+.concert {
+    margin-top: 1450px;
+    position: absolute;
+}
+
+.vocal-concert{
+    margin-top: 1800px;
+    position: absolute;
+}

@@ -15,7 +15,7 @@ public enum ShowType {
             case DANCE:return "舞蹈";
             case DRAMA:return "戏剧";
             case OPERA:return "歌剧";
-            case SPORTS_GAMES:return "体育比赛";
+            case SPORTS_GAMES:return "体育";
             case VOCAL_CONCERT:return "演唱会";
             default:return null;
         }
