@@ -181,3 +181,29 @@
     background-color: #eee;
     border-color: #eee #eee #ddd;
 }
+
+.dropdown-info:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
+
+.dropdown>a:hover {
+    color: #4aaf51;
+}
+
+.nav-tabs>li.dropdown.active>a, .nav-tabs>li.dropdown.active>a:focus, .nav-tabs>li.dropdown.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+}
