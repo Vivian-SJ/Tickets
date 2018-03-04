@@ -175,3 +175,9 @@
     margin-top: 50px;
     position: absolute;
 }
+
+.dropdown-a:hover {
+    color: #555;
+    background-color: #eee;
+    border-color: #eee #eee #ddd;
+}

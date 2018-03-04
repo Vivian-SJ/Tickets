@@ -32,23 +32,23 @@
                 </button>
                 <h1 class="header-left" style="padding-right: 10px"><strong>Tickets</strong></h1>
             </div>
-            <div id="navbar" class="navbar-collapse collapse" style="padding-top: 12px">
-                <ul class="nav nav-tabs" style="border: none">
-                    <li class="active"><a href="#home" data-toggle="tab">主页</a></li>
-                    <li><a href="#drama" data-toggle="tab">戏剧</a></li>
-                    <li><a href="#contact">歌剧</a></li>
-                    <li><a href="#contact">舞蹈</a></li>
-                    <li><a href="#contact">体育</a></li>
-                    <li><a href="#contact">音乐会</a></li>
-                    <li><a href="#contact">演唱会</a></li>
+            <div class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul id="navbar" class="nav nav-tabs" style="border: none">
+                    <li id="homepage-title" class="active"><a href="#home" data-toggle="tab">主页</a></li>
+                    <li id="drama-title" class="active"><a href="#drama" data-toggle="tab">戏剧</a></li>
+                    <li id="opera-title"><a href="#opera" data-toggle="tab">歌剧</a></li>
+                    <li id="dance-title"><a href="#dance" data-toggle="tab">舞蹈</a></li>
+                    <li id="sport-title"><a href="#sport" data-toggle="tab">体育</a></li>
+                    <li id="concert-title"><a href="#concert" data-toggle="tab">音乐会</a></li>
+                    <li id="vocal-concert-title"><a href="#vocal-concert" data-toggle="tab">演唱会</a></li>
                     <li class="dropdown">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">个人信息<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">基本信息</a></li>
-                            <li><a href="">我的订单</a></li>
-                            <li><a href="">我的钱包</a></li>
-                            <li><a href="">我的优惠券</a></li>
-                            <li><a href="">我的消费</a></li>
+                            <li><a href="" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
+                            <li><a href="" class="dropdown-a" style="color: #4aaf51">我的订单</a></li>
+                            <li><a href="" class="dropdown-a" style="color: #4aaf51">我的钱包</a></li>
+                            <li><a href="" class="dropdown-a" style="color: #4aaf51">我的优惠券</a></li>
+                            <li><a href="" class="dropdown-a" style="color: #4aaf51">我的消费</a></li>
                         </ul>
                     </li>
                     <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline"><span
@@ -77,7 +77,7 @@
             <!--内容-->
             <div class="floor drama">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#dance" style="padding: 5px 0;" data-toggle="tab" id="drama-more">查看全部</a>
                     <h3 class="floor-simple-title-title">戏剧</h3>
                 </div>
                 <div class="floor-content">
@@ -133,7 +133,7 @@
 
             <div class="floor opera">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#opera" style="padding: 5px 0;" data-toggle="tab" id="opera-more">查看全部</a>
                     <h3 class="floor-simple-title-title">歌剧</h3>
                 </div>
                 <div class="floor-content">
@@ -189,7 +189,7 @@
 
             <div class="floor dance">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#dance" data-toggle="tab" style="padding: 5px 0;" id="dance-more">查看全部</a>
                     <h3 class="floor-simple-title-title">舞蹈</h3>
                 </div>
                 <div class="floor-content">
@@ -245,7 +245,7 @@
 
             <div class="floor sports">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#sport" style="padding: 5px 0;" data-toggle="tab" id="sport-more">查看全部</a>
                     <h3 class="floor-simple-title-title">体育</h3>
                 </div>
                 <div class="floor-content">
@@ -301,7 +301,7 @@
 
             <div class="floor concert">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#concert" data-toggle="tab" style="padding: 5px 0;" id="concert-more">查看全部</a>
                     <h3 class="floor-simple-title-title">音乐会</h3>
                 </div>
                 <div class="floor-content">
@@ -357,7 +357,8 @@
 
             <div class="floor vocal-concert">
                 <div class="simple-title">
-                    <a class="more" href="" style="padding: 5px 0;">查看全部</a>
+                    <a class="more" href="#vocal-concert" data-toggle="tab" style="padding: 5px 0;"
+                       id="vocal-concert-more">查看全部</a>
                     <h3 class="floor-simple-title-title">演唱会</h3>
                 </div>
                 <div class="floor-content">
@@ -412,6 +413,7 @@
             </div>
 
         </div>
+
         <div class="tab-pane" id="drama" style="margin-top: 120px; position: absolute">
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-2">
@@ -539,8 +541,646 @@
             </div>
         </div>
 
+        <div class="tab-pane" id="opera" style="margin-top: 120px; position: absolute">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor only">
+                <div class="simple-title">
+                    <h3 class="floor-simple-title-title">歌剧专区</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title4</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title5</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title6</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title7</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-        <script src="../jquery/jquery-3.3.1.min.js"></script>
-        <script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+        <div class="tab-pane" id="dance" style="margin-top: 120px; position: absolute">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor only">
+                <div class="simple-title">
+                    <h3 class="floor-simple-title-title">舞蹈专区</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title4</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title5</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title6</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title7</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="sport" style="margin-top: 120px; position: absolute">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor only">
+                <div class="simple-title">
+                    <h3 class="floor-simple-title-title">体育专区</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title4</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title5</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title6</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title7</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="concert" style="margin-top: 120px; position: absolute">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor only">
+                <div class="simple-title">
+                    <h3 class="floor-simple-title-title">音乐会专区</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title4</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title5</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title6</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title7</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="vocal-concert" style="margin-top: 120px; position: absolute">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button class="btn">搜索</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="floor only">
+                <div class="simple-title">
+                    <h3 class="floor-simple-title-title">演唱会专区</h3>
+                </div>
+                <div class="floor-content">
+                    <ul class="floor-content-list">
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title1</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title2</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title3</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title4</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title5</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title6</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                        <li class="li-double">
+                            <div class="container block">
+                                <span class="img-double">
+                                            <img src="../pictrues/opera.jpg">
+                                        </span>
+                                <dl class="info-double">
+                                    <dt><a href="">title7</a></dt>
+                                    <dd class="txt">
+                                        <p class="time">time</p>
+                                        <p class="place"><a>place</a></p>
+                                        <p class="price">￥<strong>money</strong>起</p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../jquery/jquery-3.3.1.min.js"></script>
+<script src="../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/homepage.js"></script>
 </body>
 </html>
