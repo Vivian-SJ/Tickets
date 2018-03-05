@@ -1,0 +1,71 @@
+.myinfo{
+    border: 1px solid #efefef;
+    margin-top: 120px;
+    background-color: #f8f8f8;
+    float: left;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #555;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    margin: 0;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 300;
+    color: #555;
+    line-height: 30px;
+    border-bottom: 3px inset #4aaf51;
+    margin: 10px 0;
+}
+
+.info-box {
+    width: 800px;
+    border: 1px solid #eef1f3;
+    margin: 120px 60px 0 60px;
+    text-align: center;
+    float: left;
+}
+
+.necessary {
+    color: #F80000;
+}
+
+.info-box dl {
+    margin: 10px 0 10px 20px;
+    clear: both;
+    padding-bottom: 40px;
+}
+
+.info-box dt {
+    float: left;
+    margin-top: 2px;
+}
+
+.info-box dd {
+    float: left;
+    margin-left: 10px;
+}
+
+.info-box dd>p {
+    float: left;
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
+#info-form input {
+    height: 30px;
+}
+
+#info-form p {
+    float: left;
+}
+
+#info-form button {
+    float: right;
+    margin: 10px 50px;
+}
