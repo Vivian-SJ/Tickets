@@ -1,11 +1,30 @@
-.myinfo{
-    border: 1px solid #efefef;
-    margin-top: 120px;
+/*common*/
+.myinfo {
+    /*margin-top: 120px;*/
     background-color: #f8f8f8;
     float: left;
+    width: 200px;
+    height: 675px;
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+#basicInfo label, #wallet label {
+    float: left;
+    border-bottom: 2px solid #f5f5f5;
+    margin: 20px 60px 0 60px;
+    font-size: 20px;
+    color: #4aaf15;
+    width: 800px;
+    text-align: left;
+}
+
+/*basic info*/
+.info {
+    border: 3px solid #efefef;
+    margin-top: 120px;
+    padding: 0;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
     color: #555;
     cursor: default;
     background-color: #fff;
@@ -21,12 +40,13 @@ h3 {
     line-height: 30px;
     border-bottom: 3px inset #4aaf51;
     margin: 10px 0;
+    padding-bottom: 10px;
 }
 
 .info-box {
     width: 800px;
     border: 1px solid #eef1f3;
-    margin: 120px 60px 0 60px;
+    margin: 40px 60px 0 60px;
     text-align: center;
     float: left;
 }
@@ -51,7 +71,7 @@ h3 {
     margin-left: 10px;
 }
 
-.info-box dd>p {
+.info-box dd > p {
     float: left;
     margin-top: 2px;
     margin-left: 10px;
@@ -69,3 +89,109 @@ h3 {
     float: right;
     margin: 10px 50px;
 }
+
+/*order*/
+.order-box {
+    border: 1px solid #e5e5e5;
+    margin: 50px 40px 30px 230px;
+    width: 780px;
+    height: 230px;
+}
+
+.order-box .order-header {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    padding: 16px 20px;
+    height: 55px;
+    text-align: left;
+}
+
+.order-box .order-header .order-date, .order-box .order-header .order-id {
+    color: #333;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.order-box .order-body {
+    padding: 20px;
+    padding-right: 0;
+}
+
+.order-box .order-body .poster {
+    box-shadow: 0 1px 2px 0 hsla(0, 0%, 53%, .5);
+    font-size: 0;
+    width: 100px;
+    height: 0;
+}
+
+.order-box .order-body .poster img {
+    width: 100px;
+}
+
+.order-box .order-body .show-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 4px 0 7px -6px;
+}
+
+.order-box .order-body .stadium-name, .order-box .order-body .seat-info {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.order-box .order-body .show-time {
+    font-size: 12px;
+    color: #f03d37;
+}
+
+.order-box .order-body .order-price, .order-box .order-body .order-status {
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+    width: 12%;
+    line-height: 95px;
+    float: left;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.order-box .order-body .order-status {
+    float: right;
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+#order label {
+    float: left;
+    border-bottom: 2px solid #f5f5f5;
+    margin: 0 60px 0 60px;
+    font-size: 20px;
+    color: #4aaf15;
+    width: 800px;
+    text-align: left;
+}
+
+/*wallet*/
+.table {
+    width: 800px;
+    text-align: left;
+    color: #333;
+    float: right;
+    margin: 45px 95px 0 0;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
