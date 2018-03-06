@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>用户信息</title>
+    <title>我的消费</title>
 
     <link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../../css/main.css"/>
@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../../../css/form-elements.css"/>
     <link rel="stylesheet" href="../../../css/style.css"/>
     <link rel="stylesheet" href="../../../css/info.css"/>
-
 </head>
 <body>
 <div class="container">
@@ -44,7 +43,7 @@
                             <li><a href="info.html" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
                             <li><a href="order.html" class="dropdown-a" style="color: #4aaf51">我的订单</a></li>
                             <li><a href="wallet.html" class="dropdown-a" style="color: #4aaf51">我的钱包</a></li>
-                            <li><a href="coupon.html" class="dropdown-a" style="color: #4aaf51">我的优惠券</a></li>                            <li><a href="info/statistics.html" class="dropdown-a" style="color: #4aaf51">我的消费</a></li>
+                            <li><a href="coupon.html" class="dropdown-a" style="color: #4aaf51">我的优惠券</a></li>
                             <li><a href="statistics.html" class="dropdown-a" style="color: #4aaf51">我的消费</a></li>
                         </ul>
                     </li>
@@ -56,87 +55,48 @@
             </div>
         </div>
     </nav>
-
     <div class="container info">
         <!--个人信息的导航栏-->
         <div class="myinfo">
             <h3>个人信息</h3>
             <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
-                <li id="basicInfo-title" class="active"><a href="info.html">基本信息</a></li>
+                <li id="basicInfo-title"><a href="info.html">基本信息</a></li>
                 <li id="order-title"><a href="order.html">我的订单</a></li>
                 <li id="wallet-title"><a href="wallet.html">我的钱包</a></li>
                 <li id="coupon-title"><a href="coupon.html">我的优惠券</a></li>
-                <li id="statistics-title"><a href="statistics.html">我的消费</a></li>
+                <li id="statistics-title" class="active"><a href="statistics.html">我的消费</a></li>
             </ul>
         </div>
         <div class="tab-content" style="height: auto">
-            <div id="basicInfo">
+            <div id="statistics">
                 <div>
-                    <label>基本信息</label>
+                    <label>我的消费</label>
                 </div>
-                <div class="info-box">
-                    <form id="info-form">
-                        <dl>
-                            <dt><span class="necessary">*</span>邮箱</dt>
-                            <dd>
-                                <p id="email">123</p>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><span class="necessary">*</span>用户名</dt>
-                            <dd>
-                                <input id="name" type="text" value="1">
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><span class="necessary">*</span>密码</dt>
-                            <dd>
-                                <input id="password" type="password">
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><span class="necessary">*</span>再次输入密码</dt>
-                            <dd>
-                                <input id="passwordAgain" type="password">
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt><span class="necessary">*</span>性别</dt>
-                            <dd>
-                                <select id="gender">
-                                    <option class="label">男</option>
-                                    <option class="label">女</option>
-                                </select>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>会员状态</dt>
-                            <dd>
-                                <p id="valid">有效</p>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>会员等级</dt>
-                            <dd>
-                                <p id="rank">1级</p>
-                            </dd>
-                        </dl>
-                        <dl>
-                            <dt>会员积分</dt>
-                            <dd>
-                                <p id="credit">100</p>
-                            </dd>
-                        </dl>
-                        <p id="message" hidden style="color: #F80000; margin: 0 10px 10px 20px">hi</p><br>
-                        <button class="btn" type="submit">更新并保存信息</button>
-                    </form>
+                <div class="container">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td><h4>总消费</h4></td>
+                            <td><h4 style="color: #4aaf15">￥1000</h4></td>
+                        </tr>
+                        <tr>
+                            <td><p>总订单</p></td>
+                            <td><p>1000</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>已使用的订单</p></td>
+                            <td><p>1000</p></td>
+                        </tr>
+                        <tr>
+                            <td><p>已取消的订单</p></td>
+                            <td><p>1000</p></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script src="../../../jquery/jquery-3.3.1.min.js"></script>
-<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
