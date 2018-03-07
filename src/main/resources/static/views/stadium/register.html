@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>场馆注册</title>
+
+    <link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/main.css"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../css/form-elements.css"/>
+    <link rel="stylesheet" href="../../css/register.css">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-left" style="margin-top: 10px; margin-left: 0">
+            <h1><strong>Tickets场馆注册</strong></h1>
+        </div>
+    </div>
+    <div class="register-main">
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 col-sm-offset-1 label control-label" id="message" style="display: none; color: #c12e2a">message</label>
+            </div>
+            <div class="form-group">
+                <label for="name" class="col-sm-2 label control-label"><span class="necessary">*</span>场馆名称</label>
+                <div class="col-sm-10">
+                    <input type="text" class="col-sm-10 form-control" id="name" placeholder="请输入场馆名称"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="col-sm-2 label control-label"><span class="necessary">*</span>密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" placeholder="请输入密码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="passwordAgain" class="col-sm-2 label control-label"><span class="necessary">*</span>确认密码</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="passwordAgain" placeholder="请再次输入密码"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="place" class="col-sm-2 label control-label"><span class="necessary">*</span>场馆地点信息</label>
+                <div class="col-sm-10">
+                    <input type="text" class="col-sm-10 form-control" id="place" placeholder="请输入场馆地点信息"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="label col-sm-2 col-sm-offset-1 control-label" style="color: #4aaf51" >座位信息输入格式：不同种类座位之间用"，"（中文逗号）分开，座位名称与数量之间用(" ")空格分开<br>
+                    例如：一等座 100，二等座 200
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="seats" class="col-sm-2 label control-label"><span class="necessary">*</span>场馆座位信息</label>
+                <div class="col-sm-10">
+                    <input type="text" class="col-sm-10 form-control" id="seats" placeholder="请输入场馆座位信息"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 label control-label">场馆描述</label>
+                <div class="col-sm-10">
+                    <input type="text" class="col-sm-10 form-control" id="description" placeholder="请输入场馆描述"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 col-sm-offset-10">
+                    <button id="submit" type="button" class="btn">注册</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

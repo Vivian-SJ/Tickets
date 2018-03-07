@@ -141,22 +141,22 @@
     width: 340px;
 }
 
-.drama {
+.drama, .all {
     margin-top: 50px;
     position: absolute;
 }
 
-.opera {
+.opera, .finish {
     margin-top: 400px;
     position: absolute;
 }
 
-.dance {
+.dance, .future {
     margin-top: 750px;
     position: absolute;
 }
 
-.sports {
+.sports, .wait {
     margin-top: 1100px;
     position: absolute;
 }

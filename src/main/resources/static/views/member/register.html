@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>注册</title>
+    <title>用户注册</title>
 
     <link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../css/main.css"/>
@@ -26,25 +26,25 @@
                 <label class="col-sm-2 col-sm-offset-1 label control-label" id="message" style="display: none; color: #c12e2a">message</label>
             </div>
             <div class="form-group">
-                <label for="name" class="col-sm-2 label control-label">用户名</label>
+                <label for="name" class="col-sm-2 label control-label"><span class="necessary">*</span>用户名</label>
                 <div class="col-sm-10">
                     <input type="text" class="col-sm-10 form-control" id="name" placeholder="请输入用户名"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="password" class="col-sm-2 label control-label">密码</label>
+                <label for="password" class="col-sm-2 label control-label"><span class="necessary">*</span>密码</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="password" placeholder="请输入密码"/>
                 </div>
             </div>
             <div class="form-group">
-                <label for="passwordAgain" class="col-sm-2 label control-label">确认密码</label>
+                <label for="passwordAgain" class="col-sm-2 label control-label"><span class="necessary">*</span>确认密码</label>
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="passwordAgain" placeholder="请再次输入密码"/>
                 </div>
             </div>
             <div class="form-group">
-                <label class="label control-label col-sm-2">性别</label>
+                <label for="gender" class="label control-label col-sm-2"><span class="necessary">*</span>性别</label>
                 <div class="col-sm-2">
                     <select class="form-control" id="gender">
                         <option class="label">男</option>
@@ -58,7 +58,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <label for="email" class="col-sm-2 label control-label">邮箱</label>
+                <label for="email" class="col-sm-2 label control-label"><span class="necessary">*</span>邮箱</label>
                 <!--<div class="col-sm-10">-->
                 <div class="col-sm-8">
                     <input type="email" class="form-control" id="email" placeholder="请输入一个验证邮箱">
@@ -86,8 +86,10 @@
     </div>
 </div>
 
-<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>-->
+<!--<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<script src="../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script src="../../js/register.js"></script>
 
 </body>
