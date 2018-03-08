@@ -35,6 +35,7 @@ h3 {
     width: 400px;
     margin-top: 100px;
     height: 80px;
+    margin-left: 461px;
 }
 
 .poster {
@@ -76,4 +77,94 @@ h3 {
 .money {
     float: left;
     margin-top: 4px;
+}
+
+.order-box {
+    border: 1px solid #e5e5e5;
+    margin: 50px 10px 30px 300px;
+    width: 780px;
+    height: 230px;
+}
+
+.order-box .order-header {
+    background-color: #f7f7f7;
+    font-size: 14px;
+    padding: 16px 20px;
+    height: 55px;
+    text-align: left;
+}
+
+.order-box .order-header .order-date, .order-box .order-header .order-id {
+    color: #333;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.order-box .order-body {
+    padding: 20px;
+    padding-right: 0;
+}
+
+.order-box .order-body .poster {
+    width: 100px;
+    padding: 0;
+    height: 134.66px;
+    float: left;
+    margin-left: 20px;
+}
+
+.order-box .order-body .poster img {
+    width: 100px;
+}
+
+.order-box .order-body .show-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 4px 0 7px -6px;
+}
+
+.order-box .order-body .stadium-name, .order-box .order-body .seat-info {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.order-box .order-body .show-time {
+    font-size: 12px;
+    color: #f03d37;
+}
+
+.order-box .order-body .order-price, .order-box .order-body .order-status {
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+    width: 12%;
+    line-height: 95px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.order-box .order-body .order-status {
+    float: left;
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.order-main {
+    width: 850px;
+    border: 1px solid #eef1f3;
+    margin: 40px 10px 0 60px;
+    text-align: center;
+    float: left;
+    background-color: #ffffff;
+}
+
+.order-cancel {
+    line-height: 95px;
+    float: left;
+    margin-left: 70px;
+    margin-top: 20px;
 }

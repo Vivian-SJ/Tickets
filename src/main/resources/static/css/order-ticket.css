@@ -95,17 +95,17 @@
     color: #4aaf51;
 }
 
-.body .selected a{
+.body .selected p{
     border-color: #4aaf51;
     color: #4aaf51;
 }
-.body a {
+.body p {
     margin: 10px;
     color: #888888;
     font-weight: 600;
 }
 
-.body a:hover, .body a:active {
+.body p:hover, .body p:active {
     color: #4aaf51;
 }
 
@@ -114,7 +114,7 @@
     color: #4aaf51;
 }
 
-.attention:hover {
+.pttention:hover {
     color: #4aaf51;
 }
 
