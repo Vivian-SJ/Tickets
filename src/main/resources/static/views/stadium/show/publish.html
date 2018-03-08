@@ -1,10 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>发布演出</title>
+    <!--CSS for direct-->
+    <link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../css/main.css"/>
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../../css/form-elements.css"/>
+    <link rel="stylesheet" href="../../../css/style.css"/>
+    <link rel="stylesheet" href="../../../css/ul-element.css">
+    <link rel="stylesheet" href="../../../css/homepage.css">
+    <link rel="stylesheet" href="../../../css/stadium-show.css">
 </head>
 <body>
-
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="header-left" style="padding-right: 20px"><strong>Tickets</strong><span
+                        style="font-size: 20px">场馆版</span></h1>
+            </div>
+            <div class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul id="navbar" class="nav nav-tabs" style="border: none">
+                    <li id="homepage-title"><a href="../homepage.html">主页</a></li>
+                    <li id="ticket-title"><a href="../ticket.html">票务</a></li>
+                    <li class="dropdown active">
+                        <a id="show-title" href="" class="dropdown-toggle" data-toggle="dropdown">演出<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show.html" class="dropdown-a" style="color: #4aaf51">查看演出</a></li>
+                            <li><a href="publish.html" class="dropdown-a" style="color: #4aaf51">发布演出</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="info" href="" class="dropdown-toggle" data-toggle="dropdown">场馆信息<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../info/info.html" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
+                            <li><a href="../info/statistics.html" class="dropdown-a" style="color: #4aaf51">统计信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
+                        <span style="color: #4aaf51;"><a href="../login.html">登录</a></span><span style="color: #9d9d9d">/<a
+                            href="../register.html">注册</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container show">
+        <div class="show-nav">
+            <h3>演出信息</h3>
+            <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
+                <li id="all-show-title"><a href="show.html">查看演出</a></li>
+                <li id="publish-show-title" class="active"><a href="publish.html">发布演出</a></li>
+            </ul>
+        </div>
+        <div class="tab-content" style="height: auto">
+            <div id="publish-show" style="padding: 22px 30px;">
+                <div>
+                    <label>发布演出</label>
+                </div>
+                <div class="publish-box">
+                    <form id="publish-info">
+                        <dl>
+                            <dt><span class="necessary">*</span>演出名</dt>
+                            <dd>
+                                <input type="text" id="name" value="驴得水电影">
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="necessary">*</span>演出时间</dt>
+                            <dd>
+                                <input type="datetime-local" id="time">
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="necessary">*</span>演出类型</dt>
+                            <dd>
+                                <select id="type">
+                                    <option>戏剧</option>
+                                    <option>歌剧</option>
+                                    <option>舞蹈</option>
+                                    <option>体育</option>
+                                    <option>音乐会</option>
+                                    <option>演唱会</option>
+                                </select>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="necessary">*</span>演出价格</dt>
+                            <dd>
+                                <table class="table table-responsive" id="price">
+                                    <tbody>
+                                    <tr>
+                                        <td>一等座</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">￥</span>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>二等座</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">￥</span>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>演出简介</dt>
+                            <dd>
+                                <input type="text" id="description" value="驴得水电影">
+                            </dd>
+                        </dl>
+                        <p id="message" style="color: #F80000; margin: 0 10px 10px 20px">请注意：演出计划一旦发布，将不可更改</p><br>
+                        <button class="btn" type="submit">发布</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
