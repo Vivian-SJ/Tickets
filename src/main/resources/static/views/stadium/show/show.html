@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>全部演出</title>
+    <!--CSS for direct-->
+    <link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../css/main.css"/>
+    <link rel="stylesheet" href="../../../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../../css/form-elements.css"/>
+    <link rel="stylesheet" href="../../../css/style.css"/>
+    <link rel="stylesheet" href="../../../css/ul-element.css">
+    <link rel="stylesheet" href="../../../css/homepage.css">
+    <link rel="stylesheet" href="../../../css/stadium-show.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="header-left" style="padding-right: 20px"><strong>Tickets</strong><span
+                        style="font-size: 20px">场馆版</span></h1>
+            </div>
+            <div class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul id="navbar" class="nav nav-tabs" style="border: none">
+                    <li id="homepage-title"><a href="../homepage.html">主页</a></li>
+                    <li id="ticket-title"><a href="../ticket.html">票务</a></li>
+                    <li class="dropdown active">
+                        <a id="show-title" href="" class="dropdown-toggle" data-toggle="dropdown">演出<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="show.html" class="dropdown-a" style="color: #4aaf51">查看演出</a></li>
+                            <li><a href="publish.html" class="dropdown-a" style="color: #4aaf51">发布演出</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="info" href="" class="dropdown-toggle" data-toggle="dropdown">场馆信息<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../info/info.html" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
+                            <li><a href="../info/statistics.html" class="dropdown-a" style="color: #4aaf51">统计信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
+                        <span style="color: #4aaf51;"><a href="../login.html">登录</a></span><span style="color: #9d9d9d">/<a
+                            href="../register.html">注册</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container show">
+        <!--内部导航栏-->
+        <div class="show-nav">
+            <h3>演出信息</h3>
+            <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
+                <li id="all-show-title" class="active"><a href="show.html">查看演出</a></li>
+                <!--<li id="finish-show-title"><a href="show/finish.html">已完成演出</a></li>-->
+                <!--<li id="future-show-title"><a href="show/future.html">即将到来的演出</a></li>-->
+                <!--<li id="wait-show-title"><a href="show/wait.html">待审核的演出</a></li>-->
+                <li id="publish-show-title"><a href="publish.html">发布演出</a></li>
+            </ul>
+        </div>
+        <div class="tab-content" style="height: auto">
+            <div id="all-show" style="padding: 22px 30px;">
+                <div>
+                    <label>查看演出</label>
+                </div>
+                <div class="show-main">
+                    <div class="header">
+                        <ul class="clearfix nav nav-tabs" style="border: none">
+                            <li class="active"><a href="#all" data-toggle="tab">全部</a></li>
+                            <li><a href="#finish" data-toggle="tab">已完成</a></li>
+                            <li><a href="#future" data-toggle="tab">即将到来</a></li>
+                            <li><a href="#wait" data-toggle="tab">待审核</a></li>
+                            <!--<li><a href="#canceled" data-toggle="tab">发布</a></li>-->
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="all" class="tab-pane active">
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">即将到来</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">已完成</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">待审核</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="finish" class="tab-pane">
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">已完成</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">已完成</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">已完成</p>
+                                    </div>
+                                    <!--<div class="show-status">即将到来</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="future" class="tab-pane">
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">即将到来</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">即将到来</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">即将到来</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="wait" class="tab-pane">
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">待审核</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">待审核</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="show-box">
+                                <div class="show-header">
+                                    <span class="show-date">2018-01-01</span>
+                                    <span class="show-id">演出编号：1</span>
+                                </div>
+                                <div class="show-body">
+                                    <div class="poster">
+                                        <img src="../../../pictrues/show1.jpg">
+                                    </div>
+                                    <form style="float: left; margin-left: 130px;margin-top: 10px;">
+                                        <div class="show-name">《驴得水》</div>
+                                        <div class="show-type">类型：电影</div>
+                                        <div class="show-time">2018-02-02 15:10:00</div>
+                                    </form>
+                                    <div class="right">
+                                        <ul style="list-style: none">
+                                            <li class="seat-info">
+                                                <span>一等座</span>
+                                                <span>￥200</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>二等座</span>
+                                                <span>￥100</span>
+                                            </li>
+                                            <li class="seat-info">
+                                                <span>三等座</span>
+                                                <span>￥90</span>
+                                            </li>
+                                        </ul>
+                                        <p class="show-status">待审核</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

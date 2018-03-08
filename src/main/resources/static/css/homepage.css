@@ -2,6 +2,7 @@
     height: 58px;
     line-height: 58px;
     overflow: hidden;
+    border-bottom: 3px dashed #ddd;
 }
 
 .simple-title .more {
@@ -28,19 +29,20 @@
     width: 100%;
     padding-right: 25px;
     float: left;
+    margin-top: 40px;
 }
 
 .floor-content-list {
     width: 100%;
-    border: 1px dashed #ddd;
     height: auto;
     list-style: none;
     margin: 0;
 }
 
 .floor-content-list .block {
-    padding: 10px 15px;
+    padding: 10px 5px 10px 86px;
     width: 600px;
+    margin-left: -60px;
 }
 .floor-content-list li {
     width: 286px;
@@ -50,10 +52,12 @@
 
 .floor-content-list .li-double{
     width: 486px;
-    padding: 0 0px 30px 0;
-    float:left;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding: 0 0 30px 0;
+    float: left;
+    margin-left: 10px;
+    margin-right: 35px;
+    margin-bottom: 40px;
+    height: auto;
 }
 
 .floor-content-list .img {
@@ -67,7 +71,7 @@
 .floor-content-list .img-double {
     display: block;
     width: 336px;
-    height: 450px;
+    height: auto;
     overflow: hidden;
     float: left;
 }
