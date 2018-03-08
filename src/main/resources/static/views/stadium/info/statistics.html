@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>我的消费</title>
+    <title>场馆统计信息</title>
 
     <link rel="stylesheet" href="../../../bootstrap-3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../../css/main.css"/>
@@ -25,26 +25,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <h1 class="header-left" style="padding-right: 10px"><strong>Tickets</strong></h1>
+                <h1 class="header-left" style="padding-right: 20px"><strong>Tickets</strong><span
+                        style="font-size: 20px">场馆版</span></h1>
             </div>
             <div class="navbar-collapse collapse" style="padding-top: 12px">
                 <ul id="navbar" class="nav nav-tabs" style="border: none">
                     <li id="homepage-title"><a href="../homepage.html">主页</a></li>
-                    <li id="drama-title"><a href="../drama.html">戏剧</a></li>
-                    <li id="opera-title"><a href="../opera.html">歌剧</a></li>
-                    <li id="dance-title"><a href="../dance.html">舞蹈</a></li>
-                    <li id="sport-title"><a href="../sport.html">体育</a></li>
-                    <li id="concert-title"><a href="../concert.html">音乐会</a></li>
-                    <li id="vocal-concert-title"><a href="../vocal-concert.html">演唱会</a></li>
-                    <li class="dropdown active">
-                        <a id="info" href="" class="dropdown-toggle" data-toggle="dropdown">个人信息<span
+                    <li class="dropdown">
+                        <a id="ticket-title" href="" class="dropdown-toggle" data-toggle="dropdown">票务<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="info.html" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
-                            <li><a href="order.html" class="dropdown-a" style="color: #4aaf51">我的订单</a></li>
-                            <li><a href="wallet.html" class="dropdown-a" style="color: #4aaf51">我的钱包</a></li>
-                            <li><a href="coupon.html" class="dropdown-a" style="color: #4aaf51">我的优惠券</a></li>
-                            <li><a href="statistics.html" class="dropdown-a" style="color: #4aaf51">我的消费</a></li>
+                            <li><a href="../ticket/sell.html" class="dropdown-a" style="color: #4aaf51">售票</a></li>
+                            <li><a href="../ticket/check.html" class="dropdown-a" style="color: #4aaf51">检票</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="show-title" href="" class="dropdown-toggle" data-toggle="dropdown">演出<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../show/show.html" class="dropdown-a" style="color: #4aaf51">查看演出</a></li>
+                            <li><a href="../show/publish.html" class="dropdown-a" style="color: #4aaf51">发布演出</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a id="info" href="" class="dropdown-toggle" data-toggle="dropdown">场馆信息<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../info/info.html" class="dropdown-a" style="color: #4aaf51">基本信息</a></li>
+                            <li><a href="../info/statistics.html" class="dropdown-a" style="color: #4aaf51">统计信息</a>
+                            </li>
                         </ul>
                     </li>
                     <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
@@ -58,25 +67,22 @@
     <div class="container info">
         <!--个人信息的导航栏-->
         <div class="myinfo">
-            <h3>个人信息</h3>
+            <h3>场馆处理</h3>
             <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
-                <li id="basicInfo-title"><a href="info.html">基本信息</a></li>
-                <li id="order-title"><a href="order.html">我的订单</a></li>
-                <li id="wallet-title"><a href="wallet.html">我的钱包</a></li>
-                <li id="coupon-title"><a href="coupon.html">我的优惠券</a></li>
-                <li id="statistics-title" class="active"><a href="statistics.html">我的消费</a></li>
+                <li id="info-title"><a href="info.html">基本信息</a></li>
+                <li id="statistics-title" class="active"><a href="statistics.html">统计信息</a></li>
             </ul>
         </div>
         <div class="tab-content" style="height: auto">
             <div id="statistics">
                 <div>
-                    <label>我的消费</label>
+                    <label>统计信息</label>
                 </div>
                 <div class="container">
                     <table class="table">
                         <tbody>
                         <tr>
-                            <td><h4>总消费</h4></td>
+                            <td><h4>总收入</h4></td>
                             <td><h4 style="color: #4aaf15">￥1000</h4></td>
                         </tr>
                         <tr>
@@ -98,5 +104,7 @@
         </div>
     </div>
 </div>
+<script src="../../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
