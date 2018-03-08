@@ -70,7 +70,18 @@
     zoom: 1;
 }
 
-.time, .price {
+.time {
+    float: left;
+    border: 2px solid #4aaf51;
+    display: inline;
+    overflow: hidden;
+    background-color: #fff;
+    color: #4aaf51;
+    margin-top: 1px;
+    font-weight: 600;
+}
+
+.price {
     float: left;
     margin: 0 10px 10px 20px;
     border: 2px solid #eaeceb;

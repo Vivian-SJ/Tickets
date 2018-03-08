@@ -34,7 +34,15 @@
             <div class="navbar-collapse collapse" style="padding-top: 12px">
                 <ul id="navbar" class="nav nav-tabs" style="border: none">
                     <li id="homepage-title"><a href="../homepage.html">主页</a></li>
-                    <li id="ticket-title"><a href="../ticket.html">票务</a></li>
+                    <!--<li id="ticket-title"><a href="../ticket.html">票务</a></li>-->
+                    <li class="dropdown">
+                        <a id="ticket-title" href="" class="dropdown-toggle" data-toggle="dropdown">票务<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../ticket/sell.html" class="dropdown-a" style="color: #4aaf51">售票</a></li>
+                            <li><a href="../ticket/check.html" class="dropdown-a" style="color: #4aaf51">检票</a></li>
+                        </ul>
+                    </li>
                     <li class="dropdown active">
                         <a id="show-title" href="" class="dropdown-toggle" data-toggle="dropdown">演出<span
                                 class="caret"></span></a>

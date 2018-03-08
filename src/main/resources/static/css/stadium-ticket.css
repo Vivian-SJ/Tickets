@@ -1,0 +1,79 @@
+.ticket {
+    border: 3px solid #efefef;
+    margin-top: 120px;
+    padding: 0;
+}
+
+.ticket-nav {
+    background-color: #f8f8f8;
+    float: left;
+    width: 200px;
+    height: 675px;
+}
+
+h3 {
+    font-size: 22px;
+    font-weight: 300;
+    color: #555;
+    line-height: 30px;
+    border-bottom: 3px inset #4aaf51;
+    margin: 10px 0;
+    padding-bottom: 10px;
+}
+
+#sell-ticket label{
+    float: left;
+    border-bottom: 2px solid #f5f5f5;
+    margin: 20px 60px 0 60px;
+    font-size: 20px;
+    color: #4aaf15;
+    width: 800px;
+    text-align: left;
+}
+
+.search {
+    width: 400px;
+    margin-top: 100px;
+    height: 80px;
+}
+
+.poster {
+    float: left;
+    width: 200px;
+    padding: 30px 20px 30px 30px;
+}
+
+.sell-box {
+    width: 800px;
+    border: 3px solid #eef1f3;
+    margin: 40px 60px 20px 60px;
+    text-align: center;
+    float: left;
+    height: auto;
+}
+
+.time {
+    float: left;
+    border: 2px solid #4aaf51;
+    display: inline;
+    overflow: hidden;
+    background-color: #fff;
+    color: #4aaf51;
+    margin-top: 1px;
+    font-weight: 600;
+}
+
+.body .container {
+    margin-bottom: 20px;
+}
+
+.member {
+    width: 200px;
+    margin-top: 4px;
+    float: left;
+}
+
+.money {
+    float: left;
+    margin-top: 4px;
+}
