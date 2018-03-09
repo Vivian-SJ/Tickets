@@ -1,10 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>经理结算</title>
+    <!--CSS for direct-->
+    <link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/main.css"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../css/form-elements.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <link rel="stylesheet" href="../../css/ul-element.css">
+    <link rel="stylesheet" href="../../css/homepage.css">
+    <link rel="stylesheet" href="../../css/manager.css">
 </head>
 <body>
-
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="header-left" style="padding-right: 10px"><strong>Tickets</strong><span
+                        style="font-size: 20px">经理版</span></h1>
+            </div>
+            <div class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul id="navbar" class="nav nav-tabs" style="border: none">
+                    <li id="homepage-title"><a href="homepage.html">主页</a></li>
+                    <li id="check-title"><a href="check.html">审核</a></li>
+                    <li id="pay-title" class="active"><a href="pay.html">结算</a></li>
+                    <li id="statistics-title"><a href="statistics.html">统计信息</a></li>
+                    <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
+                        <span style="color: #4aaf51;"><a href="login.html">登录</a></span><span style="color: #9d9d9d">
+                        <!--/<a href="register.html">注册</a>-->
+                    </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <div>
+            <label>结算</label>
+        </div>
+        <div class="pay-box" style="margin-top: 95px">
+            <div class="pay-header">
+                <span class="show-name">驴得水</span>
+                <span></span>
+                <span class="show-name">演出编号：1</span>
+            </div>
+            <div class="pay-body">
+                <div class="poster">
+                    <img src="../../pictrues/show1.jpg">
+                </div>
+                <form style="float: left; margin-left: 130px;">
+                    <div class="show-name">《驴得水》</div>
+                    <div class="stadium-name">幸福蓝海国际影城</div>
+                    <div class="show-type">类型：电影</div>
+                    <div class="show-time">2018-02-02 15:10:00</div>
+                </form>
+                    <ul class="money-box">
+                        <li class="price"><span>总收入：</span><span>1000元</span></li>
+                        <li class="price"><span>支付场馆：</span><span style="color: #4aaf15">700元</span></li>
+                        <li class="price"><span>网站自留：</span><span>300元</span></li>
+                    </ul>
+                <div class="agree">
+                    <button class="btn" onclick="this.disabled=true;">结算</button>
+                </div>
+            </div>
+        </div>
+        <div class="pay-box">
+            <div class="pay-header">
+                <span class="show-name">驴得水</span>
+                <span></span>
+                <span class="show-name">演出编号：1</span>
+            </div>
+            <div class="pay-body">
+                <div class="poster">
+                    <img src="../../pictrues/show1.jpg">
+                </div>
+                <form style="float: left; margin-left: 130px;">
+                    <div class="show-name">《驴得水》</div>
+                    <div class="stadium-name">幸福蓝海国际影城</div>
+                    <div class="show-type">类型：电影</div>
+                    <div class="show-time">2018-02-02 15:10:00</div>
+                </form>
+                <ul class="money-box">
+                    <li class="price"><span>总收入：</span><span>1000元</span></li>
+                    <li class="price"><span>支付场馆：</span><span style="color: #4aaf15">700元</span></li>
+                    <li class="price"><span>网站自留：</span><span>300元</span></li>
+                </ul>
+                <div class="agree">
+                    <button class="btn" onclick="this.disabled=true;">结算</button>
+                </div>
+            </div>
+        </div>
+        <div class="pay-box">
+            <div class="pay-header">
+                <span class="show-name">驴得水</span>
+                <span></span>
+                <span class="show-name">演出编号：1</span>
+            </div>
+            <div class="pay-body">
+                <div class="poster">
+                    <img src="../../pictrues/show1.jpg">
+                </div>
+                <form style="float: left; margin-left: 130px;">
+                    <div class="show-name">《驴得水》</div>
+                    <div class="stadium-name">幸福蓝海国际影城</div>
+                    <div class="show-type">类型：电影</div>
+                    <div class="show-time">2018-02-02 15:10:00</div>
+                </form>
+                <ul class="money-box">
+                    <li class="price"><span>总收入：</span><span>1000元</span></li>
+                    <li class="price"><span>支付场馆：</span><span style="color: #4aaf15">700元</span></li>
+                    <li class="price"><span>网站自留：</span><span>300元</span></li>
+                </ul>
+                <div class="agree">
+                    <button class="btn" onclick="this.disabled=true;">结算</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
