@@ -1,10 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>统计信息</title>
+    <!--CSS for direct-->
+    <link rel="stylesheet" href="../../bootstrap-3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/main.css"/>
+    <link rel="stylesheet" href="../../font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="../../css/form-elements.css"/>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <link rel="stylesheet" href="../../css/ul-element.css">
+    <link rel="stylesheet" href="../../css/homepage.css">
+    <link rel="stylesheet" href="../../css/manager.css">
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1 class="header-left" style="padding-right: 10px"><strong>Tickets</strong><span
+                        style="font-size: 20px">经理版</span></h1>
+            </div>
+            <div class="navbar-collapse collapse" style="padding-top: 12px">
+                <ul id="navbar" class="nav nav-tabs" style="border: none">
+                    <li id="homepage-title"><a href="homepage.html">主页</a></li>
+                    <li id="check-title"><a href="check.html">审核</a></li>
+                    <li id="pay-title"><a href="pay.html">结算</a></li>
+                    <li id="statistics-title" class="active"><a href="statistics.html">统计信息</a></li>
+                    <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
+                        <span style="color: #4aaf51;"><a href="login.html">登录</a></span><span style="color: #9d9d9d">
+                    </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <div class="header">
+            <ul class="clearfix nav nav-tabs" style="border: none">
+                <li class="active"><a href="#stadium" data-toggle="tab">场馆统计</a></li>
+                <li><a href="#member" data-toggle="tab">用户统计</a></li>
+                <li><a href="#account" data-toggle="tab">财务情况</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div id="stadium" class="tab-pane active">
+                <div class="input-group search-box">
+                    <input id="stadium-search" type="text" class="form-control">
+                    <div class="input-group-btn">
+                        <button class="btn">搜索</button>
+                    </div>
+                </div>
+                <div class="check-box">
+                    <div class="check-header">
+                        <span class="stadium-name">1号场馆</span>
+                        <span class="type">1000000</span>
+                    </div>
+                    <div class="container check-body">
+                        <form style="float: left; margin-left: 280px; text-align: left">
+                            <div class="text">
+                                <span><strong>总收入</strong></span><span
+                                    class="content"><strong>100000元</strong></span><br>
+                                <span>总订单</span><span class="content">200</span><br>
+                                <span>已使用订单</span><span class="content">100</span><br>
+                                <span>已取消订单</span><span class="content">100</span><br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="member" class="tab-pane">
+                <div class="input-group search-box">
+                    <input id="member-search" type="text" class="form-control">
+                    <div class="input-group-btn">
+                        <button class="btn">搜索</button>
+                    </div>
+                </div>
+                <div class="check-box">
+                    <div class="check-header">
+                        <span class="stadium-name">1号用户</span>
+                        <span class="type">100</span>
+                    </div>
+                    <div class="container check-body">
+                        <form style="float: left; margin-left: 280px; text-align: left">
+                            <div class="text">
+                                <span><strong>总消费</strong></span><span
+                                    class="content"><strong>100000元</strong></span><br>
+                                <span>总订单</span><span class="content">200</span><br>
+                                <span>已使用订单</span><span class="content">100</span><br>
+                                <span>已取消订单</span><span class="content">100</span><br>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="account" class="tab-pane">
+                <div>
+                    <label>财务统计</label>
+                </div>
 
+                <div class="container check-body">
+                    <form style="float: left; margin-left: 280px; margin-bottom: 79px; text-align: left">
+                        <div class="text">
+                            <ul id="account-content" class="list-unstyled" style="margin: 87px 0 0 39px">
+                                <li>
+                                    <span><strong>总收入</strong></span><span
+                                        class="content"><strong>100000元</strong></span>
+                                </li>
+                                <li>
+                                    <span>注册场馆数</span><span class="content">200</span>
+                                </li>
+                                <li>
+                                    <span>注册用户数</span><span class="content">100</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
