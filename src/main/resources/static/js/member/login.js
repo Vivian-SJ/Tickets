@@ -47,14 +47,16 @@ function register() {
 }
 
 function handleResult(result) {
-    var resultState = result.result;
+    // var data = JSON.parse(result);
+    var resultState = result['resultBean']['result'];
     var message = $('#message');
     if (resultState === true) {
         // message.text("ok");
         // message.show();
+        localStorage.setItem('memberId',result['id']);
         window.location.href = "homepage.html";
     } else {
-        message.text(result.message);
+        message.text(result['resultBean'].message);
         message.show();
     }
 }

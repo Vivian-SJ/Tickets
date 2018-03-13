@@ -13,4 +13,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     @Query(value = "SELECT DISTINCT (id) FROM member", nativeQuery = true)
     public List<Integer> findAllIds();
+
+    @Query(value = "SELECT DISTINCT (id) FROM member WHERE email = ?1", nativeQuery = true)
+    public int findIdByEmail(String email);
 }

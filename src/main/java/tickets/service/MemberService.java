@@ -58,4 +58,6 @@ public interface MemberService {
     public List<OrderBean> displayOrder(int memberId);
 
     public StatisticsBean displayMemberStatistics(int memberId);
+
+    public int getMemberId(String email);
 }

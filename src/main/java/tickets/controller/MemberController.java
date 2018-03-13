@@ -22,11 +22,11 @@ public class MemberController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultBean login(@RequestParam(value = "email") String email,
+    public LoginResultBean login(@RequestParam(value = "email") String email,
                             @RequestParam(value = "password") String password){
         System.out.println(email);
         System.out.println(password);
-        return memberService.checkUser(email, password);
+        return new LoginResultBean(memberService.checkUser(email, password), memberService.getMemberId(email));
     }
 
     @ResponseBody

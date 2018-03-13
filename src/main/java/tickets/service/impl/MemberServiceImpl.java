@@ -1,6 +1,9 @@
 package tickets.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
@@ -240,6 +243,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public int getMemberId(String email) {
+        return memberRepository.findIdByEmail(email);
+    }
+
+    @Override
     public ResultBean buyTicket(OrderBean orderBean) {
         Order order = new Order(orderBean);
         orderRepository.save(order);
@@ -257,4 +265,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
+//    @Override
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        Member member = memberRepository.findByEmail(s);
+//        if (member == null) {
+//            throw new UsernameNotFoundException("用户名不存在");
+//        }
+//        return member;
+//    }
 }

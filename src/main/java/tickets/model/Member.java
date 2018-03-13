@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "member")
-public class Member {
+public class Member{
     @Id
     private int id;
     private String name;
@@ -53,6 +53,10 @@ public class Member {
         this.activate_state = false;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public int getId() {
         return id;
     }
@@ -67,10 +71,6 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
