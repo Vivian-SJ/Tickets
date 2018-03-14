@@ -22,7 +22,7 @@ function login() {
         message.show();
         return;
     }
-    $.ajax("/tickets/login",
+    $.ajax("http://localhost:8080/tickets/member/login",
         {
             method: 'post',
             data: {

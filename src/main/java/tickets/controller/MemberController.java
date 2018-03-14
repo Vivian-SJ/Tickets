@@ -21,7 +21,7 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/member/login", method = RequestMethod.POST)
     public LoginResultBean login(@RequestParam(value = "email") String email,
                             @RequestParam(value = "password") String password){
         System.out.println(email);
@@ -30,12 +30,12 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/member/register", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public ResultBean register(@RequestBody MemberBean memberBean) {
         return memberService.register(memberBean);
     }
 
-    @RequestMapping(value = "/register/confirm", method = RequestMethod.GET)
+    @RequestMapping(value = "/member/register/confirm", method = RequestMethod.GET)
     public String registerConfirm(@RequestParam(value = "email") String emailCode,
                                       @RequestParam(value = "code") String code) {
         ResultBean resultBean = memberService.registerConfirm(emailCode, code);

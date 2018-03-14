@@ -6,7 +6,6 @@ $(document).ready(function () {
         var gender = $('#gender');
         var email = $('#email');
         var message = $('#message');
-        var modal = $('#myModal');
         var content = $('#content');
         var submit = $('#submit');
         if (name.val().length === 0 || email.val().length === 0 || password.val().length === 0 || passwordAgain.val().length === 0) {
@@ -31,7 +30,7 @@ $(document).ready(function () {
         };
         $.ajax(
             {
-                url: 'http://localhost:8080/tickets/register',
+                url: 'http://localhost:8080/tickets/member/register',
                 method: 'post',
                 contentType: 'application/json',
                 data: JSON.stringify(memberBean),

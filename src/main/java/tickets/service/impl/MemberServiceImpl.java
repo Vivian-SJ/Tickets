@@ -40,6 +40,12 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public MemberBean findMemberById(int memberId) {
         MemberBean memberBean = new MemberBean(memberRepository.findById(memberId));
+        try {
+            String password = new String(CodeUtil.decrypt(memberBean.getPassword()));
+            memberBean.setPassword(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return memberBean;
     }
 
