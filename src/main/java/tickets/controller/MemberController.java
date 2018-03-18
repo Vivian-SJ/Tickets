@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import tickets.bean.*;
+import tickets.model.Coupon;
 import tickets.service.MemberService;
 
 import java.util.List;
@@ -82,10 +83,22 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/member/coupon/exchange", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/member/coupon/exchange", method = RequestMethod.POST)
     public ResultBean exchangeCoupon(@RequestParam(value = "memberId") int memberId,
                                      @RequestParam(value = "couponValue") double couponValue ) {
         return memberService.exchangeCoupon(memberId, couponValue);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/member/credit/{memberId}", method = RequestMethod.GET)
+    public double getCredit(@PathVariable(value = "memberId")int memberId) {
+        return memberService.getCredit(memberId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/member/coupons/{memberId}", method = RequestMethod.GET)
+    public List<Coupon> getCoupons(@PathVariable(value = "memberId") int memberId) {
+        return memberService.getCoupons(memberId);
     }
 
     @ResponseBody

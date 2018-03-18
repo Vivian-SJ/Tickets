@@ -1,6 +1,7 @@
 package tickets.service;
 
 import tickets.bean.*;
+import tickets.model.Coupon;
 
 import java.util.List;
 
@@ -50,6 +51,10 @@ public interface MemberService {
     public MemberAccountBean getMemberAccountInfo(int memberId);
 
     public ResultBean exchangeCoupon(int memberId, double value);
+
+    public List<Coupon> getCoupons(int memberId);
+
+    public double getCredit(int memberId);
 
     public ResultBean cancelOrder(int orderId);
 

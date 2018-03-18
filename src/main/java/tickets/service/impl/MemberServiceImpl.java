@@ -141,12 +141,34 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResultBean exchangeCoupon(int memberId, double value) {
+        Member member = memberRepository.findById(memberId);
+        double currentCredit = member.getCredit();
+        if (currentCredit<Coupon.toCredit(value)) {
+            return new ResultBean(false, "您的积分不足以兑换该种优惠券");
+        }
         Coupon coupon = new Coupon(memberId, value, CouponStatus.UNUSED.toString());
         couponRepository.save(coupon);
-        Member member = memberRepository.findById(memberId);
         double newCredit = member.getCredit() - Coupon.toCredit(value);
         member.setCredit(newCredit);
+        memberRepository.save(member);
         return new ResultBean(true);
+    }
+
+    @Override
+    public List<Coupon> getCoupons(int memberId) {
+        List<Coupon> coupons = new ArrayList<>();
+        List<Coupon> allCoupons = couponRepository.findBymember_id(memberId);
+        for (Coupon coupon : allCoupons) {
+            if (CouponStatus.toEnumValue(coupon.getStatus()) == CouponStatus.UNUSED) {
+                coupons.add(coupon);
+            }
+        }
+        return coupons;
+    }
+
+    @Override
+    public double getCredit(int memberId) {
+        return memberRepository.findById(memberId).getCredit();
     }
 
     @Override

@@ -77,7 +77,7 @@
                     <div class="header">
                         <ul class="clearfix nav nav-tabs" style="border: none">
                             <li class="active"><a href="#have" data-toggle="tab">拥有的优惠券</a></li>
-                            <li><a href="#change" data-toggle="tab">可兑换的优惠券</a></li>
+                            <li><a href="#exchange" data-toggle="tab">可兑换的优惠券</a></li>
                         </ul>
                     </div>
                     <div class="tab-content">
@@ -85,57 +85,80 @@
                             <div class="card">
                                 <div class="price">
                                     <span>￥</span>
-                                    <span>100</span>
-                                </div>
-                                <div class="description">
-                                    <span>优惠券</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="price">
-                                    <span>￥</span>
-                                    <span>100</span>
-                                </div>
-                                <div class="description">
-                                    <span>优惠券</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="price">
-                                    <span>￥</span>
-                                    <span>100</span>
-                                </div>
-                                <div class="description">
-                                    <span>优惠券</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="price">
-                                    <span>￥</span>
-                                    <span>100</span>
+                                    <span id="value">100</span>
                                 </div>
                                 <div class="description">
                                     <span>优惠券</span>
                                 </div>
                             </div>
                         </div>
-                        <div id="change" class="tab-pane">
+                        <div id="exchange" class="tab-pane">
                             <div class="container">
                                 <div class="container">
-                                    <h4>您当前的积分为：<strong style="color: #4aaf15">100000分</strong></h4>
+                                    <h4 style="float: left">您当前的积分为：<strong style="color: #4aaf15"
+                                                                            id="credit">100000分</strong></h4>
                                 </div>
                                 <div class="container">
-                                    <table class="table">
+                                    <table class="table" style="float: left; width: 758px; margin-top: 10px;">
                                         <tbody>
                                         <tr>
-                                            <td><p>10元优惠券</p><i>(消耗1000积分)</i></td>
+                                            <td><p><span>10</span>元优惠券</p><i>(消耗1000积分)</i></td>
                                             <td>
                                                 <p>数量：</p>
                                                 <input type="number" value="1">
                                             </td>
                                             <td>
-                                                <button class="btn" onclick="this.disabled=true;$('#ok').css('display','inline')">兑换</button>
-                                                <span id="ok" class="glyphicon glyphicon-ok ok" style="display: none"></span>
+                                                <button name="exchange" class="btn"
+                                                        onclick="this.disabled=true;$('#ok').css('display','inline')">兑换
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p><span>25</span>元优惠券</p><i>(消耗2000积分)</i></td>
+                                            <td>
+                                                <p>数量：</p>
+                                                <input type="number" value="1">
+                                            </td>
+                                            <td>
+                                                <button name="exchange" class="btn"
+                                                        onclick="this.disabled=true;$('#ok').css('display','inline')">兑换
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p><span>45</span>元优惠券</p><i>(消耗3000积分)</i></td>
+                                            <td>
+                                                <p>数量：</p>
+                                                <input type="number" value="1">
+                                            </td>
+                                            <td>
+                                                <button name="exchange" class="btn"
+                                                        onclick="this.disabled=true;$('#ok').css('display','inline')">兑换
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p><span>70</span>元优惠券</p><i>(消耗4000积分)</i></td>
+                                            <td>
+                                                <p>数量：</p>
+                                                <input type="number" value="1">
+                                            </td>
+                                            <td>
+                                                <button name="exchange" class="btn"
+                                                        onclick="this.disabled=true;$('#ok').css('display','inline')">兑换
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><p><span>100</span>元优惠券</p><i>(消耗5000积分)</i></td>
+                                            <td>
+                                                <p>数量：</p>
+                                                <input type="number" value="1">
+                                            </td>
+                                            <td>
+                                                <button name="exchange" class="btn"
+                                                        onclick="this.disabled=true;$('#ok').css('display','inline')">兑换
+                                                </button>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -151,6 +174,8 @@
 </div>
 
 <script src="../../../jquery/jquery-3.3.1.min.js"></script>
+<!--<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>-->
 <script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/member/info/coupon.js"></script>
 </body>
 </html>

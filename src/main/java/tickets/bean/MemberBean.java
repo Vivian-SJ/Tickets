@@ -29,11 +29,19 @@ public class MemberBean {
     }
 
     public MemberBean(Member member) {
+        this.id = member.getId();
         this.name = member.getName();
         this.password = member.getPassword();
+        this.image = member.getImage();
         this.email = member.getEmail();
         this.gender = member.getGender();
         this.valid = member.isValid();
+        this.rank = member.getRank();
+        this.credit = member.getCredit();
+        this.sum_consumption = member.getSum_consumption();
+        this.money_available = member.getMoney_available();
+        this.activate_code = member.getActivate_code();
+        this.activate_state = member.isActivate_state();
     }
 
     public int getId() {
