@@ -21,6 +21,18 @@ public enum ShowType {
         }
     }
 
+    private int getIndex () {
+        switch (this) {
+            case CONCERT:return 0;
+            case DANCE:return 1;
+            case DRAMA:return 2;
+            case OPERA:return 3;
+            case SPORTS_GAMES:return 4;
+            case VOCAL_CONCERT:return 5;
+            default:return -1;
+        }
+    }
+
     public static ShowType toEnumValue(String name) {
         for (ShowType showType: ShowType.values()) {
             if (showType.toString().equals(name)) {
@@ -28,5 +40,14 @@ public enum ShowType {
             }
         }
         return null;
+    }
+
+    public static String getName(int index) {
+        for (ShowType showType : ShowType.values()) {
+            if (showType.getIndex() == index) {
+                return showType.toString();
+            }
+        }
+        return "";
     }
 }

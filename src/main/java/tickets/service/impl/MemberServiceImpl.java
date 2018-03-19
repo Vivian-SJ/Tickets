@@ -10,9 +10,11 @@ import tickets.model.*;
 import tickets.repository.*;
 import tickets.service.MailService;
 import tickets.service.MemberService;
+import tickets.service.ShowService;
 import tickets.util.CodeUtil;
 import tickets.util.CouponStatus;
 import tickets.util.OrderStatus;
+import tickets.util.ShowType;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -36,6 +38,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private ShowService showService;
 
     @Override
     public MemberBean findMemberById(int memberId) {
@@ -169,6 +174,22 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public double getCredit(int memberId) {
         return memberRepository.findById(memberId).getCredit();
+    }
+
+    @Override
+    public ShowsBean getAllShows() {
+        Map<String, List<ShowBean>> map = new HashMap<>();
+        for (int i=0;i<ShowType.values().length;i++) {
+            String type = ShowType.getName(i);
+            List<Show> shows = showRepository.findByType(type);
+            List<ShowBean> showBeans = new ArrayList<>();
+            for (Show show: shows) {
+                ShowBean showBean = showService.getShowInfoById(show.getId());
+                showBeans.add(showBean);
+            }
+            map.put(type, showBeans);
+        }
+        return new ShowsBean(map);
     }
 
     @Override

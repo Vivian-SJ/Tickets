@@ -56,6 +56,8 @@ public interface MemberService {
 
     public double getCredit(int memberId);
 
+    public ShowsBean getAllShows();
+
     public ResultBean cancelOrder(int orderId);
 
     public ResultBean payOrder(int orderId);

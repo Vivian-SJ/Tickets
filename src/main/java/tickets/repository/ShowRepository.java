@@ -28,4 +28,7 @@ public interface ShowRepository extends JpaRepository<Show, Integer> {
 
     @Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
     public int getId();
+
+    @Query(value = "SELECT * FROM `show` WHERE type = ?1", nativeQuery = true)
+    public List<Show> findByType(String type);
 }

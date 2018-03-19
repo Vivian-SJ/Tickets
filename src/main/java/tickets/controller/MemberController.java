@@ -102,6 +102,12 @@ public class MemberController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/member/allshows", method = RequestMethod.GET)
+    public ShowsBean getAllShows() {
+        return memberService.getAllShows();
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/member/ticket/buy", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public ResultBean buyTicket(@RequestBody OrderBean orderBean) {
         return memberService.buyTicket(orderBean);
