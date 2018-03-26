@@ -46,7 +46,7 @@ public interface MemberService {
      */
     public ResultBean modifyInfo(int memberId, MemberBean memberBean);
 
-    public ResultBean buyTicket(OrderBean orderBean);
+    public ResultBeanWithId buyTicket(OrderBean orderBean);
 
     public MemberAccountBean getMemberAccountInfo(int memberId);
 
@@ -63,6 +63,8 @@ public interface MemberService {
     public ResultBean payOrder(int orderId);
 
     public List<OrderBean> displayOrder(int memberId);
+
+    public OrderBean getOrder(int orderId);
 
     public StatisticsBean displayMemberStatistics(int memberId);
 

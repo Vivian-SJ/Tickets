@@ -14,4 +14,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
     @Query(value = "select * from coupon where member_id = ?1 and order_id = ?2", nativeQuery = true)
     public List<Coupon> findByMember_idAndOrder_id(int memberId, int orderId);
+
+    @Query(value = "SELECT * FROM coupon WHERE order_id = ?1", nativeQuery = true)
+    public List<Coupon> findByOrder_id(int orderId);
 }

@@ -201,7 +201,7 @@ public class MemberServiceImpl implements MemberService {
         Member member = memberRepository.findById(order.getMember_id());
 
         //处理退款
-        double price = order.getPrice();
+        double price = order.getActual_price();
         long cancelTimeLong = new Date().getTime();
         Show show = showRepository.findById(order.getShow_id());
         Timestamp showTime = show.getTime();
@@ -212,13 +212,13 @@ public class MemberServiceImpl implements MemberService {
         double moneyAvailable = member.getMoney_available();
         if (internalDays >= 7) {
             member.setMoney_available(moneyAvailable + price);
-            order.setPrice(0);
+            order.setActual_price(0);
         } else if (internalDays >= 5) {
             member.setMoney_available(moneyAvailable + price * 0.5);
-            order.setPrice(price * 0.5);
+            order.setActual_price(price * 0.5);
         } else if (internalDays >= 3) {
             member.setMoney_available(moneyAvailable + price * 0.3);
-            order.setPrice(price * 0.7);
+            order.setActual_price(price * 0.7);
         }
 
         //把这个订单使用的优惠券恢复正常
@@ -240,7 +240,7 @@ public class MemberServiceImpl implements MemberService {
 
         //关于用户余额、积分等的操作
         Member member = memberRepository.findById(order.getMember_id());
-        double price = order.getPrice();
+        double price = order.getActual_price();
         double newMoneyAvailable = member.getMoney_available() - price;
         member.setMoney_available(newMoneyAvailable);
         double newSumConsumption = member.getSum_consumption() + price;
@@ -277,6 +277,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public OrderBean getOrder(int orderId) {
+        Order order = orderRepository.findById(orderId);
+        List<Coupon> coupons = couponRepository.findByOrder_id(orderId);
+        List<Integer> couponIds = new ArrayList<>();
+        for (Coupon coupon : coupons) {
+            couponIds.add(coupon.getId());
+        }
+        return new OrderBean(order, couponIds);
+    }
+
+    @Override
     public StatisticsBean displayMemberStatistics(int memberId) {
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
@@ -298,20 +309,22 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResultBean buyTicket(OrderBean orderBean) {
+    public ResultBeanWithId buyTicket(OrderBean orderBean) {
         Order order = new Order(orderBean);
         orderRepository.save(order);
+        int orderId = orderRepository.getId();
+        System.out.println("orderId"+orderId);
 
         List<Integer> couponIds = orderBean.getCouponIds();
         if (couponIds.size() > 0) {
             for (int id : couponIds) {
                 Coupon coupon = couponRepository.findById(id);
                 coupon.setStatus(CouponStatus.SELECTED.toString());
-                coupon.setOrder_id(order.getId());
+                coupon.setOrder_id(orderId);
                 couponRepository.save(coupon);
             }
         }
-        return new ResultBean(true);
+        return new ResultBeanWithId(new ResultBean(true), orderId);
     }
 
 

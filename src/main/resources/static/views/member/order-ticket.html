@@ -138,7 +138,22 @@
                 <div class="modal-body" id="content">订单原价为x元，折扣后为y元，确认下单吗？</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelOrder">取消</button>
-                    <button type="button" class="btn btn-primary" id="sureOrder">确定</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="sureOrder">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">预订成功</h4>
+                </div>
+                <div class="modal-body">您已预订成功，现在去支付吗？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelPay">取消</button>
+                    <button type="button" class="btn btn-primary" id="surePay" data-dismiss="modal">确定</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

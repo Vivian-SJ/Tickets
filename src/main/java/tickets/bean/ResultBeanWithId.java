@@ -1,13 +1,13 @@
 package tickets.bean;
 
-public class LoginResultBean {
+public class ResultBeanWithId {
     private ResultBean resultBean;
     private int id;
 
-    public LoginResultBean() {
+    public ResultBeanWithId() {
     }
 
-    public LoginResultBean(ResultBean resultBean, int id) {
+    public ResultBeanWithId(ResultBean resultBean, int id) {
         this.resultBean = resultBean;
         this.id = id;
     }

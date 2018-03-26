@@ -23,11 +23,11 @@ public class MemberController {
 
     @ResponseBody
     @RequestMapping(value = "/member/login", method = RequestMethod.POST)
-    public LoginResultBean login(@RequestParam(value = "email") String email,
-                            @RequestParam(value = "password") String password){
+    public ResultBeanWithId login(@RequestParam(value = "email") String email,
+                                  @RequestParam(value = "password") String password){
         System.out.println(email);
         System.out.println(password);
-        return new LoginResultBean(memberService.checkUser(email, password), memberService.getMemberId(email));
+        return new ResultBeanWithId(memberService.checkUser(email, password), memberService.getMemberId(email));
     }
 
     @ResponseBody
@@ -109,7 +109,7 @@ public class MemberController {
 
     @ResponseBody
     @RequestMapping(value = "/member/ticket/buy", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    public ResultBean buyTicket(@RequestBody OrderBean orderBean) {
+    public ResultBeanWithId buyTicket(@RequestBody OrderBean orderBean) {
         return memberService.buyTicket(orderBean);
     }
 
@@ -129,6 +129,12 @@ public class MemberController {
     @RequestMapping(value = "/member/order/display/{memberId}", method = RequestMethod.GET)
     public List<OrderBean> displayOrder (@PathVariable(value = "memberId") int memberId) {
         return memberService.displayOrder(memberId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/member/order/{orderId}", method = RequestMethod.GET)
+    public OrderBean getOrder(@PathVariable(value = "orderId") int orderId) {
+        return memberService.getOrder(orderId);
     }
 
     @ResponseBody

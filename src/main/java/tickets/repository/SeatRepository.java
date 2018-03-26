@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface SeatRepository extends JpaRepository<Seat, Integer> {
+    public Seat findById(int id);
+
     @Query(value = "select * from seat WHERE stadium_id = ?1", nativeQuery = true)
     public List<Seat> findSeatsById(int stadiumId);
 

@@ -40,10 +40,17 @@ public class OrderBean {
         this.type = order.getType();
         this.seatId = order.getSeat_id();
         this.ticketAmount = order.getAmount();
-        this.actualPrice = order.getPrice();
+        this.actualPrice = order.getActual_price();
+        this.expectedPrice = order.getExpected_price();
+        this.discount = order.getDiscount();
         this.orderStatus = order.getStatus();
         this.time = order.getTime();
         this.ps = order.getPs();
+    }
+
+    public OrderBean(Order order, List<Integer> couponIds) {
+        this(order);
+        this.couponIds = couponIds;
     }
 
     public int getSeatId() {

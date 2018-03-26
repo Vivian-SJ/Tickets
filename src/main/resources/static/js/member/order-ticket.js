@@ -228,10 +228,17 @@ function orderTicket(orderBean) {
         data: JSON.stringify(orderBean),
         dataType: 'json',
         success: function (data) {
-            if (data['result'] === true) {
-                alert("成功");
+            if (data['resultBean']['result'] === true) {
+                // alert("成功");
+                $('#payModal').modal();
+                $('#surePay').click(function () {
+                   window.location.href = 'pay.html?orderId='+data['id'];
+                });
+                $('#cancelPay').click(function () {
+                    window.location.href = 'homepage.html';
+                })
             } else {
-                alert(data['message']);
+                alert(data['resultBean']['message']);
             }
         },
         error: function () {

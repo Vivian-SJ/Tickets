@@ -16,8 +16,11 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     @Query(value = "select * from  orders where member_id = ?1 AND type = ?2", nativeQuery = true)
     public List<Order> findByMember_idAndType(int memberId, String type);
 
-    @Query(value = "select sum(price) FROM orders WHERE member_id = ?1", nativeQuery = true)
+    @Query(value = "select sum(actual_price) FROM orders WHERE member_id = ?1", nativeQuery = true)
     public double getMemberTotalPrice(int memberId);
+
+    @Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
+    public int getId();
 
 //    @Modifying
 //    @Transactional
@@ -32,7 +35,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     @Query(value = "select * from  orders where stadium_id = ?1 AND type = ?2", nativeQuery = true)
     public List<Order> findByStadium_idAndType(int memberId, String type);
 
-    @Query(value = "select sum(price) FROM orders WHERE stadium_id = ?1", nativeQuery = true)
+    @Query(value = "select sum(actual_price) FROM orders WHERE stadium_id = ?1", nativeQuery = true)
     public double getStadiumTotalPrice(int stadiumId);
 
 }

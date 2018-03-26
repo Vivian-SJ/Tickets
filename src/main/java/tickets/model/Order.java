@@ -17,14 +17,16 @@ public class Order {
     private int stadium_id;
     private int show_id;
     private int seat_id;
+    private String type;
     private int amount;
-    private String status;
     private java.sql.Timestamp time;
+    private double actual_price;
+    private double expected_price;
+    private double discount;
+    private String status;
     //备注信息
     private String ps;
     //订单金额
-    private double price;
-    private String type;
 
     public Order() {
     }
@@ -37,8 +39,10 @@ public class Order {
         this.amount = orderBean.getTicketAmount();
         this.status = OrderStatus.TO_BE_PAID.toString();
         this.time = orderBean.getTime();
-        this.price = orderBean.getActualPrice();
-        String ps = "此单原价为"+ orderBean.getExpectedPrice()+ "元，您已享受" + orderBean.getDiscount() + "折会员优惠";
+        this.actual_price = orderBean.getActualPrice();
+        this.expected_price = orderBean.getExpectedPrice();
+        this.discount = orderBean.getDiscount();
+        String ps = "此单原价为"+ this.expected_price+ "元，您已享受" + this.discount + "折会员优惠";
         if (orderBean.getCouponIds().size()>0) {
             ps = ps + ",并使用了" + orderBean.getCouponIds().size() + "张优惠券";
         }
@@ -46,12 +50,28 @@ public class Order {
         this.type = orderBean.getType();
     }
 
-    public double getPrice() {
-        return price;
+    public double getExpected_price() {
+        return expected_price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setExpected_price(double expected_price) {
+        this.expected_price = expected_price;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public double getActual_price() {
+        return actual_price;
+    }
+
+    public void setActual_price(double actual_price) {
+        this.actual_price = actual_price;
     }
 
     public int getId() {
