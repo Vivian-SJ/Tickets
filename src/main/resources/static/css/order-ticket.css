@@ -84,7 +84,6 @@
 .price {
     float: left;
     margin: 0 10px 10px 20px;
-    border: 2px solid #eaeceb;
     display: inline;
     overflow: hidden;
     background-color: #fff;
@@ -126,4 +125,16 @@
 #message {
     float: left;
     margin: 50px 10px 10px -12px;
+}
+
+.ticket-amount {
+    float: left;
+    margin-left: 40px;
+    margin-top: 25px;
+}
+
+.ticket-amount .help-block {
+    float: right;
+    margin-left: 10px;
+    color: #FF0000;
 }

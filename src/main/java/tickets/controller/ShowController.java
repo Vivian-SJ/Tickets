@@ -1,10 +1,7 @@
 package tickets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tickets.bean.ShowBean;
 import tickets.service.ShowService;
 
@@ -18,4 +15,9 @@ public class ShowController {
     public ShowBean getShowInfoById(@PathVariable(value = "showId") int showId) {
         return showService.getShowInfoById(showId);
     }
+
+//    @RequestMapping(value = "/seatId", method = RequestMethod.GET)
+//    public int getSeatId(@RequestParam(value = "seatName") String seatName, @RequestParam(value = "stadiumId") int stadiumId){
+//        return showService.getSeatId(seatName, stadiumId);
+//    }
 }

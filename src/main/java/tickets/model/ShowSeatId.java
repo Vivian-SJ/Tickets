@@ -4,14 +4,14 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class ShowSeatPriceId implements Serializable{
+public class ShowSeatId implements Serializable{
     private int show_id;
     private int seat_id;
 
-    public ShowSeatPriceId() {
+    public ShowSeatId() {
     }
 
-    public ShowSeatPriceId(int show_id, int seat_id) {
+    public ShowSeatId(int show_id, int seat_id) {
         this.show_id = show_id;
         this.seat_id = seat_id;
     }

@@ -1,8 +1,6 @@
 package tickets.bean;
 
 import tickets.model.Order;
-import tickets.util.OrderStatus;
-import tickets.util.TicketBuyType;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ public class OrderBean {
     private int stadiumId;
     private int showId;
     //买票类型
-    private TicketBuyType type;
+    private String type;
     //如果是选座的话，选的座位类型
     private int seatId;
     //买票数量
@@ -27,7 +25,7 @@ public class OrderBean {
     //实际总票价
     private double actualPrice;
     //订单状态
-    private OrderStatus orderStatus;
+    private String orderStatus;
     //订单时间
     private Timestamp time;
     private String ps;
@@ -39,11 +37,11 @@ public class OrderBean {
         this.memberId = order.getMember_id();
         this.stadiumId = order.getStadium_id();
         this.showId = order.getShow_id();
-        this.type = TicketBuyType.toEnumValue(order.getType());
+        this.type = order.getType();
         this.seatId = order.getSeat_id();
         this.ticketAmount = order.getAmount();
         this.actualPrice = order.getPrice();
-        this.orderStatus = OrderStatus.getEnumValue(order.getStatus());
+        this.orderStatus = order.getStatus();
         this.time = order.getTime();
         this.ps = order.getPs();
     }
@@ -104,11 +102,11 @@ public class OrderBean {
         this.showId = showId;
     }
 
-    public TicketBuyType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(TicketBuyType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -128,11 +126,11 @@ public class OrderBean {
         this.couponIds = couponIds;
     }
 
-    public OrderStatus getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 

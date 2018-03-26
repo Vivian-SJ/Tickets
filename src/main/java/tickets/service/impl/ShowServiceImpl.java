@@ -3,10 +3,12 @@ package tickets.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tickets.bean.ShowBean;
+import tickets.bean.ShowSeatBean;
 import tickets.model.Show;
-import tickets.model.ShowSeatPrice;
+import tickets.model.ShowSeat;
+import tickets.repository.SeatRepository;
 import tickets.repository.ShowRepository;
-import tickets.repository.ShowSeatPriceRepository;
+import tickets.repository.ShowSeatRepository;
 import tickets.service.ShowService;
 
 import java.util.HashMap;
@@ -19,16 +21,30 @@ public class ShowServiceImpl implements ShowService{
     private ShowRepository showRepository;
 
     @Autowired
-    private ShowSeatPriceRepository showSeatPriceRepository;
+    private ShowSeatRepository showSeatRepository;
+
+    @Autowired
+    private SeatRepository seatRepository;
 
     @Override
     public ShowBean getShowInfoById(int showId) {
         Show show = showRepository.findById(showId);
-        List<ShowSeatPrice> showSeatPriceList = showSeatPriceRepository.findByShowId(showId);
-        Map<Integer, Double> map = new HashMap<>();
-        for (ShowSeatPrice showSeatPrice : showSeatPriceList) {
-            map.put(showSeatPrice.getShowSeatPriceId().getSeat_id(), showSeatPrice.getPrice());
+        List<ShowSeat> showSeatList = showSeatRepository.findByShowId(showId);
+        Map<String, Double> seatNameAndPrice = new HashMap<>();
+        Map<String, Integer> seatNameAndId = new HashMap<>();
+        Map<Integer, Integer> seatIdAndAmount = new HashMap<>();
+        for (ShowSeat showSeat : showSeatList) {
+            int seatId = showSeat.getShowSeatId().getSeat_id();
+            String seatName = seatRepository.findNameById(seatId);
+            seatNameAndId.put(seatName, seatId);
+            seatNameAndPrice.put(seatName, showSeat.getPrice());
+            seatIdAndAmount.put(seatId, showSeat.getAvailable_amount());
         }
-        return new ShowBean(show, map);
+        return new ShowBean(show, new ShowSeatBean(seatNameAndId, seatNameAndPrice, seatIdAndAmount));
+    }
+
+    @Override
+    public int getSeatId(String seatName, int stadiumId) {
+        return seatRepository.findIdByNameAndStadium_id(seatName, stadiumId);
     }
 }

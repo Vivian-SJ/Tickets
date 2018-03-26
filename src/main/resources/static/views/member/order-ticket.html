@@ -48,8 +48,9 @@
                         </ul>
                     </li>
                     <li class="nav navbar-right" style="padding-top: 10px;text-decoration: underline">
-                        <span style="color: #4aaf51;"><a href="login.html">登录</a></span><span style="color: #9d9d9d">/<a
-                            href="register.html">注册</a></span>
+                        <span style="color: #4aaf51;"><a href="login.html" id="login">登录</a></span><span
+                            style="color: #9d9d9d">/<a
+                            href="register.html" id="register">注册</a></span>
                     </li>
                 </ul>
             </div>
@@ -65,38 +66,86 @@
             </div>
             <div class="body">
                 <div class="container">
-                    <h3 class="title">123456789好电影啊</h3>
+                    <h3 class="title" id="bigName">123456789好电影啊</h3>
                 </div>
                 <div class="container" style="margin-bottom: 20px;">
                     <h4>演出时间</h4>
                     <ul>
                         <li class="time">2018-01-01 16:00:00</li>
                         <!--<li class="time selected">-->
-                            <!--<a class="attention" href="">2018-01-01 16:00:00</a>-->
+                        <!--<a class="attention" href="">2018-01-01 16:00:00</a>-->
                         <!--</li>-->
                     </ul>
                 </div>
                 <div class="container">
                     <h4>选择票价</h4>
-                    <ul>
-                        <li class="price">
-                            <p class="attention" href="">一等座200元</p>
-                        </li>
-                        <li class="price">
-                            <p class="attention" href="">二等座100元</p>
-                        </li>
+                    <ul id="price">
+                        <!--<li class="price">-->
+                        <!--<button class="btn-info" value="o" style="margin-top: 0; display: block;background-color: #4aaf15">一等座200元</button>-->
+                        <!--</li>-->
                     </ul>
                 </div>
                 <div class="container">
-                    <button type="submit" class="btn">选座购票</button>
+                    <button type="submit" class="btn" id="select">选座购票</button>
                     <div class="container">
-                        <button type="submit" class="btn">立即购票</button>
-                        <p id="message">（立即购票可不选座位类型）</p>
+                        <button type="submit" class="btn" id="unSelect">立即购票</button>
+                        <p id="message">（立即购票可不选座位类型，将按照最低票价收费）</p>
                     </div>
+                </div>
+                <div class="container" style="display: none" id="selectedBlock">
+                    <form role="form" class="form-horizontal" style="width: 700px; border: 3px solid #efefef;    margin-top: 20px;">
+                        <div class="ticket-amount form-group col-lg-7" style="margin-left: 40px;">
+                            <label style="float: left">数量</label>
+                            <input id="amount" type="number" value="1" placeholder="请选择购票数量" style="margin-left: 10px;">
+                            <span class="help-block">最多可选6张</span>
+                        </div>
+                        <div class="form-group col-lg-7" style="float: left;margin-left: 40px;">
+                            <label style="float: left">可选用的优惠券</label>
+                            <!--<div class="checkbox">-->
+                            <ul id="coupons" style="list-style: none;">
+                                <!--<li><label style="margin-left: -82px;"><input type="checkbox" name="coupon">10元优惠券</label></li>-->
+                                <!--<li><label><input type="checkbox" name="coupon">100元优惠券</label></li>-->
+                            </ul>
+                        </div>
+                        <div class="form-group col-lg-7">
+                            <label style="float: left;margin-left: 56px;">您可享受的折扣</label>
+                            <label id="discount" style="color: #F80000;float: left;margin-left: 12px;">0.8</label>
+                        </div>
+                        <!--<div class="form-group" style="float: left; margin-left: 40px">-->
+                            <!--<label>原价</label>-->
+                            <!--<label id="expectedPrice" style="color: #F80000">1000元</label>-->
+                        <!--</div>-->
+                        <!--<div class="form-group" style="float: left; margin-left: 40px">-->
+                            <!--<label>折后价格</label>-->
+                            <!--<label id="actualPrice" style="color: #F80000">800元</label>-->
+                        <!--</div>-->
+                        <div class="form-group col-lg-12">
+                            <button id="buy" class="btn" style="float: right; margin-right: 50px;">确定</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <!--//模态弹出框-->
+    <div class="modal fade" id="sureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确认订单</h4>
+                </div>
+                <div class="modal-body" id="content">订单原价为x元，折扣后为y元，确认下单吗？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelOrder">取消</button>
+                    <button type="button" class="btn btn-primary" id="sureOrder">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 </div>
+<script src="../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../js/member/order-ticket.js"></script>
 </body>
 </html>

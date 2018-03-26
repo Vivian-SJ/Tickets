@@ -43,7 +43,7 @@ public class Order {
             ps = ps + ",并使用了" + orderBean.getCouponIds().size() + "张优惠券";
         }
         this.ps = ps;
-        this.type = orderBean.getType().toString();
+        this.type = orderBean.getType();
     }
 
     public double getPrice() {

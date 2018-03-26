@@ -1,16 +1,4 @@
 $(document).ready(function () {
-    // $('.more').click(function () {
-    //     var name = $(this).attr('id');
-    //     var navName = name.substring(0,name.indexOf('-'));
-    //     var navId = navName + '-' + 'title';
-    //     $('#navbar li.active').removeClass('active');
-    //     var li = $("[id=" + navId + "]");
-    //     li.addClass('active');
-    // });
-    // $('#info').click(function () {
-    //     $('#navbar li.active').removeClass('active');
-    //     $(this).addClass('active');
-    // })
     var commonUrl = 'http://localhost:8080/tickets/member';
     var getAllShowsUrl = commonUrl + '/allshows';
     $.ajax({
@@ -24,6 +12,25 @@ $(document).ready(function () {
 
         }
     });
+    var a = $('.block a');
+    a.click(function (event) {
+        event.preventDefault();
+        var currentA = event.target;
+        console.log(currentA);
+        var li;
+        var id;
+        var stadiumId;
+        if(currentA.getAttribute('name')==='title') {
+            li = $(currentA).parent().parent().parent().parent();
+            id = li.attr('id');
+            stadiumId = li.attr('title');
+        } else {
+            li = $(currentA).parent().parent().parent();
+            id = li.attr('id');
+            stadiumId = li.attr('title');
+        }
+        window.location.href = "order-ticket.html?id="+id+"&stadiumId="+stadiumId;
+    })
 });
 
 function displayShows(data) {
@@ -40,6 +47,8 @@ function displayShows(data) {
         for (var i = 0; i < (drama.length > 3 ? 3 : drama.length); i++) {
             var li = dramaContent.children().eq(i);
             li.attr('id', drama[i]['id']);
+            //li的title里面存的是stadiumId
+            li.attr('title', drama[i]['stadiumId']);
             var currentShow = '#' + drama[i]['id'];
             $(currentShow + ' [name=title]').text(drama[i]['name']);
             var time = getDate(drama[i]['time']);
@@ -54,7 +63,7 @@ function displayShows(data) {
                     $(currentShow + ' .place').text(place);
                 }
             });
-            var seatAndPrice = drama[i]['seatAndPrice'];
+            var seatAndPrice = drama[i]['showSeatBean']['seatNameAndPrice'];
             var prices = Object.values(seatAndPrice);
             var max = 0;
             for (var i = 0; i < prices.length; i++) {

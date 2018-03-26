@@ -12,6 +12,12 @@ public interface SeatRepository extends JpaRepository<Seat, Integer> {
     @Query(value = "select * from seat WHERE stadium_id = ?1", nativeQuery = true)
     public List<Seat> findSeatsById(int stadiumId);
 
+    @Query(value = "SELECT name FROM seat WHERE id = ?1", nativeQuery = true)
+    public String findNameById(int id);
+
+    @Query(value = "SELECT id FROM seat WHERE name=?1 AND stadium_id=?2", nativeQuery = true)
+    public int findIdByNameAndStadium_id(String name, int stadiumId);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO seat(stadium_id, name, amount) VALUES (?1, ?2, ?3)", nativeQuery = true)

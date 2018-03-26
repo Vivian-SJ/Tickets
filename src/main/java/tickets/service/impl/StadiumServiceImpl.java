@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.*;
+import tickets.service.ShowService;
 import tickets.service.StadiumService;
 import tickets.util.OrderStatus;
 
@@ -25,10 +26,13 @@ public class StadiumServiceImpl implements StadiumService{
     private ShowRepository showRepository;
 
     @Autowired
-    private ShowSeatPriceRepository showSeatPriceRepository;
+    private ShowSeatRepository showSeatRepository;
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private ShowService showService;
 
     @Override
     public StadiumRegisterBean register(StadiumBean stadiumBean) {
@@ -82,13 +86,15 @@ public class StadiumServiceImpl implements StadiumService{
         Show show = new Show(showBean);
         System.out.println("description:"+showBean.getDescription());
         showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
-        Map<Integer, Double> seatAndPrice = showBean.getSeatAndPrice();
+        Map<String, Double> seatAndPrice = showBean.getShowSeatBean().getSeatNameAndPrice();
         int showId = showRepository.getId();
         System.out.println(showId);
-        for (Map.Entry<Integer, Double> entry : seatAndPrice.entrySet()) {
-            ShowSeatPriceId showSeatPriceId = new ShowSeatPriceId(showId, entry.getKey());
-            ShowSeatPrice showSeatPrice = new ShowSeatPrice(showSeatPriceId, entry.getValue());
-            showSeatPriceRepository.save(showSeatPrice);
+        for (Map.Entry<String, Double> entry : seatAndPrice.entrySet()) {
+            int seatId = seatRepository.findIdByNameAndStadium_id(entry.getKey(), showBean.getStadiumId());
+            Seat seat = seatRepository.findOne(seatId);
+            ShowSeatId showSeatId = new ShowSeatId(showId, seatId);
+            ShowSeat showSeat = new ShowSeat(showSeatId, entry.getValue(), seat.getAmount());
+            showSeatRepository.save(showSeat);
         }
         return new ResultBean(true);
     }
@@ -98,12 +104,7 @@ public class StadiumServiceImpl implements StadiumService{
         List<Show> shows = showRepository.findByStadium_id(stadiumId);
         List<ShowBean> showBeans = new ArrayList<>();
         for (Show show : shows) {
-            List<ShowSeatPrice> showSeatPriceList = showSeatPriceRepository.findByShowId(show.getId());
-            Map<Integer, Double> map = new HashMap<>();
-            for (ShowSeatPrice showSeatPrice : showSeatPriceList) {
-                map.put(showSeatPrice.getShowSeatPriceId().getSeat_id(), showSeatPrice.getPrice());
-            }
-            ShowBean showBean = new ShowBean(show, map);
+            ShowBean showBean = showService.getShowInfoById(show.getId());
             showBeans.add(showBean);
         }
         return showBeans;

@@ -168,6 +168,7 @@ public class MemberServiceImpl implements MemberService {
                 coupons.add(coupon);
             }
         }
+        Collections.sort(coupons);
         return coupons;
     }
 

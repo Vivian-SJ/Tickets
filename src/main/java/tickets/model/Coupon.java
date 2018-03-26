@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "coupon")
-public class Coupon {
+public class Coupon implements Comparable{
     @Id
     private int id;
     private int member_id;
@@ -78,5 +78,20 @@ public class Coupon {
                 default:
                     return 0;
         }
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (o instanceof Coupon) {
+            Coupon coupon = (Coupon)o;
+            if (coupon.value==this.value) {
+                return 0;
+            } else if (coupon.value<this.value) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        return 0;
     }
 }

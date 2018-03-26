@@ -4,7 +4,6 @@ import tickets.model.Show;
 import tickets.util.ShowType;
 
 import java.sql.Timestamp;
-import java.util.Map;
 
 public class ShowBean {
     private int id;
@@ -13,19 +12,20 @@ public class ShowBean {
     private String name;
     private ShowType type;
     //不同的座位及其价格
-    private Map<Integer, Double> seatAndPrice;
+    private ShowSeatBean showSeatBean;
+//    private Map<String, Double> seatAndPrice;
     private String description;
 
     public ShowBean() {
     }
 
-    public ShowBean(Show show, Map<Integer, Double> map) {
+    public ShowBean(Show show, ShowSeatBean showSeatBean) {
         this.id = show.getId();
         this.stadiumId = show.getStadium_id();
         this.time = show.getTime();
         this.name = show.getName();
         this.type = ShowType.toEnumValue(show.getType());
-        this.seatAndPrice = map;
+        this.showSeatBean = showSeatBean;
         this.description = show.getDescription();
     }
     public int getId() {
@@ -68,12 +68,12 @@ public class ShowBean {
         this.type = type;
     }
 
-    public Map<Integer, Double> getSeatAndPrice() {
-        return seatAndPrice;
+    public ShowSeatBean getShowSeatBean() {
+        return showSeatBean;
     }
 
-    public void setSeatAndPrice(Map<Integer, Double> seatAndPrice) {
-        this.seatAndPrice = seatAndPrice;
+    public void setShowSeatBean(ShowSeatBean showSeatBean) {
+        this.showSeatBean = showSeatBean;
     }
 
     public String getDescription() {
