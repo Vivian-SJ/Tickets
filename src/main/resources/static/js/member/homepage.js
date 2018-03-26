@@ -65,13 +65,14 @@ function displayShows(data) {
             });
             var seatAndPrice = drama[i]['showSeatBean']['seatNameAndPrice'];
             var prices = Object.values(seatAndPrice);
-            var max = 0;
-            for (var i = 0; i < prices.length; i++) {
-                if (prices[i] > max) {
-                    max = prices[i];
+            var min = prices[0];
+            for (var i = 1; i < prices.length; i++) {
+                if (prices[i] < min) {
+                    min = prices[i];
                 }
             }
-            $(currentShow + ' .price strong').text(max);
+            console.log('minPrice:'+min);
+            $(currentShow + ' .price strong').text(min);
         }
     }
 }

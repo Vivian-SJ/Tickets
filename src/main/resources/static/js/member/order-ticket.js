@@ -24,12 +24,12 @@ $.ajax({
     dataType: 'json',
     success: function (data) {
         coupons = data;
-        console.log(coupons);
+        // console.log(coupons);
     }
 });
 $(document).ready(function () {
-    var request = getRequest();
-    if (showId !== null) {
+    while (memberBean===undefined){}
+    if (showId !== undefined) {
         $('#login').innerHTML = '退出登录';
         $('#register').css('display', 'none');
     }
@@ -54,11 +54,11 @@ function setPage(data) {
     var ul = $('#price');
     var seatNameAndPrice = data['showSeatBean']['seatNameAndPrice'];
     var seatNameAndId = data['showSeatBean']['seatNameAndId'];
-    console.log(seatNameAndPrice);
+    // console.log(seatNameAndPrice);
     var keys = Object.keys(seatNameAndPrice);
     var len = keys.length;
     var values = Object.values(seatNameAndPrice);
-    console.log(len);
+    // console.log(len);
     for (var i = len - 1; i >= 0; i--) {
         var li = document.createElement('li');
         $(li).addClass('price');
@@ -69,17 +69,17 @@ function setPage(data) {
         $(button).attr('value', values[i]);
         button.innerHTML = keys[i] + values[i] + '元';
         li.append(button);
-        console.log(li);
+        // console.log(li);
         ul.append(li);
     }
 
     //设置购票信息界面的内容
     var rank = memberBean['rank'];
     var discount = getDiscount(rank);
+    console.log('discount' + discount);
+    $('#discount').text(discount);
     if (discount === 1) {
         $('#discount').parent().css('display', 'none');
-    } else {
-        $('#discount').innerHTML = discount;
     }
     var couponsList = $('#coupons');
     for (var i = 0; i < coupons.length; i++) {
@@ -166,16 +166,24 @@ function calculatePrice(data) {
                 alert("立即购票单次购买票数不能超过20张，请重新选择购买数量");
             } else {
                 orderBean['type'] = '立即购买';
-                orderBean['seatId'] = -1;
                 //立即购票按照最低票价计算
                 var seatNameAndPrice = data['showSeatBean']['seatNameAndPrice'];
                 var prices = Object.values(seatNameAndPrice);
+                var names = Object.keys(seatNameAndPrice);
+                var seat = 0;
                 var minPrice = prices[0];
                 for (var i = 1; i < prices.length; i++) {
                     if (prices[i] < minPrice) {
                         minPrice = prices[i];
+                        seat = i;
                     }
                 }
+                var seatName = names[seat];
+                console.log('seatName '+seatName);
+                var seatNameAndId = data['showSeatBean']['seatNameAndId'];
+                var unSelectSeatId = seatNameAndId[seatName];
+                console.log('unSelectSeatId ' + unSelectSeatId);
+                orderBean['seatId'] = unSelectSeatId;
                 orderBean['expectedPrice'] = minPrice * $('#amount').val();
                 ok = true;
             }
@@ -235,7 +243,7 @@ function orderTicket(orderBean) {
                    window.location.href = 'pay.html?orderId='+data['id'];
                 });
                 $('#cancelPay').click(function () {
-                    window.location.href = 'homepage.html';
+                    window.location.href = 'info/order.html';
                 })
             } else {
                 alert(data['resultBean']['message']);

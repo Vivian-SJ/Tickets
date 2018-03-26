@@ -11,8 +11,9 @@ $(document).ready(function () {
         method: 'get',
         dataType: 'json',
         success: function (data) {
+            console.log('order finish');
             orderBean = data;
-            getDetail();
+            getShowName();
         },
         error: function () {
             console.log('error');
@@ -20,50 +21,65 @@ $(document).ready(function () {
     });
 });
 
-function getDetail() {
+function getShowName() {
+    console.log('here');
     $.ajax({
         url: 'http://localhost:8080/tickets/show/' + orderBean['showId'],
         method: 'get',
         dataType:'json',
         success: function (data) {
             showName = data['name'];
+            // console.log('showName ' + showName);
+            getStadiumName();
         },
         error: function () {
             console.log('error');
         }
     });
+}
+
+function getStadiumName() {
     $.ajax({
         url: 'http://localhost:8080/tickets/stadium/info/' + orderBean['stadiumId'],
         method: 'get',
         dataType: 'json',
         success: function (data) {
             stadiumName = data['name'];
+            // console.log('stadiumName '+stadiumName);
+            getSeatName();
         },
         error: function () {
             console.log('error');
         }
     });
+}
+
+function getSeatName() {
     $.ajax({
         url: 'http://localhost:8080/tickets/seat/' + orderBean['seatId'],
         method: 'get',
         dataType: 'json',
         success: function (data) {
             seatName = data['name'];
+            // console.log('seatName finish');
+            // console.log('seatName '+seatName);
+            setPage();
         },
         error: function () {
             console.log('error');
         }
     });
-    while (showName!=="" && stadiumName!=="" && seatName!=="") {
-        setPage();
-    }
 }
 
 function setPage() {
     $('#name').text(showName);
     $('#info-form .show-name').text(showName);
     $('#info-form .stadium-name').text(stadiumName);
-    $('#info-form .show-type').text(seatName+orderBean['ticketAmount']+'张');
+    if (orderBean['type']==='立即购买') {
+        $('#info-form .show-type').text('未选座');
+    } else {
+        $('#info-form .show-type').text(seatName+orderBean['ticketAmount']+'张');
+    }
     $('#info-form .show-time').text(getDate(orderBean['time']));
     $('#expectedPrice').text(orderBean['expectedPrice']);
     var discount = orderBean['discount'];
@@ -77,6 +93,7 @@ function setPage() {
     } else if (discount!==1 && couponAmount===0) {
         $('#discount').text(orderBean['discount']+'折')
     }
+    $('#actualPrice').text(orderBean['actualPrice']);
     pay();
 }
 
@@ -91,7 +108,10 @@ function pay() {
             },
             success: function (data) {
                 if (data['result']===true) {
-
+                    $('#pay').css('display', 'none');
+                    $('#pay-label').css('display', 'block');
+                } else {
+                    alert(data['message']);
                 }
             },
             error: function () {
