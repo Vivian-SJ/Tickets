@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.*;
-import tickets.service.MailService;
-import tickets.service.MemberService;
-import tickets.service.ShowService;
+import tickets.service.*;
 import tickets.util.CodeUtil;
 import tickets.util.CouponStatus;
 import tickets.util.OrderStatus;
@@ -32,6 +30,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private ShowRepository showRepository;
+
+    @Autowired
+    private StadiumService stadiumService;
+
+    @Autowired
+    private SeatService seatService;
 
     @Autowired
     private MailService mailService;
@@ -148,7 +152,7 @@ public class MemberServiceImpl implements MemberService {
     public ResultBean exchangeCoupon(int memberId, double value) {
         Member member = memberRepository.findById(memberId);
         double currentCredit = member.getCredit();
-        if (currentCredit<Coupon.toCredit(value)) {
+        if (currentCredit < Coupon.toCredit(value)) {
             return new ResultBean(false, "您的积分不足以兑换该种优惠券");
         }
         Coupon coupon = new Coupon(memberId, value, CouponStatus.UNUSED.toString());
@@ -180,11 +184,11 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ShowsBean getAllShows() {
         Map<String, List<ShowBean>> map = new HashMap<>();
-        for (int i=0;i<ShowType.values().length;i++) {
+        for (int i = 0; i < ShowType.values().length; i++) {
             String type = ShowType.getName(i);
             List<Show> shows = showRepository.findByType(type);
             List<ShowBean> showBeans = new ArrayList<>();
-            for (Show show: shows) {
+            for (Show show : shows) {
                 ShowBean showBean = showService.getShowInfoById(show.getId());
                 showBeans.add(showBean);
             }
@@ -222,14 +226,15 @@ public class MemberServiceImpl implements MemberService {
         }
 
         //把这个订单使用的优惠券恢复正常
-        List<Coupon> coupons = couponRepository.findByMember_idAndOrder_id(member.getId(), orderId);
-        for (Coupon coupon : coupons) {
-            if (coupon.getStatus().equals(CouponStatus.SELECTED.toString())) {
-                coupon.setStatus(CouponStatus.UNUSED.toString());
-                coupon.setOrder_id(-1);
-                couponRepository.save(coupon);
-            }
-        }
+//        List<Coupon> coupons = couponRepository.findByMember_idAndOrder_id(member.getId(), orderId);
+//        for (Coupon coupon : coupons) {
+//            if (coupon.getStatus().equals(CouponStatus.SELECTED.toString())) {
+//                coupon.setStatus(CouponStatus.UNUSED.toString());
+//                coupon.setOrder_id(-1);
+//                couponRepository.save(coupon);
+//            }
+//        }
+        orderRepository.save(order);
         return new ResultBean(true);
     }
 
@@ -270,7 +275,17 @@ public class MemberServiceImpl implements MemberService {
         List<Order> orders = orderRepository.findByMember_id(memberId);
         List<OrderBean> orderBeans = new ArrayList<>();
         for (Order order : orders) {
-            OrderBean orderBean = new OrderBean(order);
+            Show show = showRepository.findById(order.getShow_id());
+            String showName = show.getName();
+            Timestamp showTime = show.getTime();
+            String stadiumName = stadiumService.getInfoById(order.getStadium_id()).getName();
+            String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+            List<Coupon> coupons = couponRepository.findByOrder_id(order.getId());
+            List<Integer> couponIds = new ArrayList<>();
+            for (Coupon coupon : coupons) {
+                couponIds.add(coupon.getId());
+            }
+            OrderBean orderBean = new OrderBean(order, couponIds, stadiumName, showName, seatName, showTime);
             orderBeans.add(orderBean);
         }
         return orderBeans;
@@ -279,12 +294,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public OrderBean getOrder(int orderId) {
         Order order = orderRepository.findById(orderId);
+        Show show = showRepository.findById(order.getShow_id());
+        String showName = show.getName();
+        Timestamp showTime = show.getTime();
+        String stadiumName = stadiumService.getInfoById(order.getStadium_id()).getName();
+        String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
         List<Coupon> coupons = couponRepository.findByOrder_id(orderId);
         List<Integer> couponIds = new ArrayList<>();
         for (Coupon coupon : coupons) {
             couponIds.add(coupon.getId());
         }
-        return new OrderBean(order, couponIds);
+        return new OrderBean(order, couponIds, stadiumName, showName, seatName, showTime);
     }
 
     @Override
@@ -313,7 +333,7 @@ public class MemberServiceImpl implements MemberService {
         Order order = new Order(orderBean);
         orderRepository.save(order);
         int orderId = orderRepository.getId();
-        System.out.println("orderId"+orderId);
+        System.out.println("orderId" + orderId);
 
         List<Integer> couponIds = orderBean.getCouponIds();
         if (couponIds.size() > 0) {
