@@ -214,14 +214,18 @@ public class MemberServiceImpl implements MemberService {
         int internalDays = (int) (showTimeLong - cancelTimeLong) / (1000 * 60 * 60 * 24);
         //退款
         double moneyAvailable = member.getMoney_available();
+        double consumption = member.getSum_consumption();
         if (internalDays >= 7) {
             member.setMoney_available(moneyAvailable + price);
+            member.setSum_consumption(consumption - price);
             order.setActual_price(0);
         } else if (internalDays >= 5) {
             member.setMoney_available(moneyAvailable + price * 0.5);
+            member.setSum_consumption(consumption - price * 0.5);
             order.setActual_price(price * 0.5);
         } else if (internalDays >= 3) {
             member.setMoney_available(moneyAvailable + price * 0.3);
+            member.setSum_consumption(consumption - price * 0.3);
             order.setActual_price(price * 0.7);
         }
 
@@ -309,6 +313,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public StatisticsBean displayMemberStatistics(int memberId) {
+        int orderSum = orderRepository.getAmountByMemberId(memberId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
             List<Order> orders = orderRepository.findByMember_idAndType(memberId, orderStatus.toString());
@@ -319,8 +324,8 @@ public class MemberServiceImpl implements MemberService {
             }
             map.put(orderStatus.toString(), orderBeans);
         }
-        double totalPrice = orderRepository.getMemberTotalPrice(memberId);
-        return new StatisticsBean(map, totalPrice);
+        double totalPrice = memberRepository.findById(memberId).getSum_consumption();
+        return new StatisticsBean(orderSum, map, totalPrice);
     }
 
     @Override

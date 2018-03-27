@@ -138,7 +138,7 @@ public class MemberController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/member/statics/{memberId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/member/statistics/{memberId}", method = RequestMethod.GET)
     public StatisticsBean displayMemberStatistics(@PathVariable(value = "memberId") int memberId) {
         return memberService.displayMemberStatistics(memberId);
     }

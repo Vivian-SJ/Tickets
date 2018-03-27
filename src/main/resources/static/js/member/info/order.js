@@ -343,8 +343,8 @@ function setPage(orders) {
             success: function (data) {
                 if (data['result'] === true) {
                     alert('退票成功');
-                    $(button).prev().css('display', 'block');
-                    $(button).css('display', 'none');
+                    // $(button).prev().css('display', 'block');
+                    // $(button).css('display', 'none');
                     window.location.reload();
                 } else {
                     alert(data['message']);

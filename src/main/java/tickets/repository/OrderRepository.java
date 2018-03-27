@@ -13,15 +13,20 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     @Query(value = "select * from orders where member_id = ?1", nativeQuery = true)
     public List<Order> findByMember_id(int memberId);
 
-    @Query(value = "select * from  orders where member_id = ?1 AND type = ?2", nativeQuery = true)
+    @Query(value = "select * from  orders where member_id = ?1 AND status = ?2", nativeQuery = true)
     public List<Order> findByMember_idAndType(int memberId, String type);
 
-    @Query(value = "select sum(actual_price) FROM orders WHERE member_id = ?1", nativeQuery = true)
-    public double getMemberTotalPrice(int memberId);
+//    @Query(value = "select sum(actual_price) FROM orders WHERE member_id = ?1", nativeQuery = true)
+//    public double getMemberTotalPrice(int memberId);
 
     @Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
     public int getId();
 
+    @Query(value = "SELECT COUNT(*) FROM orders WHERE member_id = ?1", nativeQuery = true)
+    public int getAmountByMemberId(int memberId);
+
+    @Query(value = "SELECT COUNT(*) FROM orders WHERE stadium_id = ?1", nativeQuery = true)
+    public int getAmountByStadiumId(int stadiumId);
 //    @Modifying
 //    @Transactional
 //    @Query(value = "INSERT INTO orders VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)", nativeQuery = true)
