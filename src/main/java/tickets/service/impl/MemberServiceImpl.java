@@ -245,11 +245,15 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResultBean payOrder(int orderId) {
         Order order = orderRepository.findById(orderId);
+        Member member = memberRepository.findById(order.getMember_id());
+        double price = order.getActual_price();
+        if (price>member.getMoney_available()) {
+            return new ResultBean(false, "抱歉，账户余额不足");
+        }
+
         order.setStatus(OrderStatus.WAIT_TICKET.toString());
 
         //关于用户余额、积分等的操作
-        Member member = memberRepository.findById(order.getMember_id());
-        double price = order.getActual_price();
         double newMoneyAvailable = member.getMoney_available() - price;
         member.setMoney_available(newMoneyAvailable);
         double newSumConsumption = member.getSum_consumption() + price;
