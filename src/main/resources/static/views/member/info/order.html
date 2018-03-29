@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../../css/form-elements.css"/>
     <link rel="stylesheet" href="../../../css/style.css"/>
     <link rel="stylesheet" href="../../../css/info.css"/>
+    <link rel="stylesheet" href="../../../css/order-detail.css"/>
 </head>
 <body>
 <div class="container">
@@ -59,15 +60,15 @@
     <div class="container info">
         <!--个人信息的导航栏-->
         <div class="myinfo">
-        <h3>个人信息</h3>
-        <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
-            <li id="basicInfo-title"><a href="info.html">基本信息</a></li>
-            <li id="order-title" class="active"><a href="order.html">我的订单</a></li>
-            <li id="wallet-title"><a href="wallet.html">我的钱包</a></li>
-            <li id="coupon-title"><a href="coupon.html">我的优惠券</a></li>
-            <li id="statistics-title"><a href="statistics.html">我的消费</a></li>
-        </ul>
-    </div>
+            <h3>个人信息</h3>
+            <ul id="navbar-info" class="nav nav-tabs nav-stacked" style="border: none">
+                <li id="basicInfo-title"><a href="info.html">基本信息</a></li>
+                <li id="order-title" class="active"><a href="order.html">我的订单</a></li>
+                <li id="wallet-title"><a href="wallet.html">我的钱包</a></li>
+                <li id="coupon-title"><a href="coupon.html">我的优惠券</a></li>
+                <li id="statistics-title"><a href="statistics.html">我的消费</a></li>
+            </ul>
+        </div>
         <div class="tab-content" style="height: auto">
             <div id="order" style="padding: 22px 30px;">
                 <div>
@@ -97,7 +98,7 @@
                                         <!--<img src="../../../pictrues/show1.jpg">-->
                                     <!--</div>-->
                                     <!--<form style="float: left; margin-left: 130px;">-->
-                                        <!--<div class="show-name">《驴得水》</div>-->
+                                        <!--<div class="show-name"><a name='href'>《驴得水》</a></div>-->
                                         <!--<div class="stadium-name">幸福蓝海国际影城</div>-->
                                         <!--<div class="seat-info">-->
                                             <!--<span>一等座</span>-->
@@ -105,7 +106,9 @@
                                         <!--<div class="show-time">2018-02-02 15:10:00</div>-->
                                     <!--</form>-->
                                     <!--<div class="order-price">￥100</div>-->
-                                    <!--<div class="order-status" style="width: auto">待支付<button name="payButton" class="btn-sm" style="color: #4aaf15;margin: 0 10px 0 10px">去支付</button> </div>-->
+                                    <!--<div class="order-status" style="width: auto">待支付-->
+                                        <!--<button name="payButton" class="btn-sm pay-btn">去支付</button>-->
+                                    <!--</div>-->
                                     <!--<div class="order-status">待支付</div>-->
                                 <!--</div>-->
                             <!--</div>-->
@@ -122,29 +125,29 @@
                         </div>
                         <div id="refund" class="tab-pane">
                             <!--<div class="order-box" id="refund1">-->
-                                <!--<div class="order-header">-->
-                                    <!--<span class="order-date">2018-01-01</span>-->
-                                    <!--<span class="order-id">订单号：1</span>-->
-                                <!--</div>-->
-                                <!--<div class="order-body">-->
-                                    <!--<div class="poster">-->
-                                        <!--<img src="../../../pictrues/show1.jpg">-->
-                                    <!--</div>-->
-                                    <!--<form style="float: left; margin-left: 130px;">-->
-                                        <!--<div class="show-name">《驴得水》</div>-->
-                                        <!--<div class="stadium-name">幸福蓝海国际影城</div>-->
-                                        <!--<div class="seat-info">-->
-                                            <!--<span>一等座</span>-->
-                                        <!--</div>-->
-                                        <!--<div class="show-time">2018-02-02 15:10:00</div>-->
-                                    <!--</form>-->
-                                    <!--<div class="order-price">￥100</div>-->
-                                    <!--<div class="order-status">已出票</div>-->
-                                    <!--<div class="order-cancel">-->
-                                        <!--<label style="width: 100px; margin-left: 0; display: none">退票成功!</label>-->
-                                        <!--<button class="btn" onclick="this.disabled=true;">退票</button>-->
-                                    <!--</div>-->
-                                <!--</div>-->
+                            <!--<div class="order-header">-->
+                            <!--<span class="order-date">2018-01-01</span>-->
+                            <!--<span class="order-id">订单号：1</span>-->
+                            <!--</div>-->
+                            <!--<div class="order-body">-->
+                            <!--<div class="poster">-->
+                            <!--<img src="../../../pictrues/show1.jpg">-->
+                            <!--</div>-->
+                            <!--<form style="float: left; margin-left: 130px;">-->
+                            <!--<div class="show-name">《驴得水》</div>-->
+                            <!--<div class="stadium-name">幸福蓝海国际影城</div>-->
+                            <!--<div class="seat-info">-->
+                            <!--<span>一等座</span>-->
+                            <!--</div>-->
+                            <!--<div class="show-time">2018-02-02 15:10:00</div>-->
+                            <!--</form>-->
+                            <!--<div class="order-price">￥100</div>-->
+                            <!--<div class="order-status">已出票</div>-->
+                            <!--<div class="order-cancel">-->
+                            <!--<label style="width: 100px; margin-left: 0; display: none">退票成功!</label>-->
+                            <!--<button class="btn" onclick="this.disabled=true;">退票</button>-->
+                            <!--</div>-->
+                            <!--</div>-->
                             <!--</div>-->
                         </div>
                     </div>

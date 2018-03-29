@@ -51,6 +51,7 @@ function setPage(data) {
     $('#name').text(data['name']);
     $('#bigName').text(data['name']);
     $('.time').text(getDate(data['time']));
+    getPlaceName(data['stadiumId']);
     var ul = $('#price');
     var seatNameAndPrice = data['showSeatBean']['seatNameAndPrice'];
     var seatNameAndId = data['showSeatBean']['seatNameAndId'];
@@ -96,6 +97,17 @@ function setPage(data) {
         couponsList.append(li);
     }
     buyTicket(data);
+}
+
+function getPlaceName(stadiumId) {
+    $.ajax({
+        url: "http://localhost:8080/tickets/stadium/info/" + stadiumId,
+        method: 'get',
+        dataType: 'json',
+        success: function (result) {
+            $('.place').text(result['name']);
+        }
+    });
 }
 
 function buyTicket(data) {

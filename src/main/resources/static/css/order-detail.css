@@ -1,0 +1,17 @@
+.pay-btn {
+    margin: 0px 10px 0 10px;
+    background-color: #4aaf15;
+    color: #fff;
+}
+
+.detail-pay-btn {
+    margin: 3px 10px 0 30px;
+    float: left;
+    background-color: #4aaf15;
+    color: #fff;
+}
+
+.ps {
+    float: left;
+    color: #4aaf15;
+}

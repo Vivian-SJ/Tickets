@@ -70,7 +70,7 @@
     zoom: 1;
 }
 
-.time {
+.time, .place, .status {
     float: left;
     border: 2px solid #4aaf51;
     display: inline;

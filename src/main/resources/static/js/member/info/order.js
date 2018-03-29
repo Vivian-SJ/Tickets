@@ -49,237 +49,22 @@ function setPage(orders) {
     console.log("refund" + refund.length);
 
     for (var i = 0; i < all.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'all' + all[i]['id'];
-        $(div).attr('id', id);
-        $(div).html('<div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status">已出票</div>\n' +
-            '                                </div>');
-        //要先加入，后面那些修改才起作用，我也不知道为什么orz
-        $('#all').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(all[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + all[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(all[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(all[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(all[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(all[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(all[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(all[i]['orderStatus']);
-
-        if (all[i]['orderStatus'] === '待支付') {
-            var payButton = document.createElement('button');
-            $('#' + id + ' .order-body .order-status').append(payButton);
-            $(payButton).text('去支付');
-            $(payButton).addClass('btn-sm');
-            $(payButton).css('color', '#4aaf15');
-            $(payButton).css('margin', '0 10px 0 10px');
-            $(payButton).attr('name', 'payButton');
-            $('#' + id + ' .order-body .order-status').css('width', 'auto');
-        }
+        setSingleTypeOrders(all, 'all', i);
     }
     for (var i = 0; i < wait_ticket.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'wait_ticket' + wait_ticket[i]['id'];
-        $(div).attr('id', id);
-        div.innerHTML = '<div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status">已出票</div>\n' +
-            '                                </div>';
-        $('#wait-ticket').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(wait_ticket[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + wait_ticket[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(wait_ticket[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(wait_ticket[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(wait_ticket[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(wait_ticket[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(wait_ticket[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(wait_ticket[i]['orderStatus']);
+        setSingleTypeOrders(wait_ticket, 'wait_ticket', i);
     }
     for (var i = 0; i < to_be_paid.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'to_be_paid' + to_be_paid[i]['id'];
-        $(div).attr('id', id);
-        div.innerHTML = '                  <div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status" style="width: auto">待支付\n' +
-            '</div>\n' +
-            '                            </div>';
-        $('#to-be-paid').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(to_be_paid[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + to_be_paid[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(to_be_paid[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(to_be_paid[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(to_be_paid[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(to_be_paid[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(to_be_paid[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(to_be_paid[i]['orderStatus']);
-
-        var payButton = document.createElement('button');
-        $('#' + id + ' .order-body .order-status').append(payButton);
-        $(payButton).text('去支付');
-        $(payButton).addClass('btn-sm');
-        $(payButton).css('color', '#4aaf15');
-        $(payButton).css('margin', '0 10px 0 10px');
-        $(payButton).attr('name', 'payButton');
-        $('#' + id + ' .order-body .order-status').css('width', 'auto');
+        setSingleTypeOrders(to_be_paid, 'to_be_paid', i);
     }
     for (var i = 0; i < ticket_out.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'ticket_out' + ticket_out[i]['id'];
-        $(div).attr('id', id);
-        div.innerHTML = '<div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status">已出票</div>\n' +
-            '                                </div>';
-        $('#ticket-out').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(ticket_out[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + ticket_out[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(ticket_out[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(ticket_out[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(ticket_out[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(ticket_out[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(ticket_out[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(ticket_out[i]['orderStatus']);
-
+        setSingleTypeOrders(ticket_out, 'ticket_out', i);
     }
     for (var i = 0; i < canceled.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'canceled' + canceled[i]['id'];
-        $(div).attr('id', id);
-        div.innerHTML = '<div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status">已出票</div>\n' +
-            '                                </div>';
-        $('#canceled').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(canceled[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + canceled[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(canceled[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(canceled[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(canceled[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(canceled[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(canceled[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(canceled[i]['orderStatus']);
+        setSingleTypeOrders(canceled,'canceled',i);
     }
     for (var i = 0; i < used.length; i++) {
-        var div = document.createElement('div');
-        $(div).addClass('order-box');
-        var id = 'used' + used[i]['id'];
-        $(div).attr('id', id);
-        div.innerHTML = '<div class="order-header">\n' +
-            '                                    <span class="order-date">2018-01-01</span>\n' +
-            '                                    <span class="order-id">订单号：1</span>\n' +
-            '                                </div>\n' +
-            '                                <div class="order-body">\n' +
-            '                                    <div class="poster">\n' +
-            '                                        <img src="../../../pictrues/show1.jpg">\n' +
-            '                                    </div>\n' +
-            '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
-            '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
-            '                                        <div class="seat-info">\n' +
-            '                                            <span>一等座</span>\n' +
-            '                                        </div>\n' +
-            '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
-            '                                    </form>\n' +
-            '                                    <div class="order-price">￥100</div>\n' +
-            '                                    <div class="order-status">已出票</div>\n' +
-            '                                </div>';
-        $('#used').append(div);
-
-        $('#' + id + ' .order-header .order-date').text(getDate(used[i]['time']));
-        $('#' + id + ' .order-header .order-id').text('订单号' + used[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(used[i]['showName']);
-        $('#' + id + ' .order-body .stadium-name').text(used[i]['stadiumName']);
-        $('#' + id + ' .order-body .seat-info').children('span').text(used[i]['seatName']);
-        $('#' + id + ' .order-body .show-time').text(getTime(used[i]['showTime']));
-        $('#' + id + ' .order-body .order-price').text(used[i]['actualPrice']);
-        $('#' + id + ' .order-body .order-status').text(used[i]['orderStatus']);
+        setSingleTypeOrders(used, 'used', i);
     }
     for (var i = 0; i < refund.length; i++) {
         var div = document.createElement('div');
@@ -295,7 +80,7 @@ function setPage(orders) {
             '                                        <img src="../../../pictrues/show1.jpg">\n' +
             '                                    </div>\n' +
             '                                    <form style="float: left; margin-left: 130px;">\n' +
-            '                                        <div class="show-name">《驴得水》</div>\n' +
+            '                                        <div class="show-name"></div>\n' +
             '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
             '                                        <div class="seat-info">\n' +
             '                                            <span>一等座</span>\n' +
@@ -311,9 +96,13 @@ function setPage(orders) {
             '                                </div>';
         $('#refund').append(div);
 
+        var a = document.createElement('a');
+        $(a).attr('href','../order-detail.html?id='+refund[i]['id']);
+        $('#' + id + ' .order-body .show-name').append(a);
+
         $('#' + id + ' .order-header .order-date').text(getDate(refund[i]['time']));
         $('#' + id + ' .order-header .order-id').text('订单号' + refund[i]['id']);
-        $('#' + id + ' .order-body .show-name').text(refund[i]['showName']);
+        $('#' + id + ' .order-body .show-name a').text(refund[i]['showName']);
         $('#' + id + ' .order-body .stadium-name').text(refund[i]['stadiumName']);
         $('#' + id + ' .order-body .seat-info').children('span').text(refund[i]['seatName']);
         $('#' + id + ' .order-body .show-time').text(getTime(refund[i]['showTime']));
@@ -355,6 +144,59 @@ function setPage(orders) {
             }
         })
     });
+}
+
+function setSingleTypeOrders(data, type, i) {
+    var div = document.createElement('div');
+    $(div).addClass('order-box');
+    var id = type + data[i]['id'];
+    $(div).attr('id', id);
+    $(div).html('<div class="order-header">\n' +
+        '                                    <span class="order-date">2018-01-01</span>\n' +
+        '                                    <span class="order-id">订单号：1</span>\n' +
+        '                                </div>\n' +
+        '                                <div class="order-body">\n' +
+        '                                    <div class="poster">\n' +
+        '                                        <img src="../../../pictrues/show1.jpg">\n' +
+        '                                    </div>\n' +
+        '                                    <form style="float: left; margin-left: 130px;">\n' +
+        '                                        <div class="show-name"></div>\n' +
+        '                                        <div class="stadium-name">幸福蓝海国际影城</div>\n' +
+        '                                        <div class="seat-info">\n' +
+        '                                            <span>一等座</span>\n' +
+        '                                        </div>\n' +
+        '                                        <div class="show-time">2018-02-02 15:10:00</div>\n' +
+        '                                    </form>\n' +
+        '                                    <div class="order-price">￥100</div>\n' +
+        '                                    <div class="order-status">已出票</div>\n' +
+        '                                </div>');
+    //要先加入，后面那些修改才起作用，我也不知道为什么orz
+    $('#'+type).append(div);
+
+    var a = document.createElement('a');
+    $(a).attr('href','../order-detail.html?id='+data[i]['id']);
+    $('#' + id + ' .order-body .show-name').append(a);
+
+    $('#' + id + ' .order-header .order-date').text(getDate(data[i]['time']));
+    $('#' + id + ' .order-header .order-id').text('订单号' + data[i]['id']);
+    $('#' + id + ' .order-body .show-name a').text(data[i]['showName']);
+    $('#' + id + ' .order-body .stadium-name').text(data[i]['stadiumName']);
+    $('#' + id + ' .order-body .seat-info').children('span').text(data[i]['seatName']);
+    $('#' + id + ' .order-body .show-time').text(getTime(data[i]['showTime']));
+    $('#' + id + ' .order-body .order-price').text(data[i]['actualPrice']);
+    $('#' + id + ' .order-body .order-status').text(data[i]['orderStatus']);
+
+    if ((type==='all'&&data[i]['orderStatus'] === '待支付')||(type==='to_be_paid')){
+        var payButton = document.createElement('button');
+        $('#' + id + ' .order-body .order-status').append(payButton);
+        $(payButton).text('去支付');
+        $(payButton).addClass('btn-sm');
+        $(payButton).addClass('pay-btn');
+        // $(payButton).css('color', '#4aaf15');
+        // $(payButton).css('margin', '0 10px 0 10px');
+        $(payButton).attr('name', 'payButton');
+        $('#' + id + ' .order-body .order-status').css('width', 'auto');
+    }
 }
 
 function getTime(timestamp) {
