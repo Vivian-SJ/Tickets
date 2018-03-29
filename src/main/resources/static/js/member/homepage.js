@@ -43,38 +43,63 @@ function displayShows(data) {
     var dance = typesAndShows['舞蹈'];
 
     if (drama.length !== 0) {
-        var dramaContent = $('.drama ul');
-        for (var i = 0; i < (drama.length > 3 ? 3 : drama.length); i++) {
-            var li = dramaContent.children().eq(i);
-            li.attr('id', drama[i]['id']);
+        setPage(drama, 'drama');
+    }
+    if (sports.length !== 0) {
+        setPage(sports, 'sports');
+    }
+    if (opera.length !== 0) {
+        setPage(opera, 'opera');
+    }
+    if (vocalConcert.length !== 0) {
+        setPage(vocalConcert, 'vocal-concert');
+    }
+    if (concert.length !== 0) {
+        setPage(concert, 'concert');
+    }
+    if (dance.length !== 0) {
+        setPage(dance, 'dance');
+    }
+}
+
+function setPage(data, type) {
+    if (data.length !== 0) {
+        var dataContent = $('.'+type+' ul');
+        for (var i = 0; i < (data.length > 3 ? 3 : data.length); i++) {
+            var li = dataContent.children().eq(i);
+            li.attr('id', data[i]['id']);
             //li的title里面存的是stadiumId
-            li.attr('title', drama[i]['stadiumId']);
-            var currentShow = '#' + drama[i]['id'];
-            $(currentShow + ' [name=title]').text(drama[i]['name']);
-            var time = getDate(drama[i]['time']);
+            li.attr('title', data[i]['stadiumId']);
+            var currentShow = '#' + data[i]['id'];
+            $(currentShow + ' [name=title]').text(data[i]['name']);
+            var time = getDate(data[i]['time']);
             $(currentShow + ' .time').text(time);
-            var place = "";
-            $.ajax({
-                url: "http://localhost:8080/tickets/stadium/info/" + drama[i]['stadiumId'],
-                method: 'get',
-                dataType: 'json',
-                success: function (result) {
-                    place = result['name'];
-                    $(currentShow + ' .place').text(place);
-                }
-            });
-            var seatAndPrice = drama[i]['showSeatBean']['seatNameAndPrice'];
+            getPlaceName(i, currentShow, data);
+            var seatAndPrice = data[i]['showSeatBean']['seatNameAndPrice'];
             var prices = Object.values(seatAndPrice);
             var min = prices[0];
-            for (var i = 1; i < prices.length; i++) {
-                if (prices[i] < min) {
-                    min = prices[i];
+            console.log('minPrice:'+min);
+            for (var j = 1; j < prices.length; j++) {
+                if (prices[j] < min) {
+                    min = prices[j];
                 }
             }
             console.log('minPrice:'+min);
             $(currentShow + ' .price strong').text(min);
         }
     }
+}
+
+function getPlaceName(i,currentShow, data) {
+    $.ajax({
+        url: "http://localhost:8080/tickets/stadium/info/" + data[i]['stadiumId'],
+        method: 'get',
+        dataType: 'json',
+        success: function (result) {
+            var place = result['name'];
+            $(currentShow + ' .place').text(place);
+        }
+    });
 }
 
 function getDate(timestamp) {

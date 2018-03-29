@@ -6,7 +6,7 @@ $(document).ready(function () {
         method: 'get',
         dataType: 'json',
         success: function (data) {
-            displayShows(data['typesAndShows']['戏剧']);
+            displayShows(data['typesAndShows']['演唱会']);
         },
         error: function () {
         }

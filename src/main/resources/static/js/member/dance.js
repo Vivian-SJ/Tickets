@@ -6,7 +6,7 @@ $(document).ready(function () {
         method: 'get',
         dataType: 'json',
         success: function (data) {
-            displayShows(data['typesAndShows']['戏剧']);
+            displayShows(data['typesAndShows']['舞蹈']);
         },
         error: function () {
         }
@@ -49,10 +49,12 @@ function displayShows(data) {
         }
         $('#money'+i).text(min);
     }
-    $('.floor-content-list dt a').click(function () {
+    $('.floor-content-list dt a').click(function (event) {
+        event.preventDefault();
         var a = event.target;
         var id =  $(a).attr('id').substring(5);
-        window.location.href = 'order-ticket.html?id=' + id + '&stadiumId=' + data[id]['stadiumId'];
+        console.log($(a).attr('id'));
+        window.location.href = 'order-ticket.html?id=' + data[id]['id'] + '&stadiumId=' + data[id]['stadiumId'];
     })
 }
 

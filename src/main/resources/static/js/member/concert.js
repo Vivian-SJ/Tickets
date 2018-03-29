@@ -18,7 +18,7 @@ function displayShows(data) {
         var li = document.createElement('li');
         $(li).addClass('li-double');
         li.innerHTML = '<div class="container block">\n' +
-            '                                <span class="img-double">\n' +
+            '                                <span class="img-double" style="width:233px">\n' +
             '                                            <img src="../../pictrues/opera.jpg">\n' +
             '                                        </span>\n' +
             '                            <dl class="info-double">\n' +
@@ -32,30 +32,39 @@ function displayShows(data) {
             '                        </div>';
         var ul = $('.floor-content-list');
         ul.append(li);
-        $('a').attr('id', 'title'+i);
-        $('a').text(data[i]['name']);
+        $('.floor-content-list a').attr('id', 'title'+i);
+        $('#title'+i).text(data[i]['name']);
         $('.time').attr('id', 'time'+i);
-        $('.time').text(getTime(data[i]['time']));
+        $('#time'+i).text(getTime(data[i]['time']));
         $('.place').attr('id', 'place'+i);
-        $.ajax({
-            url: "http://localhost:8080/tickets/stadium/info/" + data[i]['stadiumId'],
-            method: 'get',
-            dataType: 'json',
-            success: function (result) {
-                $('.place').text(result['name']);
-            }
-        });
-        $('strong').attr('id', 'money'+i);
+        getPlaceName(i,data);
+        $('.floor-content-list strong').attr('id', 'money'+i);
         var seatAndPrice = data[i]['showSeatBean']['seatNameAndPrice'];
         var prices = Object.values(seatAndPrice);
         var min = prices[0];
-        for (var i = 1; i < prices.length; i++) {
-            if (prices[i] < min) {
-                min = prices[i];
+        for (var j = 1; j < prices.length; j++) {
+            if (prices[j] < min) {
+                min = prices[j];
             }
         }
-        $('strong').text(min);
+        $('#money'+i).text(min);
     }
+    $('.floor-content-list dt a').click(function () {
+        var a = event.target;
+        var id =  $(a).attr('id').substring(5);
+        window.location.href = 'order-ticket.html?id=' + id + '&stadiumId=' + data[id]['stadiumId'];
+    })
+}
+
+function getPlaceName(i,data) {
+    $.ajax({
+        url: "http://localhost:8080/tickets/stadium/info/" + data[i]['stadiumId'],
+        method: 'get',
+        dataType: 'json',
+        success: function (result) {
+            $('#place'+i).text(result['name']);
+        }
+    });
 }
 
 function getTime(timestamp) {

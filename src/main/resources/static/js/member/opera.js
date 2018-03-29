@@ -6,7 +6,7 @@ $(document).ready(function () {
         method: 'get',
         dataType: 'json',
         success: function (data) {
-            displayShows(data['typesAndShows']['戏剧']);
+            displayShows(data['typesAndShows']['歌剧']);
         },
         error: function () {
         }
@@ -18,7 +18,7 @@ function displayShows(data) {
         var li = document.createElement('li');
         $(li).addClass('li-double');
         li.innerHTML = '<div class="container block">\n' +
-            '                                <span class="img-double" style="width:233px">\n' +
+            '                                <span class="img-double" style="width:233px;">\n' +
             '                                            <img src="../../pictrues/opera.jpg">\n' +
             '                                        </span>\n' +
             '                            <dl class="info-double">\n' +
