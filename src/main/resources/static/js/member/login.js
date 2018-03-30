@@ -47,7 +47,6 @@ function register() {
 }
 
 function handleResult(result) {
-    // var data = JSON.parse(result);
     var resultState = result['resultBean']['result'];
     var message = $('#message');
     if (resultState === true) {
