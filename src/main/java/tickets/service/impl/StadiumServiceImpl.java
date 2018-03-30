@@ -160,7 +160,7 @@ public class StadiumServiceImpl implements StadiumService{
         int orderSum = orderRepository.getAmountByStadiumId(stadiumId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
-            List<Order> orders = orderRepository.findByStadium_idAndType(stadiumId, orderStatus.toString());
+            List<Order> orders = orderRepository.findByStadium_idAndStatus(stadiumId, orderStatus.toString());
             List<OrderBean> orderBeans = new ArrayList<>();
             for (Order order : orders) {
                 OrderBean orderBean = new OrderBean(order);

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var url = 'http://localhost:8080/tickets/member/statistics/'+ localStorage.getItem('memberId');
+    var url = 'http://localhost:8080/tickets/stadium/statistics/' + localStorage.getItem('stadiumId');
     $.ajax({
         url: url,
         method: 'get',
@@ -14,7 +14,7 @@ $(document).ready(function () {
 });
 
 function setPage(statisticsBean) {
-    $('#sum').text('￥'+statisticsBean['totalPrice']);
+    $('#sum').text('￥' + statisticsBean['totalPrice']);
     var map = statisticsBean['statusAndOrder'];
     var used = map['已使用'];
     var canceled = map['已取消'];
