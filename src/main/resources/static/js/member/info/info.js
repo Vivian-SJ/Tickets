@@ -22,11 +22,12 @@ $(document).ready(function () {
             }
         }
     );
-
+    var changePs = false;
     //点击密码框要显示再次输入密码
     $('#password').click(function (event) {
         event.preventDefault();
         $('#passwordAgainArea').removeAttr('hidden');
+        changePs = true;
     });
 
     //取消会员
@@ -60,12 +61,12 @@ $(document).ready(function () {
         var passwordAgain = $('#passwordAgain');
         var gender = $('#gender');
         var message = $('#message');
-        if (name.val().length === 0 || password.val().length === 0 || passwordAgain.val().length === 0) {
+        if (name.val().length === 0 || password.val().length === 0 || (changePs === true && passwordAgain.val().length === 0)) {
             message.text("请完整填写信息");
             message.show();
             return;
         }
-        if (password.val() !== passwordAgain.val()) {
+        if (changePs === true && password.val() !== passwordAgain.val()) {
             message.text("两次密码不一致,请重新输入");
             message.show();
             passwordAgain.val("");
@@ -84,14 +85,14 @@ $(document).ready(function () {
                 contentType: 'application/json',
                 data: JSON.stringify(memberBean),
                 dataType: 'json',
-                success:function (result) {
+                success: function (result) {
                     if (result.result === true) {
-                        window.location.href="info.html";
+                        window.location.href = "info.html";
                     } else {
                         message.text(result.message);
                     }
                 },
-                error:function (result) {
+                error: function (result) {
                     console.log("error");
                     message.text(result.message);
                 }

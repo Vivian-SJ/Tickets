@@ -32,6 +32,8 @@ public class StadiumController {
 
     @RequestMapping(value = "/info/modify", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public ResultBean modifyInfo(@RequestBody StadiumBean stadiumBean) {
+        System.out.println(stadiumBean.getId());
+        System.out.println("ps: "+stadiumBean.getPassword());
         return stadiumService.modifyInfo(stadiumBean);
     }
 

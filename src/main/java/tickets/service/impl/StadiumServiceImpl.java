@@ -89,18 +89,31 @@ public class StadiumServiceImpl implements StadiumService{
             SeatBean seatBean = new SeatBean(seat);
             seatBeans.add(seatBean);
         }
-        return new StadiumBean(stadium, seatBeans);
+        StadiumBean stadiumBean = new StadiumBean(stadium, seatBeans);
+        try {
+            String password = new String(CodeUtil.decrypt(stadiumBean.getPassword()));
+            stadiumBean.setPassword(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stadiumBean;
     }
 
     @Override
     public ResultBean modifyInfo(StadiumBean stadiumBean) {
-        Stadium stadium = new Stadium(stadiumBean);
-        stadiumRepository.save(stadium);
-        List<SeatBean> seatBeans = stadiumBean.getSeats();
-        for (SeatBean seatBean : seatBeans) {
-            Seat seat = new Seat(seatBean);
-            seatRepository.save(seat);
+        Stadium stadium = stadiumRepository.findById(stadiumBean.getId());
+        stadium.setName(stadiumBean.getName());
+        String passwordCode = "";
+        try {
+            passwordCode = CodeUtil.encrypt(stadiumBean.getPassword().getBytes());
+        } catch (Exception e) {
+            System.out.println("密码加密时出错了！");
+            return new ResultBean(false, "修改失败，请稍后再试");
         }
+        stadium.setPassword(passwordCode);
+        stadium.setDescription(stadiumBean.getDescription());
+        stadium.setPlace(stadiumBean.getPlace());
+        stadiumRepository.save(stadium);
         return new ResultBean(true);
     }
 

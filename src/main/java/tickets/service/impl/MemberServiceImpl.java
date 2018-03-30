@@ -134,7 +134,14 @@ public class MemberServiceImpl implements MemberService {
     public ResultBean modifyInfo(int memberId, MemberBean memberBean) {
         Member member = memberRepository.findById(memberId);
         member.setName(memberBean.getName());
-        member.setPassword(memberBean.getPassword());
+        String passwordCode = "";
+        try {
+            passwordCode = CodeUtil.encrypt(memberBean.getPassword().getBytes());
+        } catch (Exception e) {
+            System.out.println("密码加密时出错了！");
+            return new ResultBean(false, "修改失败，请稍后再试");
+        }
+        member.setPassword(passwordCode);
         member.setImage(memberBean.getImage());
         member.setGender(memberBean.getGender());
         memberRepository.save(member);

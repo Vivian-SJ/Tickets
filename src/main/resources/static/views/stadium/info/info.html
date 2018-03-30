@@ -98,7 +98,7 @@
                                 <input id="password" type="password">
                             </dd>
                         </dl>
-                        <dl hidden>
+                        <dl hidden id="passwordAgainArea">
                             <dt><span class="necessary">*</span>再次输入密码</dt>
                             <dd>
                                 <input id="passwordAgain" type="password">
@@ -107,35 +107,39 @@
                         <dl>
                             <dt><span class="necessary">*</span>场馆地址</dt>
                             <dd>
-                                <input type="text">
+                                <input id="place" type="text">
                             </dd>
                         </dl>
                         <dl>
                             <dt><span class="necessary">*</span>场馆座位信息</dt>
                             <dd>
                                 <div class="form-group" style=" text-align: left;">
-                                    <label style="color: #4aaf15" hidden>座位信息输入格式：不同种类座位之间用"，"（中文逗号）分开，座位名称与数量之间用(" ")空格分开<br>
-                                        例如：一等座 100，二等座 200
-                                    </label>
-                                    <input type="text">
+                                    <!--<label style="color: #4aaf15" hidden>座位信息输入格式：不同种类座位之间用"，"（中文逗号）分开，座位名称与数量之间用("-->
+                                        <!--")空格分开<br>-->
+                                        <!--例如：一等座 100，二等座 200-->
+                                    <!--</label>-->
+                                    <input id="seats" type="text" size="60" readonly="readonly">
+                                    <span style="color: #F80000">座位信息不可修改</span>
                                 </div>
                             </dd>
                         </dl>
                         <dl>
                             <dt>场馆描述</dt>
                             <dd>
-                                <input type="text">
+                                <input id="description" type="text">
                             </dd>
                         </dl>
                         <p id="message" hidden style="color: #F80000; margin: 0 10px 10px 20px">message</p><br>
-                        <button class="btn" type="submit">更新并保存信息</button>
+                        <button class="btn" id="submit" type="submit" style="margin-bottom: 10px;
+    margin-left: 270px;">更新并保存信息</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-    <script src="../../../jquery/jquery-3.3.1.min.js"></script>
-    <script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../jquery/jquery-3.3.1.min.js"></script>
+<script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/stadium/info/info.js"></script>
 </body>
 </html>
