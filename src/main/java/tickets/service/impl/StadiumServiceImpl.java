@@ -123,11 +123,13 @@ public class StadiumServiceImpl implements StadiumService{
         System.out.println("description:"+showBean.getDescription());
         showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
         Map<String, Double> seatAndPrice = showBean.getShowSeatBean().getSeatNameAndPrice();
+        System.out.println(seatAndPrice.size());
         int showId = showRepository.getId();
         System.out.println(showId);
         for (Map.Entry<String, Double> entry : seatAndPrice.entrySet()) {
             int seatId = seatRepository.findIdByNameAndStadium_id(entry.getKey(), showBean.getStadiumId());
-            Seat seat = seatRepository.findOne(seatId);
+            System.out.println("seatId:"+seatId);
+            Seat seat = seatRepository.findById(seatId);
             ShowSeatId showSeatId = new ShowSeatId(showId, seatId);
             ShowSeat showSeat = new ShowSeat(showSeatId, entry.getValue(), seat.getAmount());
             showSeatRepository.save(showSeat);

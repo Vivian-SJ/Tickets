@@ -86,7 +86,7 @@
                         <dl>
                             <dt><span class="necessary">*</span>演出名</dt>
                             <dd>
-                                <input type="text" id="name" value="驴得水电影">
+                                <input type="text" id="name">
                             </dd>
                         </dl>
                         <dl>
@@ -99,12 +99,12 @@
                             <dt><span class="necessary">*</span>演出类型</dt>
                             <dd>
                                 <select id="type">
-                                    <option>戏剧</option>
-                                    <option>歌剧</option>
-                                    <option>舞蹈</option>
-                                    <option>体育</option>
-                                    <option>音乐会</option>
-                                    <option>演唱会</option>
+                                    <option value="DRAMA">戏剧</option>
+                                    <option value="OPERA">歌剧</option>
+                                    <option value="DANCE">舞蹈</option>
+                                    <option value="SPORTS_GAMES">体育</option>
+                                    <option value="CONCERT">音乐会</option>
+                                    <option value="VOCAL_CONCERT">演唱会</option>
                                 </select>
                             </dd>
                         </dl>
@@ -113,24 +113,15 @@
                             <dd>
                                 <table class="table table-responsive" id="price">
                                     <tbody>
-                                    <tr>
-                                        <td>一等座</td>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">￥</span>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>二等座</td>
-                                        <td>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">￥</span>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <!--<tr>-->
+                                        <!--<td>一等座</td>-->
+                                        <!--<td>-->
+                                            <!--<div class="input-group">-->
+                                                <!--<span class="input-group-addon">￥</span>-->
+                                                <!--<input type="text" class="form-control" name="seat_price">-->
+                                            <!--</div>-->
+                                        <!--</td>-->
+                                    <!--</tr>-->
                                     </tbody>
                                 </table>
                             </dd>
@@ -138,11 +129,11 @@
                         <dl>
                             <dt>演出简介</dt>
                             <dd>
-                                <input type="text" id="description" value="驴得水电影">
+                                <input type="text" id="description" size="60">
                             </dd>
                         </dl>
                         <p id="message" style="color: #F80000; margin: 0 10px 10px 20px">请注意：演出计划一旦发布，将不可更改</p><br>
-                        <button class="btn" type="submit">发布</button>
+                        <button id="submit" class="btn" type="submit">发布</button>
                     </form>
                 </div>
             </div>
@@ -151,5 +142,6 @@
 </div>
 <script src="../../../jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/stadium/show/publish.js"></script>
 </body>
 </html>
