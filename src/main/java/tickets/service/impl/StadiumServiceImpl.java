@@ -7,12 +7,10 @@ import tickets.model.*;
 import tickets.repository.*;
 import tickets.service.ShowService;
 import tickets.service.StadiumService;
+import tickets.util.CodeUtil;
 import tickets.util.OrderStatus;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StadiumServiceImpl implements StadiumService{
@@ -35,7 +33,7 @@ public class StadiumServiceImpl implements StadiumService{
     private ShowService showService;
 
     @Override
-    public StadiumRegisterBean register(StadiumBean stadiumBean) {
+    public ResultBeanWithId register(StadiumBean stadiumBean) {
         Stadium stadium = new Stadium(stadiumBean);
         System.out.println("id test" + stadiumBean.getId());
         Integer maxId = stadiumRepository.getLastId();
@@ -45,6 +43,14 @@ public class StadiumServiceImpl implements StadiumService{
             maxId = maxId+1;
         }
         stadium.setId(maxId);
+        String passwordCode = "";
+        try {
+            passwordCode = CodeUtil.encrypt(stadiumBean.getPassword().getBytes());
+        } catch (Exception e) {
+            System.out.println("密码加密时出错了！");
+            return new ResultBeanWithId(new ResultBean(false, "注册失败，请稍后再试"), -1);
+        }
+        stadium.setPassword(passwordCode);
         stadiumRepository.save(stadium);
 
         List<SeatBean> seatBeans = stadiumBean.getSeats();
@@ -54,7 +60,24 @@ public class StadiumServiceImpl implements StadiumService{
             seatRepository.insertSeat(seat.getStadium_id(), seat.getName(), seat.getAmount());
         }
         ResultBean resultBean = new ResultBean(true);
-        return new StadiumRegisterBean(maxId, resultBean);
+        return new ResultBeanWithId(resultBean, maxId);
+    }
+
+    @Override
+    public ResultBeanWithId login(int id, String password) {
+        Stadium stadium = stadiumRepository.findById(id);
+        try {
+            if (stadium == null) {
+                return new ResultBeanWithId(new ResultBean(false, "用户不存在，请检查ID是否正确"),-1);
+            }
+            if (!new String(CodeUtil.decrypt(stadium.getPassword())).equals(password)) {
+                return new ResultBeanWithId(new ResultBean(false, "密码与用户名不符"),-1);
+            }
+            return new ResultBeanWithId(new ResultBean(true),id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResultBeanWithId(new ResultBean(false, "登录失败"),-1);
     }
 
     @Override

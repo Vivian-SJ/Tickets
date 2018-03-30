@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StadiumBean {
     private int id;
+    private String password;
     private String name;
     private String place;
     private String description;
@@ -20,11 +21,20 @@ public class StadiumBean {
     public StadiumBean(Stadium stadium, List<SeatBean> seats) {
         this.id = stadium.getId();
         this.name = stadium.getName();
+        this.password = stadium.getPassword();
         this.place = stadium.getPlace();
         this.description = stadium.getDescription();
         this.seats = seats;
         this.status = stadium.getStatus();
         this.income = stadium.getIncome();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {

@@ -14,8 +14,15 @@ public class StadiumController {
     private StadiumService stadiumService;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    public StadiumRegisterBean register(@RequestBody StadiumBean stadiumBean) {
+    public ResultBeanWithId register(@RequestBody StadiumBean stadiumBean) {
         return stadiumService.register(stadiumBean);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResultBeanWithId login(@RequestParam(value = "id") int id,
+                                  @RequestParam(value = "password") String password){
+        return stadiumService.login(id, password);
     }
 
     @RequestMapping(value = "/info/{stadiumId}", method = RequestMethod.GET)

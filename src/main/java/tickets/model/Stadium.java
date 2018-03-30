@@ -12,6 +12,7 @@ public class Stadium {
     @Id
     private int id;
     private String name;
+    private String password;
     private String place;
     private String description;
     //是否审批
@@ -25,11 +26,20 @@ public class Stadium {
         if (stadiumBean.getId() != 0) {
             this.id = stadiumBean.getId();
         }
+        this.password = stadiumBean.getPassword();
         this.name = stadiumBean.getName();
         this.place = stadiumBean.getPlace();
         this.description = stadiumBean.getDescription();
         this.status = stadiumBean.getStatus();
         this.income = stadiumBean.getIncome();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {

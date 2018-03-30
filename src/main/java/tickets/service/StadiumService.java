@@ -5,7 +5,9 @@ import tickets.bean.*;
 import java.util.List;
 
 public interface StadiumService {
-    public StadiumRegisterBean register(StadiumBean stadiumBean);
+    public ResultBeanWithId register(StadiumBean stadiumBean);
+
+    public ResultBeanWithId login (int id, String password);
 
     public StadiumBean getInfoById(int stadiumId);
 

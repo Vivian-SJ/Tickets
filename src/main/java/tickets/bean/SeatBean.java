@@ -18,11 +18,6 @@ public class SeatBean {
         this.amount = seat.getAmount();
     }
 
-    public SeatBean(String name, int amount) {
-        this.name = name;
-        this.amount = amount;
-    }
-
     public int getId() {
         return id;
     }
