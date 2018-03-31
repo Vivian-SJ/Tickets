@@ -17,7 +17,9 @@ public interface StadiumService {
 
     public List<ShowBean> displayShows(int stadiumId);
 
-    public ResultBean checkTicket(TicketCheckBean ticketCheckBean);
+    public ResultBean checkTicket(int orderId);
+
+    public OrderBean findOrderById(int orderId);
 
     public StatisticsBean displayStadiumStatistics(int stadiumId);
 }

@@ -52,13 +52,13 @@ function setPage(orders) {
         setSingleTypeOrders(all, 'all', i);
     }
     for (var i = 0; i < wait_ticket.length; i++) {
-        setSingleTypeOrders(wait_ticket, 'wait_ticket', i);
+        setSingleTypeOrders(wait_ticket, 'wait-ticket', i);
     }
     for (var i = 0; i < to_be_paid.length; i++) {
-        setSingleTypeOrders(to_be_paid, 'to_be_paid', i);
+        setSingleTypeOrders(to_be_paid, 'to-be-paid', i);
     }
     for (var i = 0; i < ticket_out.length; i++) {
-        setSingleTypeOrders(ticket_out, 'ticket_out', i);
+        setSingleTypeOrders(ticket_out, 'ticket-out', i);
     }
     for (var i = 0; i < canceled.length; i++) {
         setSingleTypeOrders(canceled,'canceled',i);

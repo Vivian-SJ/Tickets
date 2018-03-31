@@ -5,11 +5,13 @@ import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.*;
+import tickets.service.SeatService;
 import tickets.service.ShowService;
 import tickets.service.StadiumService;
 import tickets.util.CodeUtil;
 import tickets.util.OrderStatus;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -31,6 +33,12 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Autowired
     private ShowService showService;
+
+    @Autowired
+    private CouponRepository couponRepository;
+
+    @Autowired
+    private SeatService seatService;
 
     @Override
     public ResultBeanWithId register(StadiumBean stadiumBean) {
@@ -150,12 +158,30 @@ public class StadiumServiceImpl implements StadiumService{
     }
 
     @Override
-    public ResultBean checkTicket(TicketCheckBean ticketCheckBean) {
-        Order order = orderRepository.findById(ticketCheckBean.getOrderId());
-        order.setStatus(ticketCheckBean.getStatus().toString());
-        order.setPs(ticketCheckBean.getPs());
+    public ResultBean checkTicket(int orderId) {
+        Order order = orderRepository.findById(orderId);
+        if (!order.getStatus().equals("已出票")){
+            return null;
+        }
+        order.setStatus(OrderStatus.USED.toString());
         orderRepository.save(order);
         return new ResultBean(true);
+    }
+
+    @Override
+    public OrderBean findOrderById(int orderId) {
+        Order order = orderRepository.findById(orderId);
+        Show show = showRepository.findById(order.getShow_id());
+        String showName = show.getName();
+        Timestamp showTime = show.getTime();
+        String stadiumName = this.getInfoById(order.getStadium_id()).getName();
+        String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+        List<Coupon> coupons = couponRepository.findByOrder_id(orderId);
+        List<Integer> couponIds = new ArrayList<>();
+        for (Coupon coupon : coupons) {
+            couponIds.add(coupon.getId());
+        }
+        return new OrderBean(order, couponIds, stadiumName, showName, seatName, showTime);
     }
 
     @Override

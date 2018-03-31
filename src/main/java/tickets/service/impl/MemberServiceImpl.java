@@ -308,18 +308,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public OrderBean getOrder(int orderId) {
-        Order order = orderRepository.findById(orderId);
-        Show show = showRepository.findById(order.getShow_id());
-        String showName = show.getName();
-        Timestamp showTime = show.getTime();
-        String stadiumName = stadiumService.getInfoById(order.getStadium_id()).getName();
-        String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
-        List<Coupon> coupons = couponRepository.findByOrder_id(orderId);
-        List<Integer> couponIds = new ArrayList<>();
-        for (Coupon coupon : coupons) {
-            couponIds.add(coupon.getId());
-        }
-        return new OrderBean(order, couponIds, stadiumName, showName, seatName, showTime);
+        return stadiumService.findOrderById(orderId);
     }
 
     @Override

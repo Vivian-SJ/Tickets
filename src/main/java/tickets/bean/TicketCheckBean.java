@@ -1,12 +1,10 @@
 package tickets.bean;
 
-import tickets.util.OrderStatus;
-
 public class TicketCheckBean {
 //    private int stadiumId;
     private int orderId;
-    private OrderStatus status;
-    private String ps;
+//    private OrderStatus status;
+//    private String ps;
 
     public TicketCheckBean() {
     }
@@ -27,19 +25,19 @@ public class TicketCheckBean {
         this.orderId = orderId;
     }
 
-    public OrderStatus getStatus() {
-        return status;
-    }
+//    public OrderStatus getStatus() {
+//        return status;
+//    }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
+//    public void setStatus(OrderStatus status) {
+//        this.status = status;
+//    }
 
-    public String getPs() {
-        return ps;
-    }
+//    public String getPs() {
+//        return ps;
+//    }
 
-    public void setPs(String ps) {
-        this.ps = ps;
-    }
+//    public void setPs(String ps) {
+//        this.ps = ps;
+//    }
 }

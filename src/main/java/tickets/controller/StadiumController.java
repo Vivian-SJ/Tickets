@@ -47,9 +47,14 @@ public class StadiumController {
         return stadiumService.displayShows(stadiumId);
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    public ResultBean checkTicket(@RequestBody TicketCheckBean ticketCheckBean) {
-        return stadiumService.checkTicket(ticketCheckBean);
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    public ResultBean checkTicket(@RequestParam(value = "orderId") int orderId) {
+        return stadiumService.checkTicket(orderId);
+    }
+
+    @RequestMapping(value = "/search/{orderId}", method = RequestMethod.GET)
+    public OrderBean findOrderById(@PathVariable(value = "orderId") int orderId) {
+        return stadiumService.findOrderById(orderId);
     }
 
     @RequestMapping(value = "/statistics/{stadiumId}", method = RequestMethod.GET)

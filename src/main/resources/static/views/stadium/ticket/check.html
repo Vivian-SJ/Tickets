@@ -86,11 +86,11 @@
                 <div class="input-group">
                     <input id="search" type="text" class="form-control">
                     <div class="input-group-btn">
-                        <button class="btn">搜索</button>
+                        <button id="searchBtn" class="btn">搜索</button>
                     </div>
                 </div>
             </div>
-            <div class="order-box">
+            <div class="order-box" style="display: none">
                 <div class="order-header">
                     <span class="order-date">2018-01-01</span>
                     <span class="order-id">订单号：1</span>
@@ -104,15 +104,13 @@
                         <div class="stadium-name">幸福蓝海国际影城</div>
                         <div class="seat-info">
                             <span>一等座</span>
-                            <span>6座6排</span>
-                            <span>6座7排</span>
                         </div>
                         <div class="show-time">2018-02-02 15:10:00</div>
                     </form>
                     <div class="order-price">￥100</div>
                     <div class="order-status">已出票</div>
                     <div class="order-cancel">
-                        <button class="btn" onclick="this.disabled=true;">已入场</button>
+                        <button id="check" class="btn" onclick="this.disabled=true;">检票</button>
                     </div>
                 </div>
             </div>
@@ -121,5 +119,6 @@
 </div>
 <script src="../../../jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/stadium/ticket/check.js"></script>
 </body>
 </html>
