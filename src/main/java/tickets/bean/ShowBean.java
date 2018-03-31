@@ -15,6 +15,7 @@ public class ShowBean {
     private ShowSeatBean showSeatBean;
 //    private Map<String, Double> seatAndPrice;
     private String description;
+    private String status;
 
     public ShowBean() {
     }
@@ -27,6 +28,7 @@ public class ShowBean {
         this.type = ShowType.toEnumValue(show.getType());
         this.showSeatBean = showSeatBean;
         this.description = show.getDescription();
+        this.status = show.getStatus();
     }
     public int getId() {
         return id;
@@ -34,6 +36,14 @@ public class ShowBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getStadiumId() {

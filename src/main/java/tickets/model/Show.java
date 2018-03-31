@@ -17,6 +17,7 @@ public class Show {
     private int stadium_id;
     private String type;
     private String description;
+    private String status;
 
     public Show() {
     }
@@ -34,6 +35,15 @@ public class Show {
         this.stadium_id = showBean.getStadiumId();
         this.type = showBean.getType().toString();
         this.description = showBean.getDescription();
+        this.status = showBean.getStatus();
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public int getId() {

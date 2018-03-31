@@ -46,7 +46,7 @@ function setPage(orders) {
         }
     }
     var refund = wait_ticket.concat(ticket_out);
-    console.log("refund" + refund.length);
+    // console.log("refund" + refund.length);
 
     for (var i = 0; i < all.length; i++) {
         setSingleTypeOrders(all, 'all', i);

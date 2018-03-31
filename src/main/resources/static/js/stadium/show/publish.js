@@ -68,6 +68,9 @@ function releaseShow() {
             showSeatBean: showSeatBean,
             description: $('#description').val()
         };
+        if ($('#description').val() === undefined || $('#description').val() === null) {
+            showBean['description'] = "";
+        }
         $.ajax({
             url: 'http://localhost:8080/tickets/stadium/releaseShow',
             method: 'post',
@@ -76,7 +79,7 @@ function releaseShow() {
             dataType: 'json',
             success:function (result) {
                 if (result['result'] === true) {
-                    alert('发布成功');
+                    alert('发布演出申请提交成功！等待审核');
                     window.location.href = 'show.html';
                 } else {
                     alert(result['message'])
