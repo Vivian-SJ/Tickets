@@ -19,7 +19,7 @@ function setPage(orderBean) {
     $('#name').text(orderBean['showName']);
     $('#info-form .show-name').text(orderBean['showName']);
     $('#info-form .stadium-name').text(orderBean['stadiumName']);
-    $('#info-form .show-type').text(orderBean['seatName']+orderBean['ticketAmount']+'张');
+        $('#info-form .show-type').text(orderBean['seatName']+orderBean['ticketAmount']+'张');
     $('#info-form .show-time').text(getDate(orderBean['time']));
     $('#expectedPrice').text(orderBean['expectedPrice']);
     var discount = orderBean['discount'];

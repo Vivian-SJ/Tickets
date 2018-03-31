@@ -142,7 +142,7 @@ function calculatePrice(data) {
         stadiumId: stadiumId,
         showId: showId,
         type: "",
-        seatId: 0,
+        seatId: -1,
         ticketAmount: 0,
         couponIds: null,
         discount: $('#discount').text(),
@@ -192,10 +192,10 @@ function calculatePrice(data) {
                 }
                 var seatName = names[seat];
                 console.log('seatName '+seatName);
-                var seatNameAndId = data['showSeatBean']['seatNameAndId'];
-                var unSelectSeatId = seatNameAndId[seatName];
-                console.log('unSelectSeatId ' + unSelectSeatId);
-                orderBean['seatId'] = unSelectSeatId;
+                // var seatNameAndId = data['showSeatBean']['seatNameAndId'];
+                // var unSelectSeatId = seatNameAndId[seatName];
+                // console.log('unSelectSeatId ' + unSelectSeatId);
+                // orderBean['seatId'] = unSelectSeatId;
                 orderBean['expectedPrice'] = minPrice * $('#amount').val();
                 ok = true;
             }

@@ -186,7 +186,7 @@ function setSingleTypeOrders(data, type, i) {
     $('#' + id + ' .order-body .order-price').text(data[i]['actualPrice']);
     $('#' + id + ' .order-body .order-status').text(data[i]['orderStatus']);
 
-    if ((type==='all'&&data[i]['orderStatus'] === '待支付')||(type==='to_be_paid')){
+    if ((type==='all'&&data[i]['orderStatus'] === '待支付')||(type==='to-be-paid')){
         var payButton = document.createElement('button');
         $('#' + id + ' .order-body .order-status').append(payButton);
         $(payButton).text('去支付');

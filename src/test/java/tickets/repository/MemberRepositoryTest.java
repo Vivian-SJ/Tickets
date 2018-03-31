@@ -14,11 +14,11 @@ public class MemberRepositoryTest {
 
     @Test
     public void test() {
-        Member member = new Member("1", "123", "1030518209@qq.com", "女");
+        Member member = new Member("1", "123", "1030514209@qq.com", "女");
         memberRepository.save(member);
-        memberRepository.findById(4);
-        System.out.println(member.getEmail());
-        System.out.println(member.getGender());
+//        memberRepository.findById(4);
+//        System.out.println(member.getEmail());
+//        System.out.println(member.getGender());
     }
 
     @Test

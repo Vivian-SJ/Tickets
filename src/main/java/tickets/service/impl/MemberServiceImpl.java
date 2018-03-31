@@ -32,6 +32,9 @@ public class MemberServiceImpl implements MemberService {
     private ShowRepository showRepository;
 
     @Autowired
+    private StadiumRepository stadiumRepository;
+
+    @Autowired
     private StadiumService stadiumService;
 
     @Autowired
@@ -45,6 +48,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private ShowService showService;
+
+    @Autowired
+    private ShowSeatRepository showSeatRepository;
 
     @Override
     public MemberBean findMemberById(int memberId) {
@@ -252,14 +258,24 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResultBean payOrder(int orderId) {
         Order order = orderRepository.findById(orderId);
+        //如果是现场购票
+        if (order.getMember_id() == -1) {
+            order.setStatus(OrderStatus.WAIT_TICKET.toString());
+            orderRepository.save(order);
+            Stadium stadium = stadiumRepository.findById(order.getStadium_id());
+            stadium.setIncome(stadium.getIncome() + order.getActual_price());
+            stadiumRepository.save(stadium);
+            return new ResultBean(true);
+        }
+
         Member member = memberRepository.findById(order.getMember_id());
         double price = order.getActual_price();
-        if (price>member.getMoney_available()) {
+        if (price > member.getMoney_available()) {
             return new ResultBean(false, "抱歉，账户余额不足");
         }
 
         order.setStatus(OrderStatus.WAIT_TICKET.toString());
-
+        orderRepository.save(order);
         //关于用户余额、积分等的操作
         double newMoneyAvailable = member.getMoney_available() - price;
         member.setMoney_available(newMoneyAvailable);
@@ -294,7 +310,10 @@ public class MemberServiceImpl implements MemberService {
             String showName = show.getName();
             Timestamp showTime = show.getTime();
             String stadiumName = stadiumService.getInfoById(order.getStadium_id()).getName();
-            String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+            String seatName = "";
+            if (order.getSeat_id() != -1) {
+                seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+            }
             List<Coupon> coupons = couponRepository.findByOrder_id(order.getId());
             List<Integer> couponIds = new ArrayList<>();
             for (Coupon coupon : coupons) {
@@ -339,7 +358,16 @@ public class MemberServiceImpl implements MemberService {
         orderRepository.save(order);
         int orderId = orderRepository.getId();
         System.out.println("orderId" + orderId);
+        System.out.println("seatId:" + orderBean.getSeatId());
+        if (orderBean.getSeatId() != -1) {
+            //减少座位数量
+            int seatAmount = orderBean.getTicketAmount();
+            ShowSeatId showSeatId = new ShowSeatId(orderBean.getShowId(), orderBean.getSeatId());
+            ShowSeat showSeat = showSeatRepository.findOne(showSeatId);
+            showSeat.setAvailable_amount(showSeat.getAvailable_amount() - seatAmount);
+        }
 
+        //处理优惠券
         List<Integer> couponIds = orderBean.getCouponIds();
         if (couponIds.size() > 0) {
             for (int id : couponIds) {

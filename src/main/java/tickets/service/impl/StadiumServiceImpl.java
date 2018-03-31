@@ -175,7 +175,10 @@ public class StadiumServiceImpl implements StadiumService{
         String showName = show.getName();
         Timestamp showTime = show.getTime();
         String stadiumName = this.getInfoById(order.getStadium_id()).getName();
-        String seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+        String seatName = "";
+        if (order.getSeat_id() != -1) {
+            seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
+        }
         List<Coupon> coupons = couponRepository.findByOrder_id(orderId);
         List<Integer> couponIds = new ArrayList<>();
         for (Coupon coupon : coupons) {

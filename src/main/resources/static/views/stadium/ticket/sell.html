@@ -86,11 +86,11 @@
                     <div class="input-group">
                         <input id="search" type="text" class="form-control">
                         <div class="input-group-btn">
-                            <button class="btn">搜索</button>
+                            <button id="searchBtn" class="btn">搜索</button>
                         </div>
                     </div>
                 </div>
-                <div class="sell-box">
+                <div class="sell-box" style="display: none" id="showBlock">
                     <div class="main">
                         <div class="poster">
                             <div class="picture-box">
@@ -99,48 +99,74 @@
                         </div>
                         <div class="body">
                             <div class="container">
-                                <h3 class="title">123456789好电影啊</h3>
+                                <h3 class="title" id="name">123456789好电影啊</h3>
                             </div>
                             <div class="container">
                                 <h4>演出时间</h4>
                                 <ul>
                                     <li class="time selected">2018-01-01 16:00:00</li>
                                     <!--<li class="time">-->
-                                        <!--<a class="attention" href="">2018-01-01 16:00:00</a>-->
+                                    <!--<a class="attention" href="">2018-01-01 16:00:00</a>-->
                                     <!--</li>-->
                                 </ul>
                             </div>
                             <div class="container">
                                 <h4>选择票价</h4>
-                                <ul>
-                                    <li class="price">
-                                        <p class="attention" href="">一等座200元</p>
-                                    </li>
-                                    <li class="price">
-                                        <p class="attention" href="">二等座100元</p>
-                                    </li>
+                                <ul id="price">
+                                    <!--<li class="price">-->
+                                        <!--<button class="btn-info" style="margin-top: 0;">一等座200元</button>-->
+                                    <!--</li>-->
                                 </ul>
                             </div>
-                            <div class="container">
-                                <h4>会员</h4>
-                                <ul class="list-inline member">
-                                    <li>
-                                        <input type="radio" name="isMember">是
-                                    </li>
-                                    <li>
-                                        <input type="radio" name="isMember">否
-                                    </li>
-                                </ul>
+                            <div class=" container">
+                                        <h4>会员</h4>
+                                        <ul class="list-inline member">
+                                            <li>
+                                                <input type="radio" name="isMember" id="yesMember">是
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="isMember" id="noMember">否
+                                            </li>
+                                        </ul>
                             </div>
-                            <div class="container">
-                                <h4>价格总计</h4>
-                                <p class="money">会员折扣<strong>8</strong>折后价格为<strong>￥100</strong></p>
+                            <div class="container" id="memberIdBlock" style="display: none;">
+                                <h4>会员编号：</h4>
+                                <input type="text" id="memberId" style="float: left;height: 40px;">
                             </div>
+                            <!--<div class="container">-->
+                                <!--<h4>价格总计</h4>-->
+                                <!--<p class="money">会员折扣<strong>8</strong>折后价格为<strong>￥100</strong></p>-->
+                            <!--</div>-->
                             <div class="container">
-                                <button type="submit" class="btn">选座出票</button>
+                                <button type="submit" class="btn" id="select">选座出票</button>
                                 <div class="container">
-                                    <button type="submit" class="btn">立即出票</button>
+                                    <button type="submit" class="btn" id="unSelect">立即出票</button>
                                 </div>
+                            </div>
+                            <div class="container" style="display: none" id="selectedBlock">
+                                <form role="form" class="form-horizontal" style="width: 550px; border: 3px solid #efefef;    margin-top: 20px;">
+                                    <div class="ticket-amount form-group col-lg-10">
+                                        <h4 style="float: left">数量</h4>
+                                        <input id="amount" type="number" value="1" placeholder="请选择购票数量" style="margin-left: 10px;">
+                                        <span class="help-block">最多可选6张</span>
+                                    </div>
+                                    <div class="form-group col-lg-8" style="float: left;" id="couponBlock">
+                                        <h4 style="float: left">可选用的优惠券</h4>
+                                        <!--<div class="checkbox">-->
+                                        <ul id="coupons" style="list-style: none;">
+                                            <!--<li><h4><input type="checkbox" name="coupon">10元优惠券</h4></li>-->
+                                            <!--<li><h4><input type="checkbox" name="coupon">10元优惠券</h4></li>-->
+                                            <!--<li><label><input type="checkbox" name="coupon">100元优惠券</label></li>-->
+                                        </ul>
+                                    </div>
+                                    <div class="form-group col-lg-7" id="discountBlock">
+                                        <h4 style="float: left;">您可享受的折扣</h4>
+                                        <label id="discount" style="color: #F80000;float: left;width: 0;margin: 5px 0 0 0">1</label>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <button id="buy" class="btn" style="float: right; margin-right: 50px;">确定</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -148,8 +174,39 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="sureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">确认订单</h4>
+                </div>
+                <div class="modal-body" id="content">订单原价为x元，折扣后为y元，确认下单吗？</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelOrder">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="sureOrder">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">预订成功</h4>
+                </div>
+                <div class="modal-body">您已预订成功，现在去支付吗？(若3分钟内未支付，系统将自动取消订单)</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelPay">取消</button>
+                    <button type="button" class="btn btn-primary" id="surePay" data-dismiss="modal">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 </div>
 <script src="../../../jquery/jquery-3.3.1.min.js"></script>
 <script src="../../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="../../../js/stadium/ticket/sell.js"></script>
 </body>
 </html>
