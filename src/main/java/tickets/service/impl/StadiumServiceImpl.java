@@ -121,6 +121,7 @@ public class StadiumServiceImpl implements StadiumService{
         stadium.setPassword(passwordCode);
         stadium.setDescription(stadiumBean.getDescription());
         stadium.setPlace(stadiumBean.getPlace());
+        stadium.setStatus("修改未审核");
         stadiumRepository.save(stadium);
         return new ResultBean(true);
     }
@@ -202,5 +203,28 @@ public class StadiumServiceImpl implements StadiumService{
         }
         double totalPrice = stadiumRepository.findById(stadiumId).getIncome();
         return new StatisticsBean(orderSum, map, totalPrice);
+    }
+
+    @Override
+    public List<StadiumBean> getUncheckStadiums() {
+        List<Stadium> stadiums = stadiumRepository.getUncheckStadiums();
+        List<StadiumBean> stadiumBeans = new ArrayList<>();
+        for (Stadium stadium : stadiums) {
+            List<Seat> seats = seatRepository.findSeatsById(stadium.getId());
+            List<SeatBean> seatBeans = new ArrayList<>();
+            for (Seat seat : seats) {
+                SeatBean seatBean = new SeatBean(seat);
+                seatBeans.add(seatBean);
+            }
+            StadiumBean stadiumBean = new StadiumBean(stadium, seatBeans);
+            try {
+                String password = new String(CodeUtil.decrypt(stadiumBean.getPassword()));
+                stadiumBean.setPassword(password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            stadiumBeans.add(stadiumBean);
+        }
+        return stadiumBeans;
     }
 }

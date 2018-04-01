@@ -14,6 +14,8 @@ public class StadiumBean {
     //是否审批
     private String status;
     private double income;
+    //若未通过审批，未通过的原因存在这里
+    private String status_info;
 
     public StadiumBean() {
     }
@@ -27,6 +29,17 @@ public class StadiumBean {
         this.seats = seats;
         this.status = stadium.getStatus();
         this.income = stadium.getIncome();
+        if (stadium.getStatus_info()!=null) {
+            this.status_info = stadium.getStatus_info();
+        }
+    }
+
+    public String getStatus_info() {
+        return status_info;
+    }
+
+    public void setStatus_info(String status_info) {
+        this.status_info = status_info;
     }
 
     public String getPassword() {

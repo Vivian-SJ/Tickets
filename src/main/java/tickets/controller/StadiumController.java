@@ -61,4 +61,9 @@ public class StadiumController {
     public StatisticsBean displayStadiumStatistics(@PathVariable(value = "stadiumId") int stadiumId) {
         return stadiumService.displayStadiumStatistics(stadiumId);
     }
+
+    @RequestMapping(value = "/uncheckStadiums", method = RequestMethod.GET)
+    public List<StadiumBean> getUncheckStadiums() {
+        return stadiumService.getUncheckStadiums();
+    }
 }

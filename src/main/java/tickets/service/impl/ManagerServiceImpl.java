@@ -45,6 +45,15 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
+    public ResultBean refuseCheck(int stadiumId, String message) {
+        Stadium stadium = stadiumRepository.findById(stadiumId);
+        stadium.setStatus("审核未通过");
+        stadium.setStatus_info(message);
+        stadiumRepository.save(stadium);
+        return new ResultBean(true);
+    }
+
+    @Override
     public ResultBean pay(int stadiumId) {
         Account account = accountRepository.findByStadium_idAndStatus(stadiumId, "未结算");
         double stadium_income = account.getTotal_income() * 0.7;

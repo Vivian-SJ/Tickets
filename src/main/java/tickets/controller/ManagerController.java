@@ -20,6 +20,11 @@ public class ManagerController {
         return managerService.checkStadium(stadiumBean);
     }
 
+    @RequestMapping(value = "/check/refuse", method = RequestMethod.POST)
+    public ResultBean refuseCheck(@RequestParam(value = "stadiumId") int stadiumId, @RequestParam(value = "message") String message) {
+        return managerService.refuseCheck(stadiumId, message);
+    }
+
     @RequestMapping(value = "/pay/{stadiumId}" , method = RequestMethod.GET)
     public ResultBean pay(@PathVariable(value = "stadiumId") int stadiumId) {
         return managerService.pay(stadiumId);
