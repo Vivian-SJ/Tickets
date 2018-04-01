@@ -89,7 +89,12 @@ public class StadiumServiceImpl implements StadiumService{
     }
 
     @Override
-    public StadiumBean getInfoById(int stadiumId) {
+    public Stadium getStadiumById(int stadiumId) {
+        return stadiumRepository.findById(stadiumId);
+    }
+
+    @Override
+    public StadiumBean getStadiumBeanById(int stadiumId) {
         Stadium stadium = stadiumRepository.findById(stadiumId);
         List<Seat> seats = seatRepository.findSeatsById(stadiumId);
         List<SeatBean> seatBeans = new ArrayList<>();
@@ -175,7 +180,7 @@ public class StadiumServiceImpl implements StadiumService{
         Show show = showRepository.findById(order.getShow_id());
         String showName = show.getName();
         Timestamp showTime = show.getTime();
-        String stadiumName = this.getInfoById(order.getStadium_id()).getName();
+        String stadiumName = this.getStadiumBeanById(order.getStadium_id()).getName();
         String seatName = "";
         if (order.getSeat_id() != -1) {
             seatName = seatService.getSeatInfo(order.getSeat_id()).getName();
@@ -226,5 +231,15 @@ public class StadiumServiceImpl implements StadiumService{
             stadiumBeans.add(stadiumBean);
         }
         return stadiumBeans;
+    }
+
+    @Override
+    public void save(Stadium stadium) {
+        stadiumRepository.save(stadium);
+    }
+
+    @Override
+    public List<Integer> findAllStaiumIds() {
+        return stadiumRepository.findAllIds();
     }
 }

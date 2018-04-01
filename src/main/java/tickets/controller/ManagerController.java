@@ -2,6 +2,7 @@ package tickets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tickets.bean.AccountBean;
 import tickets.bean.ResultBean;
 import tickets.bean.StadiumBean;
 import tickets.bean.StatisticsBean;
@@ -31,9 +32,14 @@ public class ManagerController {
         return managerService.refuseCheck(stadiumId, message);
     }
 
-    @RequestMapping(value = "/pay/{stadiumId}" , method = RequestMethod.GET)
-    public ResultBean pay(@PathVariable(value = "stadiumId") int stadiumId) {
-        return managerService.pay(stadiumId);
+    @RequestMapping(value = "/toBePayedAccounts", method = RequestMethod.GET)
+    public List<AccountBean> getToBePayedAccounts() {
+        return managerService.getToBePayedAccounts();
+    }
+
+    @RequestMapping(value = "/pay" , method = RequestMethod.GET)
+    public ResultBean pay(AccountBean accountBean) {
+        return managerService.pay(accountBean);
     }
 
     @RequestMapping(value = "/statistics/stadiums", method = RequestMethod.GET)

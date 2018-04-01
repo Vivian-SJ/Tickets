@@ -44,7 +44,7 @@ public class MemberServiceImpl implements MemberService {
     private MailService mailService;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountService accountService;
 
     @Autowired
     private ShowService showService;
@@ -295,9 +295,13 @@ public class MemberServiceImpl implements MemberService {
         }
 
         //将这一笔交易记录下来，经理会和场馆结算
-        Account account = new Account(order.getShow_id(), order.getStadium_id(), price);
-        accountRepository.save(account);
-
+        Account account = accountService.findAccountByShowId(order.getShow_id());
+        if (account==null) {
+            account = new Account(order.getShow_id(), order.getStadium_id(), price);
+        } else {
+            account.setTotal_income(account.getTotal_income()+price);
+        }
+        accountService.save(account);
         return new ResultBean(true);
     }
 
@@ -309,7 +313,7 @@ public class MemberServiceImpl implements MemberService {
             Show show = showRepository.findById(order.getShow_id());
             String showName = show.getName();
             Timestamp showTime = show.getTime();
-            String stadiumName = stadiumService.getInfoById(order.getStadium_id()).getName();
+            String stadiumName = stadiumService.getStadiumBeanById(order.getStadium_id()).getName();
             String seatName = "";
             if (order.getSeat_id() != -1) {
                 seatName = seatService.getSeatInfo(order.getSeat_id()).getName();

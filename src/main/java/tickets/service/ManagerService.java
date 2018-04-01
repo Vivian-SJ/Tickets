@@ -1,5 +1,6 @@
 package tickets.service;
 
+import tickets.bean.AccountBean;
 import tickets.bean.ResultBean;
 import tickets.bean.StadiumBean;
 import tickets.bean.StatisticsBean;
@@ -13,7 +14,9 @@ public interface ManagerService {
 
     public ResultBean refuseCheck(int stadiumId, String message);
 
-    public ResultBean pay(int stadiumId);
+    public List<AccountBean> getToBePayedAccounts();
+
+    public ResultBean pay(AccountBean accountBean);
 
     public List<StatisticsBean> getStadiumsStatistics();
 

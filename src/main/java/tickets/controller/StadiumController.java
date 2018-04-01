@@ -27,7 +27,7 @@ public class StadiumController {
 
     @RequestMapping(value = "/info/{stadiumId}", method = RequestMethod.GET)
     public StadiumBean getInfoById(@PathVariable(value = "stadiumId") int stadiumId) {
-        return stadiumService.getInfoById(stadiumId);
+        return stadiumService.getStadiumBeanById(stadiumId);
     }
 
     @RequestMapping(value = "/info/modify", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})

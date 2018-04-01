@@ -1,6 +1,7 @@
 package tickets.service;
 
 import tickets.bean.*;
+import tickets.model.Stadium;
 
 import java.util.List;
 
@@ -9,7 +10,9 @@ public interface StadiumService {
 
     public ResultBeanWithId login (int id, String password);
 
-    public StadiumBean getInfoById(int stadiumId);
+    public Stadium getStadiumById(int stadiumId);
+
+    public StadiumBean getStadiumBeanById(int stadiumId);
 
     public ResultBean modifyInfo(StadiumBean stadiumBean);
 
@@ -24,4 +27,8 @@ public interface StadiumService {
     public StatisticsBean displayStadiumStatistics(int stadiumId);
 
     public List<StadiumBean> getUncheckStadiums();
+
+    public void save(Stadium stadium);
+
+    public List<Integer> findAllStaiumIds();
 }
