@@ -1,4 +1,13 @@
 $(document).ready(function () {
+    var loginAndRegisterArea = $('nav .navbar-right');
+    var login = loginAndRegisterArea.children().children()[0];
+    var register = loginAndRegisterArea.children().children()[1];
+    if (localStorage.getItem('memberId')!==undefined) {
+        login.innerHTML = '退出登录';
+        $(register).css('display', 'none');
+        $(register).parent().css('display', 'none');
+    }
+
     var commonUrl = 'http://localhost:8080/tickets/member';
     var getAllShowsUrl = commonUrl + '/allshows';
     $.ajax({
@@ -66,10 +75,24 @@ function setPage(data, type) {
     if (data.length !== 0) {
         var dataContent = $('.'+type+' ul');
         for (var i = 0; i < (data.length > 3 ? 3 : data.length); i++) {
-            var li = dataContent.children().eq(i);
-            li.attr('id', data[i]['id']);
+            var li = document.createElement('li');
+            li.innerHTML = '<div class="container block">\n' +
+                '                                <span class="img">\n' +
+                '                                            <a><img src="../../pictrues/show1.jpg"></a>\n' +
+                '                                        </span>\n' +
+                '                            <dl class="info">\n' +
+                '                                <dt><a href="" name="title">title1</a></dt>\n' +
+                '                                <dd class="txt">\n' +
+                '                                    <p class="time">time</p>\n' +
+                '                                    <p class="place"><a>place</a></p>\n' +
+                '                                    <p class="price">￥<strong>money</strong>起</p>\n' +
+                '                                </dd>\n' +
+                '                            </dl>\n' +
+                '                        </div>';
+            $(dataContent).append(li);
+            $(li).attr('id', data[i]['id']);
             //li的title里面存的是stadiumId
-            li.attr('title', data[i]['stadiumId']);
+            $(li).attr('title', data[i]['stadiumId']);
             var currentShow = '#' + data[i]['id'];
             $(currentShow + ' [name=title]').text(data[i]['name']);
             var time = getDate(data[i]['time']);
