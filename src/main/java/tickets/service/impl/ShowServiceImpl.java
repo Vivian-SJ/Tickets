@@ -27,7 +27,7 @@ public class ShowServiceImpl implements ShowService{
     private SeatRepository seatRepository;
 
     @Override
-    public ShowBean getShowInfoById(int showId) {
+    public ShowBean getShowBeanById(int showId) {
         Show show = showRepository.findById(showId);
         List<ShowSeat> showSeatList = showSeatRepository.findByShowId(showId);
         Map<String, Double> seatNameAndPrice = new HashMap<>();
@@ -41,6 +41,11 @@ public class ShowServiceImpl implements ShowService{
             seatIdAndAmount.put(seatId, showSeat.getAvailable_amount());
         }
         return new ShowBean(show, new ShowSeatBean(seatNameAndId, seatNameAndPrice, seatIdAndAmount));
+    }
+
+    @Override
+    public Show getShowById(int showId) {
+        return showRepository.findById(showId);
     }
 
     @Override

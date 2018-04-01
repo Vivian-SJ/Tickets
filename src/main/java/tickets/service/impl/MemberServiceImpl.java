@@ -202,7 +202,12 @@ public class MemberServiceImpl implements MemberService {
             List<Show> shows = showRepository.findByType(type);
             List<ShowBean> showBeans = new ArrayList<>();
             for (Show show : shows) {
-                ShowBean showBean = showService.getShowInfoById(show.getId());
+                Timestamp now = new Timestamp(new Date().getTime());
+                //若演出已经结束则不显示
+                if (show.getTime().compareTo(now) < 0) {
+                    continue;
+                }
+                ShowBean showBean = showService.getShowBeanById(show.getId());
                 showBeans.add(showBean);
             }
             map.put(type, showBeans);

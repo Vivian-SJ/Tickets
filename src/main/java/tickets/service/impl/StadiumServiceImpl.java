@@ -157,7 +157,7 @@ public class StadiumServiceImpl implements StadiumService{
         List<Show> shows = showRepository.findByStadium_id(stadiumId);
         List<ShowBean> showBeans = new ArrayList<>();
         for (Show show : shows) {
-            ShowBean showBean = showService.getShowInfoById(show.getId());
+            ShowBean showBean = showService.getShowBeanById(show.getId());
             showBeans.add(showBean);
         }
         return showBeans;

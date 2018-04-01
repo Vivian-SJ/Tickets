@@ -37,8 +37,8 @@ public class ManagerController {
         return managerService.getToBePayedAccounts();
     }
 
-    @RequestMapping(value = "/pay" , method = RequestMethod.GET)
-    public ResultBean pay(AccountBean accountBean) {
+    @RequestMapping(value = "/pay" , method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultBean pay(@RequestBody AccountBean accountBean) {
         return managerService.pay(accountBean);
     }
 

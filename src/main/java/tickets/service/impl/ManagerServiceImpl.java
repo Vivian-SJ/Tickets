@@ -8,13 +8,11 @@ import tickets.bean.StadiumBean;
 import tickets.bean.StatisticsBean;
 import tickets.model.Account;
 import tickets.model.Manager;
+import tickets.model.Show;
 import tickets.model.Stadium;
 import tickets.repository.ManagerRepository;
 import tickets.repository.MemberRepository;
-import tickets.service.AccountService;
-import tickets.service.ManagerService;
-import tickets.service.MemberService;
-import tickets.service.StadiumService;
+import tickets.service.*;
 import tickets.util.CodeUtil;
 
 import java.sql.Timestamp;
@@ -33,6 +31,9 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private ShowService showService;
 
     @Autowired
     private MemberRepository memberRepository;
@@ -77,7 +78,14 @@ public class ManagerServiceImpl implements ManagerService{
         List<Account> accounts = accountService.getToBePaidAccounts();
         List<AccountBean> accountBeans = new ArrayList<>();
         for (Account account : accounts) {
-            AccountBean accountBean = new AccountBean(account);
+            Show show = showService.getShowById(account.getShow_id());
+            Timestamp now = new Timestamp(new Date().getTime());
+            //若没有演出结束则先不结算
+            if (show.getTime().compareTo(now) > 0) {
+                continue;
+            }
+            Stadium stadium = stadiumService.getStadiumById(account.getStadium_id());
+            AccountBean accountBean = new AccountBean(account, show, stadium);
             accountBeans.add(accountBean);
         }
         return accountBeans;
@@ -86,8 +94,8 @@ public class ManagerServiceImpl implements ManagerService{
     @Override
     public ResultBean pay(AccountBean accountBean) {
         Account account = accountService.findAccountById(accountBean.getId());
-        double stadium_income = accountBean.getStadium_income();
-        double web_income = accountBean.getWeb_income();
+        double stadium_income = accountBean.getStadiumIncome();
+        double web_income = accountBean.getWebIncome();
         Timestamp timestamp = new Timestamp(new Date().getTime());
         account.setPay_time(timestamp);
         account.setStadium_income(stadium_income);
@@ -95,7 +103,7 @@ public class ManagerServiceImpl implements ManagerService{
         account.setStatus("已结算");
         accountService.save(account);
 
-        Stadium stadium = stadiumService.getStadiumById(accountBean.getStadium_id());
+        Stadium stadium = stadiumService.getStadiumById(accountBean.getStadiumId());
         stadium.setIncome(stadium.getIncome() + stadium_income);
         stadiumService.save(stadium);
         return new ResultBean(true);

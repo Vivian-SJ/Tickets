@@ -13,7 +13,7 @@ public class ShowController {
 
     @RequestMapping(value = "/{showId}", method = RequestMethod.GET)
     public ShowBean getShowInfoById(@PathVariable(value = "showId") int showId) {
-        return showService.getShowInfoById(showId);
+        return showService.getShowBeanById(showId);
     }
 
 //    @RequestMapping(value = "/seatId", method = RequestMethod.GET)

@@ -1,33 +1,65 @@
 package tickets.bean;
 
 import tickets.model.Account;
+import tickets.model.Show;
+import tickets.model.Stadium;
 
 import java.sql.Timestamp;
 
 public class AccountBean {
     private int id;
-    private int show_id;
-    private int stadium_id;
-    private double total_income;
-    private double web_income;
-    private double stadium_income;
+    private int showId;
+    private String showName;
+    private Timestamp showTime;
+    private int stadiumId;
+    private String stadiumName;
+    private double totalIncome;
+    private double webIncome;
+    private double stadiumIncome;
     //结算时间
-    private Timestamp pay_time;
+    private Timestamp payTime;
     //结算状态：已结算/未结算
     private String status;
 
     public AccountBean() {
     }
 
-    public AccountBean(Account account) {
+    public AccountBean(Account account, Show show, Stadium stadium) {
         this.id = account.getId();
-        this.show_id = account.getShow_id();
-        this.stadium_id = account.getStadium_id();
-        this.total_income = account.getTotal_income();
-        this.web_income = account.getWeb_income();
-        this.stadium_income = account.getStadium_income();
-        this.pay_time = account.getPay_time();
+        this.showId = account.getShow_id();
+        this.showName = show.getName();
+        this.showTime = show.getTime();
+        this.stadiumId = account.getStadium_id();
+        this.stadiumName = stadium.getName();
+        this.totalIncome = account.getTotal_income();
+        this.webIncome = account.getWeb_income();
+        this.stadiumIncome = account.getStadium_income();
+        this.payTime = account.getPay_time();
         this.status = account.getStatus();
+    }
+
+    public String getShowName() {
+        return showName;
+    }
+
+    public void setShowName(String showName) {
+        this.showName = showName;
+    }
+
+    public Timestamp getShowTime() {
+        return showTime;
+    }
+
+    public void setShowTime(Timestamp showTime) {
+        this.showTime = showTime;
+    }
+
+    public String getStadiumName() {
+        return stadiumName;
+    }
+
+    public void setStadiumName(String stadiumName) {
+        this.stadiumName = stadiumName;
     }
 
     public int getId() {
@@ -38,52 +70,52 @@ public class AccountBean {
         this.id = id;
     }
 
-    public int getShow_id() {
-        return show_id;
+    public int getShowId() {
+        return showId;
     }
 
-    public void setShow_id(int show_id) {
-        this.show_id = show_id;
+    public void setShowId(int showId) {
+        this.showId = showId;
     }
 
-    public int getStadium_id() {
-        return stadium_id;
+    public int getStadiumId() {
+        return stadiumId;
     }
 
-    public void setStadium_id(int stadium_id) {
-        this.stadium_id = stadium_id;
+    public void setStadiumId(int stadiumId) {
+        this.stadiumId = stadiumId;
     }
 
-    public double getTotal_income() {
-        return total_income;
+    public double getTotalIncome() {
+        return totalIncome;
     }
 
-    public void setTotal_income(double total_income) {
-        this.total_income = total_income;
+    public void setTotalIncome(double totalIncome) {
+        this.totalIncome = totalIncome;
     }
 
-    public double getWeb_income() {
-        return web_income;
+    public double getWebIncome() {
+        return webIncome;
     }
 
-    public void setWeb_income(double web_income) {
-        this.web_income = web_income;
+    public void setWebIncome(double webIncome) {
+        this.webIncome = webIncome;
     }
 
-    public double getStadium_income() {
-        return stadium_income;
+    public double getStadiumIncome() {
+        return stadiumIncome;
     }
 
-    public void setStadium_income(double stadium_income) {
-        this.stadium_income = stadium_income;
+    public void setStadiumIncome(double stadiumIncome) {
+        this.stadiumIncome = stadiumIncome;
     }
 
-    public Timestamp getPay_time() {
-        return pay_time;
+    public Timestamp getPayTime() {
+        return payTime;
     }
 
-    public void setPay_time(Timestamp pay_time) {
-        this.pay_time = pay_time;
+    public void setPayTime(Timestamp payTime) {
+        this.payTime = payTime;
     }
 
     public String getStatus() {
