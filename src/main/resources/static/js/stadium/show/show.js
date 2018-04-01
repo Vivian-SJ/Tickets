@@ -20,21 +20,7 @@ function setPage(shows) {
     var finish = [];
     var future = [];
     var now = [];
-    var wait = [];
-    var refuse = [];
     for (var i = 0; i < shows.length; i++) {
-        if (shows[i]['status']==='待审核') {
-            shows[i]['newStatus']=getStatus('wait');
-            wait.push(shows[i]);
-            all.push(shows[i]);
-            continue;
-        }
-        if (shows[i]['status']==='审核未通过') {
-            shows[i]['newStatus']=getStatus('refuse');
-            refuse.push(shows[i]);
-            all.push(shows[i]);
-            continue;
-        }
         var date = getDate(shows[i]['time']);
         var newDate = date.replace('-','/');
         var currentDate = new Date();
@@ -65,14 +51,6 @@ function setPage(shows) {
 
     for (var i=0;i<now.length;i++) {
         setSingleTypeOrders(now, 'now', i);
-    }
-
-    for (var i=0;i<wait.length;i++) {
-        setSingleTypeOrders(wait, 'wait', i);
-    }
-
-    for (var i=0;i<refuse.length;i++) {
-        setSingleTypeOrders(refuse, 'refuse', i);
     }
 }
 
@@ -158,8 +136,6 @@ function getStatus(english) {
         case 'finish': return '已完成';
         case 'future': return '即将到来';
         case 'now': return '今日上映';
-        case 'wait': return '待审核';
-        case 'refuse': return '审核未通过';
         default: return '';
     }
 }

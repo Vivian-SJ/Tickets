@@ -128,7 +128,7 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Override
     public ResultBean releaseShow(ShowBean showBean) {
-        showBean.setStatus("未审核");
+//        showBean.setStatus("未审核");
         Show show = new Show(showBean);
         System.out.println("description:"+showBean.getDescription());
         showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
