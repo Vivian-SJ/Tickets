@@ -1,4 +1,20 @@
 $(document).ready(function () {
+    var loginAndRegisterArea = $('nav .navbar-right');
+    var login = loginAndRegisterArea.children().children();
+    if (localStorage.getItem('managerId')!==null) {
+        login.innerHTML = '退出登录';
+    } else {
+        alert("请先登录!");
+        return;
+    }
+    $(login).click(function (event) {
+        event.preventDefault();
+        if ($(login).text()==='退出登录') {
+            localStorage.removeItem('managerId');
+        }
+        window.location.href='login.html';
+    });
+
     $.ajax({
         url: 'http://localhost:8080/tickets/manager/toBePayedAccounts',
         method: 'get',

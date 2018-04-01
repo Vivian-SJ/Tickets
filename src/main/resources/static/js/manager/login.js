@@ -40,6 +40,7 @@ function handleResult(result) {
     var resultState = result['result'];
     var message = $('#message');
     if (resultState === true) {
+        localStorage.setItem('managerId','1');
         window.location.href = "homepage.html";
     } else {
         message.text(result.message);
