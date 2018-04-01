@@ -6,13 +6,16 @@ import tickets.bean.ResultBean;
 import tickets.bean.StadiumBean;
 import tickets.bean.StatisticsBean;
 import tickets.model.Account;
+import tickets.model.Manager;
 import tickets.model.Stadium;
 import tickets.repository.AccountRepository;
+import tickets.repository.ManagerRepository;
 import tickets.repository.MemberRepository;
 import tickets.repository.StadiumRepository;
 import tickets.service.ManagerService;
 import tickets.service.MemberService;
 import tickets.service.StadiumService;
+import tickets.util.CodeUtil;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -35,6 +38,24 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Autowired
     private MemberRepository memberRepository;
+
+    @Autowired
+    private ManagerRepository managerRepository;
+
+    @Override
+    public ResultBean login(int id, String password) {
+        Manager manager = managerRepository.findOne(id);
+        String rightPassword = "";
+        try {
+            rightPassword = new String(CodeUtil.decrypt(manager.getPassword()));
+        } catch (Exception e) {
+            return new ResultBean(false, "密码解密时出错");
+        }
+        if (password.equals(rightPassword)) {
+            return new ResultBean(true);
+        }
+        return new ResultBean(false, "登录失败，请稍后再试");
+    }
 
     @Override
     public ResultBean checkStadium(StadiumBean stadiumBean) {

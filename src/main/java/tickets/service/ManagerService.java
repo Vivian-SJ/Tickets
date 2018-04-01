@@ -7,6 +7,8 @@ import tickets.bean.StatisticsBean;
 import java.util.List;
 
 public interface ManagerService {
+    public ResultBean login(int id, String password);
+
     public ResultBean checkStadium(StadiumBean stadiumBean);
 
     public ResultBean refuseCheck(int stadiumId, String message);

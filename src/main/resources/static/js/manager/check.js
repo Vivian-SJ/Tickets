@@ -36,6 +36,8 @@ function setPage(stadiums) {
     for (var i = 0; i < modify.length; i++) {
         setSinglePage(modify[i], 'modify');
     }
+
+    check(stadiums);
 }
 
 function setSinglePage(data, type) {
@@ -62,13 +64,13 @@ function setSinglePage(data, type) {
         '                                </div>\n' +
         '                            </div>\n' +
         '                        </form>\n' +
-        '                        <div class="agree">\n' +
-        '                            <button class="btn" id="sure">通过审核</button>\n' +
-        '                            <button class="btn" id="refuse">拒绝请求</button>\n' +
-        '                            <div id="refuseBlock" style="display: none;border: 1px solid #e5e5e5;padding: 10px;">\n' +
+        '                        <div class="agree" style="margin-right: 35px">\n' +
+        '                            <button class="btn" name="sure">通过审核</button>\n' +
+        '                            <button class="btn" name="refuse">拒绝请求</button>\n' +
+        '                            <div style="display: none;border: 1px solid #e5e5e5;padding: 10px;">\n' +
         '                                <h4>拒绝理由：</h4>\n' +
-        '                                <input type="text" id="refuseInfo" style="width: 390px"><br>\n' +
-        '                                <button class="btn" id="sureRefuse">确定</button>\n' +
+        '                                <input type="text" name="refuseInfo" style="width: 390px"><br>\n' +
+        '                                <button class="btn" name="sureRefuse">确定</button>\n' +
         '                            </div>\n' +
         '                        </div>\n' +
         '                    </div>';
@@ -93,10 +95,24 @@ function setSinglePage(data, type) {
         $(seatUl).append(li);
     }
     $('#' + id + ' .des-box span.content').text(data['description']);
+}
 
-    $('#sure').click(function (event) {
+function check(stadiums) {
+    $('[name=sure]').click(function (event) {
         event.preventDefault();
-        $('#refuse').attr('disabled',true);
+        var sureBtn = event.target;
+        var refuseBtn = $(sureBtn).next();
+        $(refuseBtn).attr('disabled',true);
+        var data = {};
+        var div = $(sureBtn).parent().parent().parent();
+        var type = div.parent().attr('id');
+        var stadiumId = div.attr('id').substring(type.length);
+        for(var i=0;i<stadiums.length;i++) {
+            if (stadiums[i]['id']===parseInt(stadiumId)) {
+                data = stadiums[i];
+                break;
+            }
+        }
         $.ajax({
             url: 'http://localhost:8080/tickets/manager/check',
             method:'post',
@@ -106,7 +122,7 @@ function setSinglePage(data, type) {
             success: function (result) {
                 if (result['result']===true) {
                     alert('审核成功！');
-                    // location.reload();
+                    window.location.reload();
                 } else {
                     alert(result['message']);
                 }
@@ -116,20 +132,27 @@ function setSinglePage(data, type) {
             }
         })
     });
-    $('#refuse').click(function (event) {
+    $('[name=refuse]').click(function (event) {
         event.preventDefault();
-        $('#sure').attr('disabled','true');
-        $('#refuseBlock').css('display', 'block');
-        $('#sureRefuse').click(function (event) {
+        var refuseBtn = event.target;
+        var sureBtn = $(refuseBtn).prev();
+        $(sureBtn).attr('disabled','true');
+        var refuseBlock = $(refuseBtn).next();
+        $(refuseBlock).css('display', 'block');
+        var sureRefuse = $(refuseBlock).children('button');
+        $(sureRefuse).click(function (event) {
             event.preventDefault();
-            var message = $('#refuseInfo').val();
-            var id = data['id'];
+            var refuseInfo = $(sureRefuse).prev().prev();
+            var message = $(refuseInfo).val();
+            var div = $(sureBtn).parent().parent().parent();
+            var type = div.parent().attr('id');
+            var stadiumId = div.attr('id').substring(type.length);
             $.ajax({
                 url: 'http://localhost:8080/tickets/manager/check/refuse',
                 method:'post',
                 dataType:'json',
                 data: {
-                    stadiumId: id,
+                    stadiumId: stadiumId,
                     message: message
                 },
                 success: function (result) {

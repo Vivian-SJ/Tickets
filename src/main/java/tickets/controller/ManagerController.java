@@ -15,6 +15,12 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
 
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ResultBean login(@RequestParam(value = "id") int id,
+                            @RequestParam(value = "password") String password) {
+        return managerService.login(id, password);
+    }
+
     @RequestMapping(value = "/check", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public ResultBean checkStadium(@RequestBody StadiumBean stadiumBean) {
         return managerService.checkStadium(stadiumBean);
