@@ -80,4 +80,11 @@ public interface MemberService {
     public int getMemberId(String email);
 
     public int getMemberAmount();
+
+    /**
+     * 获得某用户预定过的不同类型的演出
+     * @param memberId 用户Id
+     * @return 不同类型即该类型的演出组成的Map
+     */
+    public ShowsBean getOrderShowsAndTypes(int memberId);
 }

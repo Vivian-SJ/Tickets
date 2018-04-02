@@ -143,4 +143,9 @@ public class MemberController {
         return memberService.displayMemberStatistics(memberId);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/member/typesAndShows/{memberId}", method = RequestMethod.GET)
+    public ShowsBean getOrderShowsAndTypes(@PathVariable(value = "memberId") int memberId) {
+        return memberService.getOrderShowsAndTypes(memberId);
+    }
 }

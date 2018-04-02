@@ -12,6 +12,8 @@ public interface OrderService {
      */
     public List<Order> getOrderToBeAllocatedSeat(int showId);
 
+    public List<Order> getOrdersByMemberId(int memberId);
+
     public void save(Order order);
 
     public Order getOrderById(int orderId);

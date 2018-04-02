@@ -18,6 +18,11 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Order> getOrdersByMemberId(int memberId) {
+        return orderRepository.findByMember_id(memberId);
+    }
+
+    @Override
     public void save(Order order) {
         orderRepository.save(order);
     }

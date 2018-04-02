@@ -54,7 +54,8 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     WebApplicationContext webApplicationContext;
 
-
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public MemberBean findMemberBeanById(int memberId) {
@@ -398,6 +399,28 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public int getMemberAmount() {
         return memberRepository.getMemberAmount();
+    }
+
+    @Override
+    public ShowsBean getOrderShowsAndTypes(int memberId) {
+        List<Order> orders = orderService.getOrdersByMemberId(memberId);
+
+        Map<String, List<ShowBean>> map = new HashMap<>();
+        for (int i = 0; i < ShowType.values().length; i++) {
+            String type = ShowType.getName(i);
+            List<ShowBean> showBeans = new ArrayList<>();
+            map.put(type, showBeans);
+        }
+
+        for (Order order : orders) {
+            int showId = order.getShow_id();
+            ShowBean showBean = showService.getShowBeanById(showId);
+            String type = showBean.getType().toString();
+            List<ShowBean> showBeans = map.get(type);
+            showBeans.add(showBean);
+            map.put(type, showBeans);
+        }
+        return new ShowsBean(map);
     }
 
     @Override
