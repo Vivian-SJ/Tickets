@@ -1,21 +1,21 @@
 var amountChart;
 var typeChart;
-// function init() {
-//     var loginAndRegisterArea = $('nav .navbar-right');
-//     var login = loginAndRegisterArea.children().children();
-//     if (localStorage.getItem('managerId')!==null) {
-//         login.innerHTML = '退出登录';
-//     } else {
-//         alert("请先登录!");
-//         return;
-//     }
-//     $(login).click(function (event) {
-//         event.preventDefault();
-//         if ($(login).text()==='退出登录') {
-//             localStorage.removeItem('managerId');
-//         }
-//         window.location.href='login.html';
-//     });
+function init() {
+    var loginAndRegisterArea = $('nav .navbar-right');
+    var login = loginAndRegisterArea.children().children();
+    if (localStorage.getItem('managerId')!==null) {
+        login.innerHTML = '退出登录';
+    } else {
+        alert("请先登录!");
+        return;
+    }
+    $(login).click(function (event) {
+        event.preventDefault();
+        if ($(login).text()==='退出登录') {
+            localStorage.removeItem('managerId');
+        }
+        window.location.href='login.html';
+    });
 
     amountChart = echarts.init(document.getElementById('amountDistribution'), 'light');
     var amountOption = {
@@ -41,7 +41,7 @@ var typeChart;
     typeChart = echarts.init(document.getElementById('typeDistribution'), 'light');
     var typeOption = {
         title: {
-            text: '不同类型演出盈利情况'
+            text: '不同类型演出分布情况'
         },
         tooltip: {},
         legend: {
@@ -76,4 +76,12 @@ var typeChart;
         ]
     };
     typeChart.setOption(typeOption);
-// }
+
+    $.ajax({
+        url:''
+    })
+}
+
+function setPage1() {
+
+}

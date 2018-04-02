@@ -4,11 +4,12 @@ var incomeChart;
 $(document).ready(function () {
     init();
 });
+
 function init() {
     var loginAndRegisterArea = $('nav .navbar-right');
     var login = loginAndRegisterArea.children().children()[0];
     var register = loginAndRegisterArea.children().children()[1];
-    if (localStorage.getItem('stadiumId')!==null) {
+    if (localStorage.getItem('stadiumId') !== null) {
         login.innerHTML = '退出登录';
         $(register).css('display', 'none');
         $(register).parent().css('display', 'none');
@@ -18,37 +19,19 @@ function init() {
     }
     $(login).click(function (event) {
         event.preventDefault();
-        if ($(login).text()==='退出登录') {
+        if ($(login).text() === '退出登录') {
             localStorage.removeItem('stadiumId');
         }
-        window.location.href='../login.html';
+        window.location.href = '../login.html';
     });
 
 // 基于准备好的dom，初始化echarts实例
     timeChart = echarts.init(document.getElementById('timeDistribution'), 'light');
 
 // 指定图表的配置项和数据
-    var timeOption = {
-        title: {
-            text: '不同时间的演出的数量分布图'
-        },
-        tooltip: {},
-        legend: {
-            data:['数量']
-        },
-        xAxis: {
-            data: ["已完成","即将到来","今日上映"]
-        },
-        yAxis: {},
-        series: [{
-            name: '数量',
-            type: 'bar',
-            data: []
-        }]
-    };
 
 // 使用刚指定的配置项和数据显示图表。
-    timeChart.setOption(timeOption);
+//     timeChart.setOption(timeOption);
 
     typeChart = echarts.init(document.getElementById('typeDistribution'), 'light');
     var typeOption = {
@@ -69,8 +52,7 @@ function init() {
                 radius: '65%',
                 center: ['50%', '50%'],
                 selectedMode: 'single',
-                data: [
-                ],
+                data: [],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -88,21 +70,19 @@ function init() {
         title: {
             text: '订单使用情况'
         },
-        tooltip : {
-        },
+        tooltip: {},
         legend: {
             bottom: 10,
             left: 'center',
-            data: ['已使用', '已取消']
+            data: ['已使用', '待使用','已取消']
         },
-        series : [
+        series: [
             {
                 type: 'pie',
-                radius : '65%',
+                radius: '65%',
                 center: ['50%', '50%'],
                 selectedMode: 'single',
-                data:[
-                ],
+                data: [],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -115,8 +95,8 @@ function init() {
     };
     incomeChart.setOption(incomeOption);
 
-    var url1 = 'http://localhost:8080/tickets/stadium/shows/'+localStorage.getItem('stadiumId');
-    console.log('stadiumId:'+ localStorage.getItem('stadiumId'));
+    var url1 = 'http://localhost:8080/tickets/stadium/shows/' + localStorage.getItem('stadiumId');
+    console.log('stadiumId:' + localStorage.getItem('stadiumId'));
     $.ajax({
         url: url1,
         method: 'get',
@@ -156,10 +136,10 @@ function setPage1(shows) {
     var dance = 0;
     for (var i = 0; i < shows.length; i++) {
         var date = getDate(shows[i]['time']);
-        var newDate = date.replace('-','/');
+        var newDate = date.replace('-', '/');
         var currentDate = new Date();
         var showDate = new Date(Date.parse(newDate));
-        if (currentDate>showDate) {
+        if (currentDate > showDate) {
             finish++;
         } else if (currentDate < showDate) {
             future++;
@@ -167,21 +147,57 @@ function setPage1(shows) {
             now++;
         }
 
-        switch (shows[i]['type']) {
-            case '戏剧': drama++;break;
-            case '体育':sports++;break;
-            case '歌剧':opera++;break;
-            case '演唱会':vocalConcert++;break;
-            case '音乐会':concert++;break;
-            case '舞蹈':dance++;break;
-            default: break;
+        switch (getType(shows[i]['type'])) {
+            case '戏剧':
+                drama++;
+                break;
+            case '体育':
+                sports++;
+                break;
+            case '歌剧':
+                opera++;
+                break;
+            case '演唱会':
+                vocalConcert++;
+                break;
+            case '音乐会':
+                concert++;
+                break;
+            case '舞蹈':
+                dance++;
+                break;
+            default:
+                break;
         }
     }
 
     timeChart.setOption({
+        title: {
+            text: '不同时间的演出的数量分布图'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data: ['数量']
+        },
+        xAxis: {
+            type: 'category',
+            data: ["已完成", "即将到来", "今日上映"],
+            axisTick: {
+                alignWithLabel: true
+            }
+        },
+        yAxis: {
+            type: 'value'
+        },
         series: [{
             // 根据名字对应到相应的系列
-            name: '销量',
+            name: '数量',
+            type: 'bar',
             data: [finish, future, now]
         }]
     });
@@ -203,25 +219,47 @@ function setPage1(shows) {
 }
 
 function setPage2(statisticsBean) {
-    $('#income').text('当前收入：'+statisticsBean['totalPrice']+'元');
+    $('#income').text('当前收入：' + statisticsBean['totalPrice'] + '元');
     var map = statisticsBean['statusAndOrder'];
+    var all = statisticsBean['orderSum'];
     var used = map['已使用'].length;
     var canceled = map['已取消'].length;
     incomeChart.setOption({
-        series : [
+        series: [
             {
-                data:[
-                    {value:used, name: '已使用'},
-                    {value:canceled, name: '已取消'}
+                data: [
+                    {value: used, name: '已使用'},
+                    {value: all-used-canceled, name: '待使用'},
+                    {value: canceled, name: '已取消'}
                 ]
             }
         ]
     })
 }
+
 function getDate(timestamp) {
     var date = new Date(timestamp);
     Y = date.getFullYear() + '-';
     M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
     D = date.getDate() + ' ';
     return Y + M + D;
+}
+
+function getType(origin) {
+    switch (origin) {
+        case 'DRAMA' :
+            return '戏剧';
+        case 'CONCERT':
+            return '音乐会';
+        case 'DANCE' :
+            return '舞蹈';
+        case 'OPERA':
+            return '歌剧';
+        case 'VOCAL_CONCERT' :
+            return '演唱会';
+        case 'SPORTS_GAMES' :
+            return '体育';
+        default:
+            return '';
+    }
 }
