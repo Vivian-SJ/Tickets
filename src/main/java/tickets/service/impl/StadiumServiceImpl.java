@@ -194,7 +194,7 @@ public class StadiumServiceImpl implements StadiumService{
     }
 
     @Override
-    public StatisticsBean displayStadiumStatistics(int stadiumId) {
+    public StatisticsBeanForMemberAndStadium displayStadiumStatistics(int stadiumId) {
         int orderSum = orderRepository.getAmountByStadiumId(stadiumId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
@@ -207,7 +207,7 @@ public class StadiumServiceImpl implements StadiumService{
             map.put(orderStatus.toString(), orderBeans);
         }
         double totalPrice = stadiumRepository.findById(stadiumId).getIncome();
-        return new StatisticsBean(orderSum, map, totalPrice);
+        return new StatisticsBeanForMemberAndStadium(orderSum, map, totalPrice);
     }
 
     @Override

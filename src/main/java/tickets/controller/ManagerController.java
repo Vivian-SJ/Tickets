@@ -40,12 +40,12 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/statistics/stadiums", method = RequestMethod.GET)
-    public List<StatisticsBean> getStadiumsStatistics(){
+    public List<StatisticsBeanForMembersAndStadiums> getStadiumsStatistics(){
         return managerService.getStadiumsStatistics();
     }
 
     @RequestMapping(value = "/statistics/members", method = RequestMethod.GET)
-    public List<StatisticsBean> getMembersStatistics(){
+    public List<StatisticsBeanForMembersAndStadiums> getMembersStatistics(){
         return managerService.getMembersStatistics();
     }
 
@@ -55,7 +55,7 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/web/statistics", method = RequestMethod.GET)
-    public ManagerStatisticsBean getWebStatistics() {
+    public StatisticsBeanForManager getWebStatistics() {
         return managerService.getWebStatistics();
     }
 }

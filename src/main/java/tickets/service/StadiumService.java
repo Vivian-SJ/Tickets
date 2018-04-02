@@ -24,7 +24,7 @@ public interface StadiumService {
 
     public OrderBean findOrderById(int orderId);
 
-    public StatisticsBean displayStadiumStatistics(int stadiumId);
+    public StatisticsBeanForMemberAndStadium displayStadiumStatistics(int stadiumId);
 
     public List<StadiumBean> getUncheckStadiums();
 

@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public MemberBean findMemberById(int memberId) {
+    public MemberBean findMemberBeanById(int memberId) {
         MemberBean memberBean = new MemberBean(memberRepository.findById(memberId));
         try {
             String password = new String(CodeUtil.decrypt(memberBean.getPassword()));
@@ -66,6 +66,11 @@ public class MemberServiceImpl implements MemberService {
             e.printStackTrace();
         }
         return memberBean;
+    }
+
+    @Override
+    public Member findMemberById(int memberId) {
+        return memberRepository.findById(memberId);
     }
 
     @Override
@@ -369,7 +374,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public StatisticsBean displayMemberStatistics(int memberId) {
+    public StatisticsBeanForMemberAndStadium displayMemberStatistics(int memberId) {
         int orderSum = orderRepository.getAmountByMemberId(memberId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
@@ -382,7 +387,7 @@ public class MemberServiceImpl implements MemberService {
             map.put(orderStatus.toString(), orderBeans);
         }
         double totalPrice = memberRepository.findById(memberId).getSum_consumption();
-        return new StatisticsBean(orderSum, map, totalPrice);
+        return new StatisticsBeanForMemberAndStadium(orderSum, map, totalPrice);
     }
 
     @Override

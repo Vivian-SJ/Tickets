@@ -3,10 +3,7 @@ package tickets.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tickets.bean.*;
-import tickets.model.Account;
-import tickets.model.Manager;
-import tickets.model.Show;
-import tickets.model.Stadium;
+import tickets.model.*;
 import tickets.repository.ManagerRepository;
 import tickets.repository.MemberRepository;
 import tickets.service.*;
@@ -106,25 +103,27 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public List<StatisticsBean> getStadiumsStatistics() {
+    public List<StatisticsBeanForMembersAndStadiums> getStadiumsStatistics() {
         List<Integer> stadiumIds = stadiumService.findAllStaiumIds();
-        List<StatisticsBean> statisticsBeans = new ArrayList<>();
+        List<StatisticsBeanForMembersAndStadiums> statisticsBeanForStadiums = new ArrayList<>();
         for (int id : stadiumIds) {
-            StatisticsBean statisticsBean = stadiumService.displayStadiumStatistics(id);
-            statisticsBeans.add(statisticsBean);
+            Stadium stadium = stadiumService.getStadiumById(id);
+            StatisticsBeanForMemberAndStadium statisticsBeanForMemberAndStadium = stadiumService.displayStadiumStatistics(id);
+            statisticsBeanForStadiums.add(new StatisticsBeanForMembersAndStadiums(id, stadium.getName(), statisticsBeanForMemberAndStadium));
         }
-        return statisticsBeans;
+        return statisticsBeanForStadiums;
     }
 
     @Override
-    public List<StatisticsBean> getMembersStatistics() {
+    public List<StatisticsBeanForMembersAndStadiums> getMembersStatistics() {
         List<Integer> memberIds = memberRepository.findAllIds();
-        List<StatisticsBean> statisticsBeans = new ArrayList<>();
+        List<StatisticsBeanForMembersAndStadiums> statisticsBeanForMembers = new ArrayList<>();
         for (int id : memberIds) {
-            StatisticsBean statisticsBean = memberService.displayMemberStatistics(id);
-            statisticsBeans.add(statisticsBean);
+            Member member = memberService.findMemberById(id);
+            StatisticsBeanForMemberAndStadium statisticsBeanForMemberAndStadium = memberService.displayMemberStatistics(id);
+            statisticsBeanForMembers.add(new StatisticsBeanForMembersAndStadiums(id, member.getName(), statisticsBeanForMemberAndStadium));
         }
-        return statisticsBeans;
+        return statisticsBeanForMembers;
     }
 
     @Override
@@ -144,10 +143,10 @@ public class ManagerServiceImpl implements ManagerService{
     }
 
     @Override
-    public ManagerStatisticsBean getWebStatistics() {
+    public StatisticsBeanForManager getWebStatistics() {
         int stadiumAmount = stadiumService.getStadiumAmount();
         int memberAmount = memberService.getMemberAmount();
-        return new ManagerStatisticsBean(stadiumAmount,memberAmount);
+        return new StatisticsBeanForManager(stadiumAmount,memberAmount);
     }
 
 

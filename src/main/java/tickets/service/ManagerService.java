@@ -15,11 +15,11 @@ public interface ManagerService {
 
     public ResultBean pay(AccountBean accountBean);
 
-    public List<StatisticsBean> getStadiumsStatistics();
+    public List<StatisticsBeanForMembersAndStadiums> getStadiumsStatistics();
 
-    public List<StatisticsBean> getMembersStatistics();
+    public List<StatisticsBeanForMembersAndStadiums> getMembersStatistics();
 
     public ShowsBean getAllShows();
 
-    public ManagerStatisticsBean getWebStatistics();
+    public StatisticsBeanForManager getWebStatistics();
 }

@@ -3,7 +3,7 @@ package tickets.bean;
 import java.util.List;
 import java.util.Map;
 
-public class StatisticsBean {
+public class StatisticsBeanForMemberAndStadium {
     //总订单数
     private int orderSum;
     //不同类型的订单
@@ -11,10 +11,10 @@ public class StatisticsBean {
     //总消费/总收入
     private double totalPrice;
 
-    public StatisticsBean() {
+    public StatisticsBeanForMemberAndStadium() {
     }
 
-    public StatisticsBean(int orderSum, Map<String, List<OrderBean>> statusAndOrder, double totalPrice) {
+    public StatisticsBeanForMemberAndStadium(int orderSum, Map<String, List<OrderBean>> statusAndOrder, double totalPrice) {
         this.orderSum = orderSum;
         this.statusAndOrder = statusAndOrder;
         this.totalPrice = totalPrice;

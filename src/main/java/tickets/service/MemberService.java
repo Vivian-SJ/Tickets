@@ -2,11 +2,14 @@ package tickets.service;
 
 import tickets.bean.*;
 import tickets.model.Coupon;
+import tickets.model.Member;
 
 import java.util.List;
 
 public interface MemberService {
-    public MemberBean findMemberById(int memberId);
+    public MemberBean findMemberBeanById(int memberId);
+
+    public Member findMemberById(int memberId);
 
     /**
      * 注册
@@ -72,7 +75,7 @@ public interface MemberService {
 
     public OrderBean getOrder(int orderId);
 
-    public StatisticsBean displayMemberStatistics(int memberId);
+    public StatisticsBeanForMemberAndStadium displayMemberStatistics(int memberId);
 
     public int getMemberId(String email);
 

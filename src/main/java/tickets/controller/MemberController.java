@@ -55,7 +55,7 @@ public class MemberController {
     @ResponseBody
     @RequestMapping(value = "/member/info/{memberId}", method = RequestMethod.GET)
     public MemberBean findMemberById(@PathVariable(value = "memberId") int memberId) {
-        return memberService.findMemberById(memberId);
+        return memberService.findMemberBeanById(memberId);
     }
 
     @ResponseBody
@@ -139,7 +139,7 @@ public class MemberController {
 
     @ResponseBody
     @RequestMapping(value = "/member/statistics/{memberId}", method = RequestMethod.GET)
-    public StatisticsBean displayMemberStatistics(@PathVariable(value = "memberId") int memberId) {
+    public StatisticsBeanForMemberAndStadium displayMemberStatistics(@PathVariable(value = "memberId") int memberId) {
         return memberService.displayMemberStatistics(memberId);
     }
 

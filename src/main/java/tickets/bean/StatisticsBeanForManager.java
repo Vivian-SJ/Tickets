@@ -1,14 +1,14 @@
 package tickets.bean;
 
-public class ManagerStatisticsBean {
+public class StatisticsBeanForManager {
     private int stadiumAmount;
 
     private int memberAmount;
 
-    public ManagerStatisticsBean() {
+    public StatisticsBeanForManager() {
     }
 
-    public ManagerStatisticsBean(int stadiumAmount, int memberAmount) {
+    public StatisticsBeanForManager(int stadiumAmount, int memberAmount) {
         this.stadiumAmount = stadiumAmount;
         this.memberAmount = memberAmount;
     }
