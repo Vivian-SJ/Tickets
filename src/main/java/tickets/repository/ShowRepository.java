@@ -31,4 +31,7 @@ public interface ShowRepository extends JpaRepository<Show, Integer> {
 
     @Query(value = "SELECT * FROM `show` WHERE type = ?1", nativeQuery = true)
     public List<Show> findByType(String type);
+
+    @Query(value = "SELECT * FROM `show` WHERE to_days(time)-to_days(now())=14", nativeQuery = true)
+    public List<Show> getShowsToBeAllocatedSeat();
 }

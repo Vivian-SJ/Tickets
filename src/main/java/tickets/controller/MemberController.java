@@ -116,7 +116,7 @@ public class MemberController {
     @ResponseBody
     @RequestMapping(value = "/member/ticket/cancel/{orderId}", method = RequestMethod.GET)
     public ResultBean cancelOrder(@PathVariable(value = "orderId") int orderId) {
-        return memberService.cancelOrder(orderId);
+        return memberService.cancelOrder(orderId, false);
     }
 
     @ResponseBody

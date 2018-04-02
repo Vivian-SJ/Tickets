@@ -220,7 +220,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResultBean cancelOrder(int orderId) {
+    public ResultBean cancelOrder(int orderId, boolean refund) {
         Order order = orderRepository.findById(orderId);
         order.setStatus(OrderStatus.CANCELED.toString());
 
@@ -228,6 +228,7 @@ public class MemberServiceImpl implements MemberService {
 
         //处理退款
         double price = order.getActual_price();
+
         long cancelTimeLong = new Date().getTime();
         Show show = showRepository.findById(order.getShow_id());
         Timestamp showTime = show.getTime();
@@ -237,7 +238,7 @@ public class MemberServiceImpl implements MemberService {
         //退款
         double moneyAvailable = member.getMoney_available();
         double consumption = member.getSum_consumption();
-        if (internalDays >= 7) {
+        if (refund || internalDays >= 7) {
             member.setMoney_available(moneyAvailable + price);
             member.setSum_consumption(consumption - price);
             order.setActual_price(0);
@@ -260,6 +261,15 @@ public class MemberServiceImpl implements MemberService {
 //                couponRepository.save(coupon);
 //            }
 //        }
+
+        //把座位数量加回去
+        if (order.getSeat_id() != -1) {
+            int seatAmount = order.getAmount();
+            ShowSeatId showSeatId = new ShowSeatId(order.getShow_id(), order.getSeat_id());
+            ShowSeat showSeat = showService.getShowSeatById(showSeatId);
+            showSeat.setAvailable_amount(showSeat.getAvailable_amount() + seatAmount);
+            showService.saveShowSeat(showSeat);
+        }
         orderRepository.save(order);
         return new ResultBean(true);
     }
@@ -269,7 +279,7 @@ public class MemberServiceImpl implements MemberService {
         Order order = orderRepository.findById(orderId);
         //如果是现场购票
         if (order.getMember_id() == -1) {
-            order.setStatus(OrderStatus.WAIT_TICKET.toString());
+            order.setStatus(OrderStatus.TICKET_OUT.toString());
             orderRepository.save(order);
             Stadium stadium = stadiumRepository.findById(order.getStadium_id());
             stadium.setIncome(stadium.getIncome() + order.getActual_price());
@@ -283,8 +293,23 @@ public class MemberServiceImpl implements MemberService {
             return new ResultBean(false, "抱歉，账户余额不足");
         }
 
-        order.setStatus(OrderStatus.WAIT_TICKET.toString());
+        //如果是选座购票，就出票，如果是立即购票就是待出票
+        if (order.getSeat_id()==-1) {
+            order.setStatus(OrderStatus.WAIT_TICKET.toString());
+        } else {
+            order.setStatus(OrderStatus.TICKET_OUT.toString());
+        }
         orderRepository.save(order);
+
+        if (order.getSeat_id() != -1) {
+            //减少座位数量
+            int seatAmount = order.getAmount();
+            ShowSeatId showSeatId = new ShowSeatId(order.getShow_id(), order.getSeat_id());
+            ShowSeat showSeat = showService.getShowSeatById(showSeatId);
+            showSeat.setAvailable_amount(showSeat.getAvailable_amount() - seatAmount);
+            showService.saveShowSeat(showSeat);
+        }
+
         //关于用户余额、积分等的操作
         double newMoneyAvailable = member.getMoney_available() - price;
         member.setMoney_available(newMoneyAvailable);
@@ -372,13 +397,6 @@ public class MemberServiceImpl implements MemberService {
         int orderId = orderRepository.getId();
         System.out.println("orderId" + orderId);
         System.out.println("seatId:" + orderBean.getSeatId());
-        if (orderBean.getSeatId() != -1) {
-            //减少座位数量
-            int seatAmount = orderBean.getTicketAmount();
-            ShowSeatId showSeatId = new ShowSeatId(orderBean.getShowId(), orderBean.getSeatId());
-            ShowSeat showSeat = showService.getShowSeatById(showSeatId);
-            showSeat.setAvailable_amount(showSeat.getAvailable_amount() - seatAmount);
-        }
 
         //处理优惠券
         List<Integer> couponIds = orderBean.getCouponIds();

@@ -58,4 +58,24 @@ public class ShowServiceImpl implements ShowService{
     public ShowSeat getShowSeatById(ShowSeatId showSeatId) {
         return showSeatRepository.findOne(showSeatId);
     }
+
+    @Override
+    public List<ShowSeat> getShowSeatByShowId(int showId) {
+        return showSeatRepository.findByShowId(showId);
+    }
+
+    @Override
+    public List<Show> getShowsToBeAllocatedSeat() {
+        return showRepository.getShowsToBeAllocatedSeat();
+    }
+
+    @Override
+    public void saveShowSeat(ShowSeat showSeat) {
+        showSeatRepository.save(showSeat);
+    }
+
+    @Override
+    public void save(Show show) {
+        showRepository.save(show);
+    }
 }

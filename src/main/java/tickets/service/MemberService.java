@@ -58,7 +58,13 @@ public interface MemberService {
 
     public ShowsBean getAllShows();
 
-    public ResultBean cancelOrder(int orderId);
+    /**
+     * 开票不成功的退款
+     * @param orderId 退款订单号
+     * @param refund 若refund为true，则是开票不成功退的，退全款
+     * @return 退票结果
+     */
+    public ResultBean cancelOrder(int orderId, boolean refund);
 
     public ResultBean payOrder(int orderId);
 
