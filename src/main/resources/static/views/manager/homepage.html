@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../../css/style.css"/>
     <link rel="stylesheet" href="../../css/ul-element.css">
     <link rel="stylesheet" href="../../css/homepage.css">
-    <link rel="stylesheet" href="../../css/manager.css">
+    <!--<link rel="stylesheet" href="../../css/manager.css">-->
 </head>
 <body>
 <div class="container">
@@ -46,32 +46,36 @@
             </div>
         </div>
     </nav>
-    <div class="main">
-        <div>
-            <label id="main-title">Tickets网站</label>
-        </div>
-        <div class="container check-body" id="main-account">
-            <form style="float: left; margin-left: 280px; margin-bottom: 79px; text-align: left">
-                <div class="text">
-                    <ul id="account-content" class="list-unstyled" style="margin: 87px 0 0 39px">
-                        <li>
-                            <span><strong>总收入</strong></span><span
-                                class="content"><strong>100000元</strong></span>
-                        </li>
-                        <li>
-                            <span>注册场馆数</span><span class="content">200</span>
-                        </li>
-                        <li>
-                            <span>注册用户数</span><span class="content">100</span>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-
-        </div>
+    <div class="container">
+        <h1 id="name" class="stadium-homepage-name">Tickets</h1>
+        <h2 id="income" class="stadium-homepage-name" style="font-size: 30px">当前收入：10000元</h2>
     </div>
+    <div id="amountDistribution" style="width: 600px;height:400px; margin-top: 36px; float: left;"></div>
+    <div id="typeDistribution" style="width: 400px;height:400px; margin: 36px 0 0 0; float: right;"></div>
+        <!--<div class="container check-body" id="main-account">-->
+            <!--<form style="float: left; margin-left: 280px; margin-bottom: 79px; text-align: left">-->
+                <!--<div class="text">-->
+                    <!--<ul id="account-content" class="list-unstyled" style="margin: 87px 0 0 39px">-->
+                        <!--<li>-->
+                            <!--<span><strong>总收入</strong></span><span-->
+                                <!--class="content"><strong>100000元</strong></span>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>注册场馆数</span><span class="content">200</span>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<span>注册用户数</span><span class="content">100</span>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</form>-->
+
+        <!--</div>-->
 </div>
+<script src="../../echarts.js"></script>
 <script src="../../jquery/jquery-3.3.1.min.js"></script>
 <script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<script src="../../js/manager/homepage.js"></script>
 </body>
 </html>

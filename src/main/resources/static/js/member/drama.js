@@ -68,10 +68,12 @@ function displayShows(data) {
         }
         $('#money'+i).text(min);
     }
-    $('.floor-content-list dt a').click(function () {
+    $('.floor-content-list dt a').click(function (event) {
+        event.preventDefault();
         var a = event.target;
         var id =  $(a).attr('id').substring(5);
-        window.location.href = 'order-ticket.html?id=' + id + '&stadiumId=' + data[id]['stadiumId'];
+        id = parseInt(id);
+        window.location.href = 'order-ticket.html?id=' + data[id]['id'] + '&stadiumId=' + data[id]['stadiumId'];
     })
 }
 

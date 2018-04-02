@@ -211,3 +211,15 @@
     border: 1px solid #ddd;
     border-bottom-color: transparent;
 }
+
+.stadium-homepage-name {
+    margin-top: 112px;
+    margin-left: -14px;
+    float: left;
+    text-align: left;
+    color: #4aaf15;
+    font-size: 58px;
+    border-bottom: 5px solid #ddd;
+    padding-bottom: 10px;
+    width: 400px;
+}

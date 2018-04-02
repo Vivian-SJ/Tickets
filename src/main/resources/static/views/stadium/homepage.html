@@ -67,83 +67,18 @@
             </div>
         </div>
     </nav>
-    <div id="home" style="margin-top: 120px; position: absolute">
-        <!--搜索框-->
-        <div class="row">
-            <div class="col-lg-6 col-lg-offset-2">
-                <div class="input-group">
-                    <input type="text" class="form-control">
-                    <div class="input-group-btn">
-                        <button class="btn">搜索</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--图片-->
-        <!--内容-->
-        <div class="floor all">
-            <div class="simple-title">
-                <a class="more" href="show/show.html" style="padding: 5px 0;" id="drama-more">查看全部</a>
-                <h3 class="floor-simple-title-title">全部演出</h3>
-            </div>
-            <div class="floor-content">
-                <ul class="floor-content-list">
-                    <li>
-                        <div class="container block">
-                                <span class="img">
-                                            <img src="../../pictrues/show1.jpg">
-                                        </span>
-                            <dl class="info">
-                                <dt><a href="">title1</a></dt>
-                                <dd class="txt">
-                                    <p>time</p>
-                                    <p>leixing</p>
-                                    <p class="place"><a>place</a></p>
-                                    <p class="price">￥<strong>money</strong>起</p>
-                                </dd>
-                            </dl>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="container block">
-                                <span class="img">
-                                            <img src="../../pictrues/show1.jpg">
-                                        </span>
-                            <dl class="info">
-                                <dt><a href="">title1</a></dt>
-                                <dd class="txt">
-                                    <p>time</p>
-                                    <p>leixing</p>
-                                    <p class="place"><a>place</a></p>
-                                    <p class="price">￥<strong>money</strong>起</p>
-                                </dd>
-                            </dl>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="container block">
-                                <span class="img">
-                                            <img src="../../pictrues/show1.jpg">
-                                        </span>
-                            <dl class="info">
-                                <dt><a href="">title1</a></dt>
-                                <dd class="txt">
-                                    <p>time</p>
-                                    <p>leixing</p>
-                                    <p class="place"><a>place</a></p>
-                                    <p class="price">￥<strong>money</strong>起</p>
-                                </dd>
-                            </dl>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="container">
+        <h1 id="name" class="stadium-homepage-name">1号场馆</h1>
+        <h2 id="income" class="stadium-homepage-name" style="font-size: 30px">当前收入：10000元</h2>
     </div>
+    <div id="timeDistribution" style="width: 600px;height:400px; margin-top: 36px; float: left;"></div>
+    <div id="typeDistribution" style="width: 400px;height:400px; margin: 36px 0 0 0; float: right;"></div>
+    <div id="incomeDistribution" style="width: 400px;height:400px; margin: 120px 50px 0 0;"></div>
 </div>
-
+<script src="../../echarts.js"></script>
 <script src="../../jquery/jquery-3.3.1.min.js"></script>
 <script src="../../bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<script src="../../js/stadium/homepage.js"></script>
 </body>
 </html>

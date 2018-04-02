@@ -28,25 +28,6 @@ $(document).ready(function () {
 
         }
     });
-    var a = $('.block a');
-    a.click(function (event) {
-        event.preventDefault();
-        var currentA = event.target;
-        console.log(currentA);
-        var li;
-        var id;
-        var stadiumId;
-        if(currentA.getAttribute('name')==='title') {
-            li = $(currentA).parent().parent().parent().parent();
-            id = li.attr('id');
-            stadiumId = li.attr('title');
-        } else {
-            li = $(currentA).parent().parent().parent();
-            id = li.attr('id');
-            stadiumId = li.attr('title');
-        }
-        window.location.href = "order-ticket.html?id="+id+"&stadiumId="+stadiumId;
-    })
 });
 
 function displayShows(data) {
@@ -76,6 +57,8 @@ function displayShows(data) {
     if (dance.length !== 0) {
         setPage(dance, 'dance');
     }
+
+    click();
 }
 
 function setPage(data, type) {
@@ -118,6 +101,28 @@ function setPage(data, type) {
             $(currentShow + ' .price strong').text(min);
         }
     }
+}
+
+function click() {
+    var a = $('.block a');
+    a.click(function (event) {
+        event.preventDefault();
+        var currentA = event.target;
+        console.log(currentA);
+        var li;
+        var id;
+        var stadiumId;
+        if(currentA.getAttribute('name')==='title') {
+            li = $(currentA).parent().parent().parent().parent();
+            id = li.attr('id');
+            stadiumId = li.attr('title');
+        } else {
+            li = $(currentA).parent().parent().parent();
+            id = li.attr('id');
+            stadiumId = li.attr('title');
+        }
+        window.location.href = "order-ticket.html?id="+id+"&stadiumId="+stadiumId;
+    })
 }
 
 function getPlaceName(i,currentShow, data) {
