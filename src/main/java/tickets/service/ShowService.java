@@ -27,4 +27,6 @@ public interface ShowService {
     public void saveShowSeat(ShowSeat showSeat);
 
     public void save(Show show);
+
+    public List<Show> findByType(String type);
 }

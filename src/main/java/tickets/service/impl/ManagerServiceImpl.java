@@ -2,10 +2,7 @@ package tickets.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tickets.bean.AccountBean;
-import tickets.bean.ResultBean;
-import tickets.bean.StadiumBean;
-import tickets.bean.StatisticsBean;
+import tickets.bean.*;
 import tickets.model.Account;
 import tickets.model.Manager;
 import tickets.model.Show;
@@ -14,11 +11,10 @@ import tickets.repository.ManagerRepository;
 import tickets.repository.MemberRepository;
 import tickets.service.*;
 import tickets.util.CodeUtil;
+import tickets.util.ShowType;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ManagerServiceImpl implements ManagerService{
@@ -129,6 +125,29 @@ public class ManagerServiceImpl implements ManagerService{
             statisticsBeans.add(statisticsBean);
         }
         return statisticsBeans;
+    }
+
+    @Override
+    public ShowsBean getAllShows() {
+        Map<String, List<ShowBean>> map = new HashMap<>();
+        for (int i = 0; i < ShowType.values().length; i++) {
+            String type = ShowType.getName(i);
+            List<Show> shows = showService.findByType(type);
+            List<ShowBean> showBeans = new ArrayList<>();
+            for (Show show : shows) {
+                ShowBean showBean = showService.getShowBeanById(show.getId());
+                showBeans.add(showBean);
+            }
+            map.put(type, showBeans);
+        }
+        return new ShowsBean(map);
+    }
+
+    @Override
+    public ManagerStatisticsBean getWebStatistics() {
+        int stadiumAmount = stadiumService.getStadiumAmount();
+        int memberAmount = memberService.getMemberAmount();
+        return new ManagerStatisticsBean(stadiumAmount,memberAmount);
     }
 
 

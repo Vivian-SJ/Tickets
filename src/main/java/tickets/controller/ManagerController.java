@@ -2,10 +2,7 @@ package tickets.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tickets.bean.AccountBean;
-import tickets.bean.ResultBean;
-import tickets.bean.StadiumBean;
-import tickets.bean.StatisticsBean;
+import tickets.bean.*;
 import tickets.service.ManagerService;
 
 import java.util.List;
@@ -50,5 +47,15 @@ public class ManagerController {
     @RequestMapping(value = "/statistics/members", method = RequestMethod.GET)
     public List<StatisticsBean> getMembersStatistics(){
         return managerService.getMembersStatistics();
+    }
+
+    @RequestMapping(value = "/allShows", method = RequestMethod.GET)
+    public ShowsBean getAllShows() {
+        return managerService.getAllShows();
+    }
+
+    @RequestMapping(value = "/web/statistics", method = RequestMethod.GET)
+    public ManagerStatisticsBean getWebStatistics() {
+        return managerService.getWebStatistics();
     }
 }

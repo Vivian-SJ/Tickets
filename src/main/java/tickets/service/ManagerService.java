@@ -1,9 +1,6 @@
 package tickets.service;
 
-import tickets.bean.AccountBean;
-import tickets.bean.ResultBean;
-import tickets.bean.StadiumBean;
-import tickets.bean.StatisticsBean;
+import tickets.bean.*;
 
 import java.util.List;
 
@@ -21,4 +18,8 @@ public interface ManagerService {
     public List<StatisticsBean> getStadiumsStatistics();
 
     public List<StatisticsBean> getMembersStatistics();
+
+    public ShowsBean getAllShows();
+
+    public ManagerStatisticsBean getWebStatistics();
 }

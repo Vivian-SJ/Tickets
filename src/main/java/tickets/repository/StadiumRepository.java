@@ -17,4 +17,7 @@ public interface StadiumRepository extends JpaRepository<Stadium, Integer>{
 
     @Query(value = "SELECT * FROM stadium WHERE (status = '未审核' || status = '修改未审核')", nativeQuery = true)
     public List<Stadium> getUncheckStadiums();
+
+    @Query(value = "SELECT COUNT(*) FROM stadium", nativeQuery = true)
+    public int getStadiumAmount();
 }

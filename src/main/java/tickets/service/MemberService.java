@@ -75,4 +75,6 @@ public interface MemberService {
     public StatisticsBean displayMemberStatistics(int memberId);
 
     public int getMemberId(String email);
+
+    public int getMemberAmount();
 }

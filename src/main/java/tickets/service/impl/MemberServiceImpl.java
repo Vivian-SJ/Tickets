@@ -391,6 +391,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public int getMemberAmount() {
+        return memberRepository.getMemberAmount();
+    }
+
+    @Override
     public ResultBeanWithId buyTicket(OrderBean orderBean) {
         Order order = new Order(orderBean);
         orderRepository.save(order);

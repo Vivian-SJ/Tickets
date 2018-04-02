@@ -31,4 +31,6 @@ public interface StadiumService {
     public void save(Stadium stadium);
 
     public List<Integer> findAllStaiumIds();
+
+    public int getStadiumAmount();
 }

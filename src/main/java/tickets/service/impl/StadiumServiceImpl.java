@@ -242,4 +242,9 @@ public class StadiumServiceImpl implements StadiumService{
     public List<Integer> findAllStaiumIds() {
         return stadiumRepository.findAllIds();
     }
+
+    @Override
+    public int getStadiumAmount() {
+        return stadiumRepository.getStadiumAmount();
+    }
 }

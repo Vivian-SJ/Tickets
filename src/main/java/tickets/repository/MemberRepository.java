@@ -16,4 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 
     @Query(value = "SELECT DISTINCT (id) FROM member WHERE email = ?1", nativeQuery = true)
     public int findIdByEmail(String email);
+
+    @Query(value = "SELECT COUNT(*) FROM member", nativeQuery = true)
+    public int getMemberAmount();
 }
