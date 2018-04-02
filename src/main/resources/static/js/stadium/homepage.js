@@ -1,6 +1,9 @@
 var timeChart;
 var typeChart;
 var incomeChart;
+$(document).ready(function () {
+    init();
+});
 function init() {
     var loginAndRegisterArea = $('nav .navbar-right');
     var login = loginAndRegisterArea.children().children()[0];
@@ -40,7 +43,7 @@ function init() {
         series: [{
             name: '数量',
             type: 'bar',
-            data: [5, 20, 36]
+            data: []
         }]
     };
 
@@ -67,12 +70,6 @@ function init() {
                 center: ['50%', '50%'],
                 selectedMode: 'single',
                 data: [
-                    {value: 1548, name: '音乐会'},
-                    {value: 535, name: '舞蹈'},
-                    {value: 510, name: '戏剧'},
-                    {value: 634, name: '歌剧'},
-                    {value: 635, name: '体育'},
-                    {value: 100, name: '演唱会'}
                 ],
                 itemStyle: {
                     emphasis: {
@@ -105,8 +102,6 @@ function init() {
                 center: ['50%', '50%'],
                 selectedMode: 'single',
                 data:[
-                    {value:1548, name: '已使用'},
-                    {value:535, name: '已取消'}
                 ],
                 itemStyle: {
                     emphasis: {

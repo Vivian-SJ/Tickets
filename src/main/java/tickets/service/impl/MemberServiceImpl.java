@@ -2,6 +2,7 @@ package tickets.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.*;
@@ -18,7 +19,7 @@ import java.util.*;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-@Service
+@Service("memberService")
 public class MemberServiceImpl implements MemberService {
     @Autowired
     private MemberRepository memberRepository;
@@ -51,7 +52,9 @@ public class MemberServiceImpl implements MemberService {
     private ShowService showService;
 
     @Autowired
-    private ShowSeatRepository showSeatRepository;
+    WebApplicationContext webApplicationContext;
+
+
 
     @Override
     public MemberBean findMemberById(int memberId) {
@@ -364,52 +367,34 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResultBeanWithId buyTicket(OrderBean orderBean) {
-//        Order order = new Order(orderBean);
-//        orderRepository.save(order);
-//        int orderId = orderRepository.getId();
-//        System.out.println("orderId" + orderId);
-//        System.out.println("seatId:" + orderBean.getSeatId());
-//        if (orderBean.getSeatId() != -1) {
-//            //减少座位数量
-//            int seatAmount = orderBean.getTicketAmount();
-//            ShowSeatId showSeatId = new ShowSeatId(orderBean.getShowId(), orderBean.getSeatId());
-//            ShowSeat showSeat = showSeatRepository.findOne(showSeatId);
-//            showSeat.setAvailable_amount(showSeat.getAvailable_amount() - seatAmount);
-//        }
-//
-//        //处理优惠券
-//        List<Integer> couponIds = orderBean.getCouponIds();
-//        if (couponIds.size() > 0) {
-//            for (int id : couponIds) {
-//                Coupon coupon = couponRepository.findById(id);
-//                coupon.setStatus(CouponStatus.SELECTED.toString());
-//                coupon.setOrder_id(orderId);
-//                couponRepository.save(coupon);
-//            }
-//        }
+        Order order = new Order(orderBean);
+        orderRepository.save(order);
+        int orderId = orderRepository.getId();
+        System.out.println("orderId" + orderId);
+        System.out.println("seatId:" + orderBean.getSeatId());
+        if (orderBean.getSeatId() != -1) {
+            //减少座位数量
+            int seatAmount = orderBean.getTicketAmount();
+            ShowSeatId showSeatId = new ShowSeatId(orderBean.getShowId(), orderBean.getSeatId());
+            ShowSeat showSeat = showService.getShowSeatById(showSeatId);
+            showSeat.setAvailable_amount(showSeat.getAvailable_amount() - seatAmount);
+        }
+
+        //处理优惠券
+        List<Integer> couponIds = orderBean.getCouponIds();
+        if (couponIds.size() > 0) {
+            for (int id : couponIds) {
+                Coupon coupon = couponRepository.findById(id);
+                coupon.setStatus(CouponStatus.SELECTED.toString());
+                coupon.setOrder_id(orderId);
+                couponRepository.save(coupon);
+            }
+        }
 
         //3分钟计时开始，若3分钟之内未付款，取消订单
         Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Order order1 = orderRepository.findById(33);
-                if (order1.getStatus().equals("待支付")) {
-                    MemberService memberService = new MemberServiceImpl();
-                    System.out.println(33);
-                    memberService.cancelOrder(33);
-                }
-            }
-        }, 60000);
+        timer.schedule(new OrderCancelTask(webApplicationContext, orderId), 60000);
 
-        return new ResultBeanWithId(new ResultBean(true), 33);
+        return new ResultBeanWithId(new ResultBean(true), orderId);
     }
-//    @Override
-//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-//        Member member = memberRepository.findByEmail(s);
-//        if (member == null) {
-//            throw new UsernameNotFoundException("用户名不存在");
-//        }
-//        return member;
-//    }
 }

@@ -6,6 +6,7 @@ import tickets.bean.ShowBean;
 import tickets.bean.ShowSeatBean;
 import tickets.model.Show;
 import tickets.model.ShowSeat;
+import tickets.model.ShowSeatId;
 import tickets.repository.SeatRepository;
 import tickets.repository.ShowRepository;
 import tickets.repository.ShowSeatRepository;
@@ -51,5 +52,10 @@ public class ShowServiceImpl implements ShowService{
     @Override
     public int getSeatId(String seatName, int stadiumId) {
         return seatRepository.findIdByNameAndStadium_id(seatName, stadiumId);
+    }
+
+    @Override
+    public ShowSeat getShowSeatById(ShowSeatId showSeatId) {
+        return showSeatRepository.findOne(showSeatId);
     }
 }
