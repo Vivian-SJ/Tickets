@@ -47,7 +47,8 @@ public class MailServiceImpl implements MailService{
     public boolean sendRegisterMail(String email, String emailCode, String activateCode) {
         MimeMessage message = mailSender.createMimeMessage();
 
-        String registerLink = "http://localhost:8080/tickets/register/confirm?email=" + emailCode + "&code=" +activateCode;
+        String registerLink = "http://localhost:8080/tickets/member/register/confirm?email=" + emailCode + "&code=" +activateCode;
+        System.out.println("link: "+registerLink);
         Context context = new Context();
         context.setVariable("registerLink", registerLink);
         String emailContent = templateEngine.process("mail", context);

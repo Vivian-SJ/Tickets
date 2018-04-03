@@ -80,7 +80,10 @@ function setPage(data) {
         event.preventDefault();
         if (isMember) {
             $.ajax({
-                url: 'http://localhost:8080/tickets/member/info/' + $('#memberId').val(),
+                url: 'http://localhost:8080/tickets/member/info',
+                data: {
+                    email: $('#email').val()
+                },
                 method: 'get',
                 dataType: 'json',
                 success: function (data) {
@@ -103,7 +106,10 @@ function setPage(data) {
         amountSpan.text('最多可选20张');
         if (isMember) {
             $.ajax({
-                url: 'http://localhost:8080/tickets/member/info/' + $('#memberId').val(),
+                url: 'http://localhost:8080/tickets/member/info',
+                data: {
+                    email: $('#email').val()
+                },
                 method: 'get',
                 dataType: 'json',
                 success: function (data) {

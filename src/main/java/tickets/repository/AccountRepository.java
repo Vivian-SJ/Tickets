@@ -15,4 +15,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer>{
 
     @Query(value = "SELECT * FROM account WHERE status = '未支付'", nativeQuery = true)
     public List<Account> getToBePaidAccounts();
+
+    @Query(value = "SELECT sum(web_income) FROM account WHERE status='已结算'", nativeQuery = true)
+    public double getWebTotalIncome();
 }

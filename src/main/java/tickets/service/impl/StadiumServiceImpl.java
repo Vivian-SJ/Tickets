@@ -59,6 +59,7 @@ public class StadiumServiceImpl implements StadiumService{
             return new ResultBeanWithId(new ResultBean(false, "注册失败，请稍后再试"), -1);
         }
         stadium.setPassword(passwordCode);
+        stadium.setStatus("未审核");
         stadiumRepository.save(stadium);
 
         List<SeatBean> seatBeans = stadiumBean.getSeats();
@@ -134,6 +135,11 @@ public class StadiumServiceImpl implements StadiumService{
     @Override
     public ResultBean releaseShow(ShowBean showBean) {
 //        showBean.setStatus("未审核");
+        int stadiumId = showBean.getStadiumId();
+        Stadium stadium = stadiumRepository.findById(stadiumId);
+        if (stadium.getStatus().equals("审核未通过")|| stadium.getStatus().equals("未审核")) {
+            return new ResultBean(false, "审核未通过，不能发布演出");
+        }
         Show show = new Show(showBean);
         System.out.println("description:"+showBean.getDescription());
         showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
@@ -167,7 +173,16 @@ public class StadiumServiceImpl implements StadiumService{
     public ResultBean checkTicket(int orderId) {
         Order order = orderRepository.findById(orderId);
         if (!order.getStatus().equals("已出票")){
-            return null;
+            return new ResultBean(false,"无效订单");
+        }
+        //检查是否为当日演出
+        Show show = showService.getShowById(order.getShow_id());
+        Timestamp showTime = show.getTime();
+        long showTimeLong = showTime.getTime();
+        long currentTimeLong = new Date().getTime();
+        int internalDays = (int) (showTimeLong - currentTimeLong) / (1000 * 60 * 60 * 24);
+        if (internalDays!=0) {
+            return new ResultBean(false,"不是当日的演出");
         }
         order.setStatus(OrderStatus.USED.toString());
         orderRepository.save(order);

@@ -23,17 +23,18 @@ public class TicketsAllocationTask {
     private MemberService memberService;
 
     //每天0点执行
-    @Scheduled(cron = "0 0 20 * * ?")
+    @Scheduled(cron = "0 35 14 * * ?")
 //    @Scheduled(fixedDelay = 5000)
     public void allocateTickets() {
         System.out.println("run!!!");
         List<Show> shows = showService.getShowsToBeAllocatedSeat();
         System.out.println("getshow:" + shows.size());
         for (Show show : shows) {
+            System.out.println("showId: " + show.getId());
             List<Order> orders = orderService.getOrderToBeAllocatedSeat(show.getId());
             System.out.println("getOrder" + orders.size());
             if (orders.size()==0) {
-                return;
+                continue;
             }
             List<ShowSeat> showSeats = showService.getShowSeatByShowId(show.getId());
             List<Double> prices = new ArrayList<>();

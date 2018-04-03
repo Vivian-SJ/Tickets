@@ -79,6 +79,12 @@ function releaseShow() {
         var showSeatBean = {
             seatNameAndPrice: seatNameAndPrice
         };
+        if ($('#name').val().length===0 || $('#time').val().length===0 || seatNameAndPrice.length===0) {
+            $('#submit').attr('disabled','true');
+            alert("请填写完整信息");
+            $('#submit').attr('disabled','false');
+            return;
+        }
         var showBean = {
             stadiumId: localStorage.getItem('stadiumId'),
             time: new Date($('#time').val()).getTime(),
@@ -98,7 +104,7 @@ function releaseShow() {
             dataType: 'json',
             success:function (result) {
                 if (result['result'] === true) {
-                    alert('发布演出申请提交成功！等待审核');
+                    alert('演出发布成功！');
                     window.location.href = 'show.html';
                 } else {
                     alert(result['message'])

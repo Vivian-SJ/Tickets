@@ -19,6 +19,7 @@ public class OrderCancelTask extends TimerTask {
 
     public OrderCancelTask(WebApplicationContext webApplicationContext, int orderId) {
         this.memberService = (MemberService) webApplicationContext.getBean("memberService");
+        this.orderService = (OrderService) webApplicationContext.getBean("orderService");
         this.orderId = orderId;
     }
 

@@ -39,13 +39,15 @@ $(document).ready(function () {
         event.preventDefault();
         var btn = event.target;
         var value = $(this).parent().prev().prev().children('p').children('span').html();
+        var amount = $(this).parent().prev().children('input').val();
         var exchangeUrl = commonUrl + '/coupon/exchange';
         $.ajax({
             url: exchangeUrl,
             method: 'post',
             data: {
                 memberId: memberId,
-                couponValue: value
+                couponValue: value,
+                amount: amount
             },
             dataType:'json',
             success: function (data) {

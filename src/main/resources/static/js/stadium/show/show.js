@@ -40,14 +40,14 @@ function setPage(shows) {
     var future = [];
     var now = [];
     for (var i = 0; i < shows.length; i++) {
-        var date = getDate(shows[i]['time']);
-        var newDate = date.replace('-','/');
-        var currentDate = new Date();
-        var showDate = new Date(Date.parse(newDate));
-        if (currentDate>showDate) {
+        var showTime = getDate(shows[i]['time']);
+        var currentTime = new Date().getTime();
+        var currentDate = getDate(currentTime);
+        var showDate = getDate(showTime);
+        if (compareDate(currentDate, showDate)===1) {
             shows[i]['newStatus']=getStatus('finish');
             finish.push(shows[i]);
-        } else if (currentDate < showDate) {
+        } else if (compareDate(currentDate, showDate)===-1) {
             shows[i]['newStatus']=getStatus('future');
             future.push(shows[i]);
         } else {
@@ -125,6 +125,36 @@ function getDate(timestamp) {
     M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
     D = date.getDate() + ' ';
     return Y + M + D;
+}
+
+function compareDate(date1, date2) {
+    var temp1 = date1.split('-');
+    var temp2 = date2.split('-');
+    var year1 = parseInt(temp1[0]);
+    var year2 =  parseInt(temp2[0]);
+    var month1 =  parseInt(temp1[1]);
+    var month2 =  parseInt(temp2[1]);
+    var day1 =  parseInt(temp1[2]);
+    var day2 =  parseInt(temp2[2]);
+    if (year1>year2) {
+        return 1;
+    } else if (year1<year2) {
+        return -1;
+    } else {
+        if (month1>month2) {
+            return 1;
+        } else if (month1<month2) {
+            return -1;
+        } else {
+            if (day1>day2) {
+                return 1;
+            } else if (day1<day2) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+    }
 }
 
 function getTime(timestamp) {

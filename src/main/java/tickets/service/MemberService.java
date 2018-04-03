@@ -9,6 +9,8 @@ import java.util.List;
 public interface MemberService {
     public MemberBean findMemberBeanById(int memberId);
 
+    public MemberBean findMemberBeanByEmail(String email);
+
     public Member findMemberById(int memberId);
 
     /**
@@ -53,7 +55,7 @@ public interface MemberService {
 
     public MemberAccountBean getMemberAccountInfo(int memberId);
 
-    public ResultBean exchangeCoupon(int memberId, double value);
+    public ResultBean exchangeCoupon(int memberId, double value, int amount);
 
     public List<Coupon> getCoupons(int memberId);
 

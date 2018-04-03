@@ -12,4 +12,6 @@ public interface AccountService {
     public Account findAccountByShowId(int showId);
 
     public List<Account> getToBePaidAccounts();
+
+    public double getWebTotalIncome();
 }

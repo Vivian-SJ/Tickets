@@ -39,13 +39,13 @@ $(document).ready(function () {
                     if (result.result === true) {
                         var sure = $('#sure');
                         sure.removeAttr("disabled");
-                        console.log("finish")
+                        console.log("finish");
                         content.text("邮件已发送成功");
                         $('#close').click(function () {
-                            window.location.href="hello.html";
+                            window.location.href="http://localhost:8080/views/hello.html";
                         });
                         sure.click(function () {
-                            window.location.href="hello.html";
+                            window.location.href="http://localhost:8080/views/hello.html";
                         });
                     } else {
                         content.text(result.message);

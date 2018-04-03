@@ -106,6 +106,7 @@ function init() {
 }
 
 function setPage1(data) {
+    $('#income').text(data['income']+'元');
     amountChart.setOption({
         series: [{
             // 根据名字对应到相应的系列

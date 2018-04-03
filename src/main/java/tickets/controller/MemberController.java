@@ -16,10 +16,10 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        return "hello";
-    }
+//    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+//    public String hello() {
+//        return "hello";
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/member/login", method = RequestMethod.POST)
@@ -39,6 +39,7 @@ public class MemberController {
     @RequestMapping(value = "/member/register/confirm", method = RequestMethod.GET)
     public String registerConfirm(@RequestParam(value = "email") String emailCode,
                                       @RequestParam(value = "code") String code) {
+        System.out.println("here");
         ResultBean resultBean = memberService.registerConfirm(emailCode, code);
         if (resultBean.isResult()) {
             return "register-confirm-right";
@@ -46,16 +47,22 @@ public class MemberController {
         return "register-confirm-wrong";
     }
 
-    @ResponseBody
-    @RequestMapping(value="/greeting",method = RequestMethod.GET)
-    public String Greeting() {
-        return "login";
-    }
+//    @ResponseBody
+//    @RequestMapping(value="/greeting",method = RequestMethod.GET)
+//    public String Greeting() {
+//        return "login";
+//    }
 
     @ResponseBody
     @RequestMapping(value = "/member/info/{memberId}", method = RequestMethod.GET)
     public MemberBean findMemberById(@PathVariable(value = "memberId") int memberId) {
         return memberService.findMemberBeanById(memberId);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/member/info", method = RequestMethod.GET)
+    public MemberBean findMemberByEmail(@RequestParam(value = "email") String email) {
+        return memberService.findMemberBeanByEmail(email);
     }
 
     @ResponseBody
@@ -85,8 +92,9 @@ public class MemberController {
     @ResponseBody
     @RequestMapping(value = "/member/coupon/exchange", method = RequestMethod.POST)
     public ResultBean exchangeCoupon(@RequestParam(value = "memberId") int memberId,
-                                     @RequestParam(value = "couponValue") double couponValue ) {
-        return memberService.exchangeCoupon(memberId, couponValue);
+                                     @RequestParam(value = "couponValue") double couponValue,
+                                     @RequestParam(value = "amount") int amount) {
+        return memberService.exchangeCoupon(memberId, couponValue, amount);
     }
 
     @ResponseBody

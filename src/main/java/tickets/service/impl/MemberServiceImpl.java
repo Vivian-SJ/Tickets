@@ -70,6 +70,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public MemberBean findMemberBeanByEmail(String email) {
+        int memberId = memberRepository.findIdByEmail(email);
+        return this.findMemberBeanById(memberId);
+    }
+
+    @Override
     public Member findMemberById(int memberId) {
         return memberRepository.findById(memberId);
     }
@@ -112,6 +118,7 @@ public class MemberServiceImpl implements MemberService {
             Member member = memberRepository.findByEmail(email);
             if (member != null && member.getActivate_code().equals(code)) {
                 member.setActivate_state(true);
+                member.setMoney_available(1000);
                 memberRepository.save(member);
                 return new ResultBean(true, "验证成功！欢迎来到Tickets！");
             }
@@ -172,15 +179,17 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ResultBean exchangeCoupon(int memberId, double value) {
+    public ResultBean exchangeCoupon(int memberId, double value, int amount) {
         Member member = memberRepository.findById(memberId);
         double currentCredit = member.getCredit();
-        if (currentCredit < Coupon.toCredit(value)) {
+        if (currentCredit < Coupon.toCredit(value) * amount) {
             return new ResultBean(false, "您的积分不足以兑换该种优惠券");
         }
-        Coupon coupon = new Coupon(memberId, value, CouponStatus.UNUSED.toString());
-        couponRepository.save(coupon);
-        double newCredit = member.getCredit() - Coupon.toCredit(value);
+        for (int i=0;i<amount;i++) {
+//            Coupon coupon = new Coupon(memberId, value, CouponStatus.UNUSED.toString());
+            couponRepository.insertCoupon(memberId, value, CouponStatus.UNUSED.toString());
+        }
+        double newCredit = currentCredit - Coupon.toCredit(value) * amount;
         member.setCredit(newCredit);
         memberRepository.save(member);
         return new ResultBean(true);
@@ -444,7 +453,7 @@ public class MemberServiceImpl implements MemberService {
 
         //3分钟计时开始，若3分钟之内未付款，取消订单
         Timer timer = new Timer();
-        timer.schedule(new OrderCancelTask(webApplicationContext, orderId), 60000);
+        timer.schedule(new OrderCancelTask(webApplicationContext, orderId), 300000);
 
         return new ResultBeanWithId(new ResultBean(true), orderId);
     }

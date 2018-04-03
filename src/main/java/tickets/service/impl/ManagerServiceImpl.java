@@ -146,7 +146,8 @@ public class ManagerServiceImpl implements ManagerService{
     public StatisticsBeanForManager getWebStatistics() {
         int stadiumAmount = stadiumService.getStadiumAmount();
         int memberAmount = memberService.getMemberAmount();
-        return new StatisticsBeanForManager(stadiumAmount,memberAmount);
+        double income = accountService.getWebTotalIncome();
+        return new StatisticsBeanForManager(income, stadiumAmount,memberAmount);
     }
 
 

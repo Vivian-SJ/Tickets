@@ -1,6 +1,7 @@
 var timeChart;
 var typeChart;
 var incomeChart;
+var stadiumName = "";
 $(document).ready(function () {
     init();
 });
@@ -13,6 +14,7 @@ function init() {
         login.innerHTML = '退出登录';
         $(register).css('display', 'none');
         $(register).parent().css('display', 'none');
+        console.log('stadiumId:' + localStorage.getItem('stadiumId'));
     } else {
         alert("请先登录!");
         return;
@@ -22,16 +24,33 @@ function init() {
         if ($(login).text() === '退出登录') {
             localStorage.removeItem('stadiumId');
         }
-        window.location.href = '../login.html';
+        window.location.href = 'login.html';
     });
 
 // 基于准备好的dom，初始化echarts实例
     timeChart = echarts.init(document.getElementById('timeDistribution'), 'light');
 
 // 指定图表的配置项和数据
-
+    var timeOption = {
+        title: {
+            text: '演出时间分布'
+        },
+        tooltip: {},
+        legend: {
+            data: ['数量']
+        },
+        xAxis: {
+            data: ["已完成", "即将到来", "今日上映"]
+        },
+        yAxis: {},
+        series: [{
+            name: '数量',
+            type: 'bar',
+            data:[]
+        }]
+    };
 // 使用刚指定的配置项和数据显示图表。
-//     timeChart.setOption(timeOption);
+    timeChart.setOption(timeOption);
 
     typeChart = echarts.init(document.getElementById('typeDistribution'), 'light');
     var typeOption = {
@@ -94,6 +113,22 @@ function init() {
         ]
     };
     incomeChart.setOption(incomeOption);
+
+    $.ajax({
+        url: 'http://localhost:8080/tickets/stadium/info/' + localStorage.getItem('stadiumId'),
+        method: 'get',
+        dataType: 'json',
+        success: function (data) {
+            $('#name').text(data['name']);
+            if (data['status_info']!==null) {
+                $('#message').text('审核未通过！！！理由:'+data['status_info']);
+                $('#message').css('display', 'block')
+            }
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
 
     var url1 = 'http://localhost:8080/tickets/stadium/shows/' + localStorage.getItem('stadiumId');
     console.log('stadiumId:' + localStorage.getItem('stadiumId'));
@@ -172,28 +207,6 @@ function setPage1(shows) {
     }
 
     timeChart.setOption({
-        title: {
-            text: '不同时间的演出的数量分布图'
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-                type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-            }
-        },
-        legend: {
-            data: ['数量']
-        },
-        xAxis: {
-            type: 'category',
-            data: ["已完成", "即将到来", "今日上映"],
-            axisTick: {
-                alignWithLabel: true
-            }
-        },
-        yAxis: {
-            type: 'value'
-        },
         series: [{
             // 根据名字对应到相应的系列
             name: '数量',

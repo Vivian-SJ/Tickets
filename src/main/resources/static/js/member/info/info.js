@@ -32,8 +32,8 @@ $(document).ready(function () {
                 $('#name').val(data['name']);
                 $('#password').val(data['password']);
                 $('#gender').val(data['gender']);
-                $('#rank').val(data['rank']);
-                $('#credit').val(data['credit']);
+                $('#rank').text(data['rank']+'级');
+                $('#credit').text(data['credit']);
             },
             error: function () {
                 console.log("error");

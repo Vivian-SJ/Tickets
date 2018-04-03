@@ -32,4 +32,9 @@ public class AccountServiceImpl implements AccountService{
     public List<Account> getToBePaidAccounts() {
         return accountRepository.getToBePaidAccounts();
     }
+
+    @Override
+    public double getWebTotalIncome() {
+        return accountRepository.getWebTotalIncome();
+    }
 }
