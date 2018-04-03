@@ -23,7 +23,7 @@ public class TicketsAllocationTask {
     private MemberService memberService;
 
     //每天0点执行
-    @Scheduled(cron = "0 35 14 * * ?")
+    @Scheduled(cron = "0 0 0 * * ?")
 //    @Scheduled(fixedDelay = 5000)
     public void allocateTickets() {
         System.out.println("run!!!");
