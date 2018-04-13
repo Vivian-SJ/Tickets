@@ -16,11 +16,6 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String hello() {
-        return "hello";
-    }
-
     @ResponseBody
     @RequestMapping(value = "/member/login", method = RequestMethod.POST)
     public ResultBeanWithId login(@RequestParam(value = "email") String email,
