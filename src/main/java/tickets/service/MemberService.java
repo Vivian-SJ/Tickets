@@ -89,4 +89,6 @@ public interface MemberService {
      * @return 不同类型即该类型的演出组成的Map
      */
     public ShowsBean getOrderShowsAndTypes(int memberId);
+
+    public List<Integer> findAllIds();
 }

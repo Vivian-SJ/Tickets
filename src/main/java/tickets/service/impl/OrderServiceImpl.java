@@ -23,6 +23,16 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
+    public List<Order> getOrdersByMemberIdAndStatus(int memberId, String status) {
+        return orderRepository.findByMember_idAndStatus(memberId, status);
+    }
+
+    @Override
+    public List<Order> getOrdersByStadiumIdAndStatus(int stadiumId, String status) {
+        return orderRepository.findByStadium_idAndStatus(stadiumId, status);
+    }
+
+    @Override
     public void save(Order order) {
         orderRepository.save(order);
     }
@@ -30,5 +40,20 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderById(int orderId) {
         return orderRepository.findById(orderId);
+    }
+
+    @Override
+    public int getLastId() {
+        return orderRepository.getId();
+    }
+
+    @Override
+    public int getAmountByMemberId(int memberId) {
+        return orderRepository.getAmountByMemberId(memberId);
+    }
+
+    @Override
+    public int getAmountByStadiumId(int stadiumId) {
+        return orderRepository.getAmountByStadiumId(stadiumId);
     }
 }

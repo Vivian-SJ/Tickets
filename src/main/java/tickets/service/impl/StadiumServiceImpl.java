@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.*;
+import tickets.service.OrderService;
 import tickets.service.SeatService;
 import tickets.service.ShowService;
 import tickets.service.StadiumService;
@@ -23,15 +24,6 @@ public class StadiumServiceImpl implements StadiumService{
     private SeatRepository seatRepository;
 
     @Autowired
-    private ShowRepository showRepository;
-
-    @Autowired
-    private ShowSeatRepository showSeatRepository;
-
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
     private ShowService showService;
 
     @Autowired
@@ -39,6 +31,9 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Autowired
     private SeatService seatService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Override
     public ResultBeanWithId register(StadiumBean stadiumBean) {
@@ -142,10 +137,10 @@ public class StadiumServiceImpl implements StadiumService{
         }
         Show show = new Show(showBean);
         System.out.println("description:"+showBean.getDescription());
-        showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
+        showService.save(show);
         Map<String, Double> seatAndPrice = showBean.getShowSeatBean().getSeatNameAndPrice();
         System.out.println(seatAndPrice.size());
-        int showId = showRepository.getId();
+        int showId = showService.getLastShowId();
         System.out.println(showId);
         for (Map.Entry<String, Double> entry : seatAndPrice.entrySet()) {
             int seatId = seatRepository.findIdByNameAndStadium_id(entry.getKey(), showBean.getStadiumId());
@@ -153,14 +148,14 @@ public class StadiumServiceImpl implements StadiumService{
             Seat seat = seatRepository.findById(seatId);
             ShowSeatId showSeatId = new ShowSeatId(showId, seatId);
             ShowSeat showSeat = new ShowSeat(showSeatId, entry.getValue(), seat.getAmount());
-            showSeatRepository.save(showSeat);
+            showService.saveShowSeat(showSeat);
         }
         return new ResultBean(true);
     }
 
     @Override
     public List<ShowBean> displayShows(int stadiumId) {
-        List<Show> shows = showRepository.findByStadium_id(stadiumId);
+        List<Show> shows = showService.findByStadiumId(stadiumId);
         List<ShowBean> showBeans = new ArrayList<>();
         for (Show show : shows) {
             ShowBean showBean = showService.getShowBeanById(show.getId());
@@ -171,7 +166,7 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Override
     public ResultBean checkTicket(int orderId) {
-        Order order = orderRepository.findById(orderId);
+        Order order = orderService.getOrderById(orderId);
         if (!order.getStatus().equals("已出票")){
             return new ResultBean(false,"无效订单");
         }
@@ -185,14 +180,14 @@ public class StadiumServiceImpl implements StadiumService{
             return new ResultBean(false,"不是当日的演出");
         }
         order.setStatus(OrderStatus.USED.toString());
-        orderRepository.save(order);
+        orderService.save(order);
         return new ResultBean(true);
     }
 
     @Override
     public OrderBean findOrderById(int orderId) {
-        Order order = orderRepository.findById(orderId);
-        Show show = showRepository.findById(order.getShow_id());
+        Order order = orderService.getOrderById(orderId);
+        Show show = showService.getShowById(order.getShow_id());
         String showName = show.getName();
         Timestamp showTime = show.getTime();
         String stadiumName = this.getStadiumBeanById(order.getStadium_id()).getName();
@@ -210,10 +205,10 @@ public class StadiumServiceImpl implements StadiumService{
 
     @Override
     public StatisticsBeanForMemberAndStadium displayStadiumStatistics(int stadiumId) {
-        int orderSum = orderRepository.getAmountByStadiumId(stadiumId);
+        int orderSum = orderService.getAmountByStadiumId(stadiumId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
-            List<Order> orders = orderRepository.findByStadium_idAndStatus(stadiumId, orderStatus.toString());
+            List<Order> orders = orderService.getOrdersByStadiumIdAndStatus(stadiumId, orderStatus.toString());
             List<OrderBean> orderBeans = new ArrayList<>();
             for (Order order : orders) {
                 OrderBean orderBean = new OrderBean(order);

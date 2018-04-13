@@ -29,4 +29,8 @@ public interface ShowService {
     public void save(Show show);
 
     public List<Show> findByType(String type);
+
+    public List<Show> findByStadiumId(int stadiumId);
+
+    public int getLastShowId();
 }

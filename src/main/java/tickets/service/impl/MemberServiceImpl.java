@@ -28,15 +28,6 @@ public class MemberServiceImpl implements MemberService {
     private CouponRepository couponRepository;
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private ShowRepository showRepository;
-
-    @Autowired
-    private StadiumRepository stadiumRepository;
-
-    @Autowired
     private StadiumService stadiumService;
 
     @Autowired
@@ -218,7 +209,7 @@ public class MemberServiceImpl implements MemberService {
         Map<String, List<ShowBean>> map = new HashMap<>();
         for (int i = 0; i < ShowType.values().length; i++) {
             String type = ShowType.getName(i);
-            List<Show> shows = showRepository.findByType(type);
+            List<Show> shows = showService.findByType(type);
             List<ShowBean> showBeans = new ArrayList<>();
             for (Show show : shows) {
                 Timestamp now = new Timestamp(new Date().getTime());
@@ -236,7 +227,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ResultBean cancelOrder(int orderId, boolean refund) {
-        Order order = orderRepository.findById(orderId);
+        Order order = orderService.getOrderById(orderId);
         order.setStatus(OrderStatus.CANCELED.toString());
 
         Member member = memberRepository.findById(order.getMember_id());
@@ -245,7 +236,7 @@ public class MemberServiceImpl implements MemberService {
         double price = order.getActual_price();
 
         long cancelTimeLong = new Date().getTime();
-        Show show = showRepository.findById(order.getShow_id());
+        Show show = showService.getShowById(order.getShow_id());
         Timestamp showTime = show.getTime();
         long showTimeLong = showTime.getTime();
         //距离演出开始的天数
@@ -285,20 +276,20 @@ public class MemberServiceImpl implements MemberService {
             showSeat.setAvailable_amount(showSeat.getAvailable_amount() + seatAmount);
             showService.saveShowSeat(showSeat);
         }
-        orderRepository.save(order);
+        orderService.save(order);
         return new ResultBean(true);
     }
 
     @Override
     public ResultBean payOrder(int orderId) {
-        Order order = orderRepository.findById(orderId);
+        Order order = orderService.getOrderById(orderId);
         //如果是现场购票
         if (order.getMember_id() == -1) {
             order.setStatus(OrderStatus.TICKET_OUT.toString());
-            orderRepository.save(order);
-            Stadium stadium = stadiumRepository.findById(order.getStadium_id());
+            orderService.save(order);
+            Stadium stadium = stadiumService.getStadiumById(order.getStadium_id());
             stadium.setIncome(stadium.getIncome() + order.getActual_price());
-            stadiumRepository.save(stadium);
+            stadiumService.save(stadium);
             return new ResultBean(true);
         }
 
@@ -314,7 +305,7 @@ public class MemberServiceImpl implements MemberService {
         } else {
             order.setStatus(OrderStatus.TICKET_OUT.toString());
         }
-        orderRepository.save(order);
+        orderService.save(order);
 
         if (order.getSeat_id() != -1) {
             //减少座位数量
@@ -356,10 +347,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<OrderBean> displayOrder(int memberId) {
-        List<Order> orders = orderRepository.findByMember_id(memberId);
+        List<Order> orders = orderService.getOrdersByMemberId(memberId);
         List<OrderBean> orderBeans = new ArrayList<>();
         for (Order order : orders) {
-            Show show = showRepository.findById(order.getShow_id());
+            Show show = showService.getShowById(order.getShow_id());
             String showName = show.getName();
             Timestamp showTime = show.getTime();
             String stadiumName = stadiumService.getStadiumBeanById(order.getStadium_id()).getName();
@@ -385,10 +376,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public StatisticsBeanForMemberAndStadium displayMemberStatistics(int memberId) {
-        int orderSum = orderRepository.getAmountByMemberId(memberId);
+        int orderSum = orderService.getAmountByMemberId(memberId);
         Map<String, List<OrderBean>> map = new HashMap<>();
         for (OrderStatus orderStatus : OrderStatus.values()) {
-            List<Order> orders = orderRepository.findByMember_idAndType(memberId, orderStatus.toString());
+            List<Order> orders = orderService.getOrdersByMemberIdAndStatus(memberId, orderStatus.toString());
             List<OrderBean> orderBeans = new ArrayList<>();
             for (Order order : orders) {
                 OrderBean orderBean = new OrderBean(order);
@@ -433,10 +424,15 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public List<Integer> findAllIds() {
+        return memberRepository.findAllIds();
+    }
+
+    @Override
     public ResultBeanWithId buyTicket(OrderBean orderBean) {
         Order order = new Order(orderBean);
-        orderRepository.save(order);
-        int orderId = orderRepository.getId();
+        orderService.save(order);
+        int orderId = orderService.getLastId();
         System.out.println("orderId" + orderId);
         System.out.println("seatId:" + orderBean.getSeatId());
 

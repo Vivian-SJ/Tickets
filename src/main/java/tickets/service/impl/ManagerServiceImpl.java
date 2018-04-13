@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import tickets.bean.*;
 import tickets.model.*;
 import tickets.repository.ManagerRepository;
-import tickets.repository.MemberRepository;
 import tickets.service.*;
 import tickets.util.CodeUtil;
 import tickets.util.ShowType;
@@ -27,9 +26,6 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Autowired
     private ShowService showService;
-
-    @Autowired
-    private MemberRepository memberRepository;
 
     @Autowired
     private ManagerRepository managerRepository;
@@ -116,7 +112,7 @@ public class ManagerServiceImpl implements ManagerService{
 
     @Override
     public List<StatisticsBeanForMembersAndStadiums> getMembersStatistics() {
-        List<Integer> memberIds = memberRepository.findAllIds();
+        List<Integer> memberIds = memberService.findAllIds();
         List<StatisticsBeanForMembersAndStadiums> statisticsBeanForMembers = new ArrayList<>();
         for (int id : memberIds) {
             Member member = memberService.findMemberById(id);

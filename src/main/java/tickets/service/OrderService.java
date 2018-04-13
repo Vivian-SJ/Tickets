@@ -14,7 +14,17 @@ public interface OrderService {
 
     public List<Order> getOrdersByMemberId(int memberId);
 
+    public List<Order> getOrdersByMemberIdAndStatus(int memberId, String status);
+
+    public List<Order> getOrdersByStadiumIdAndStatus(int stadiumId, String status);
+
     public void save(Order order);
 
     public Order getOrderById(int orderId);
+
+    public int getLastId();
+
+    public int getAmountByMemberId(int memberId);
+
+    public int getAmountByStadiumId(int stadiumId);
 }

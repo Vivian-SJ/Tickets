@@ -14,7 +14,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>{
     public List<Order> findByMember_id(int memberId);
 
     @Query(value = "select * from  orders where member_id = ?1 AND status = ?2", nativeQuery = true)
-    public List<Order> findByMember_idAndType(int memberId, String type);
+    public List<Order> findByMember_idAndStatus(int memberId, String status);
 
 //    @Query(value = "select sum(actual_price) FROM orders WHERE member_id = ?1", nativeQuery = true)
 //    public double getMemberTotalPrice(int memberId);

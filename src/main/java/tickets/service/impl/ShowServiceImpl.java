@@ -76,11 +76,21 @@ public class ShowServiceImpl implements ShowService{
 
     @Override
     public void save(Show show) {
-        showRepository.save(show);
+        showRepository.save(show.getName(), show.getTime(), show.getStadium_id(), show.getType(), show.getDescription());
     }
 
     @Override
     public List<Show> findByType(String type) {
         return showRepository.findByType(type);
+    }
+
+    @Override
+    public List<Show> findByStadiumId(int stadiumId) {
+        return showRepository.findByStadium_id(stadiumId);
+    }
+
+    @Override
+    public int getLastShowId() {
+        return showRepository.getId();
     }
 }
